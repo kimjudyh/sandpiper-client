@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import BirdingSessionModel from '../models/BirdingSessionModel';
 import BirdingSession from '../components/BirdingSession';
+import BirdingSessionHeader from '../components/BirdingSessionHeader';
 
 const BirdingSessionContainer = (props) => {
   const [birdingSessions, setBirdingSessions] = useState([]);

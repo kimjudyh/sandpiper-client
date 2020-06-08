@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import Register from '../pages/Register';
 import Login from '../pages/Login';
 import Profile from '../pages/Profile';
+import BirdingSession from '../components/BirdingSession';
 
 const Routes = (props) => (
   <Switch>
@@ -23,6 +24,7 @@ const Routes = (props) => (
         storeUser={props.storeUser}
       />
     }} />
+    <Route path='/birdingSession/:id' component={ BirdingSession}  />
   </Switch>
 )
 

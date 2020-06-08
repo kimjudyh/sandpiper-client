@@ -19,6 +19,10 @@ export default class BirdingSessionModel {
 
   // get one birding session
   // GET '/:id'
+  static getOne = (birdingSessionId) => {
+    const request = cookieAxios.get(`${birdingSessionEndpoint}/${birdingSessionId}`);
+    return request;
+  }
 
   // update birding session
   // PUT '/:id'

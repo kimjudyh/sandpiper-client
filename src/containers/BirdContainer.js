@@ -5,9 +5,9 @@ import Bird from '../components/Bird';
 const BirdContainer = (props) => {
   const [birds, setBirds] = useState([]);
 
-  useEffect(() => {
+  const fetchBirds = (birdingSessionId) => {
     // get all birds from birding session specified by _id
-    BirdModel.all(props._id)
+    BirdModel.all(birdingSessionId)
       .then(res => {
         console.log(res);
         setBirds(res.data.allBirds);
@@ -21,6 +21,10 @@ const BirdContainer = (props) => {
           console.log(err.message);
         }
       })
+  }
+
+  useEffect(() => {
+    fetchBirds(props._id);
   }, []);
 
   const birdComponents = birds.map((element, index) => (

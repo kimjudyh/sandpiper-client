@@ -2,18 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import BirdingSessionModel from '../models/BirdingSessionModel';
 import BirdContainer from '../containers/BirdContainer';
-import BirdingSessionHeader from '../components/BirdingSessionHeader';
-import BirdingSessionBody from '../components/BirdingSessionBody';
 
-const BirdingSession = (props) => {
-  const [birdingSession, setBirdingSession] = useState(props);
+const BirdingSessionBody = (props) => {
+  const [birdingSessionBody, setBirdingSessionBody] = useState({...props});
 
   const fetchBirdingSession = (birdingSessionId) => {
     BirdingSessionModel.getOne(birdingSessionId)
       .then(res => {
         console.log(res.data);
         // todo: set state
-        setBirdingSession(res.data.foundBirdingSession);
+        setBirdingSessionBody(res.data.foundBirdingSession);
       })
       .catch((err) => {
         if (err.response) {
@@ -27,15 +25,14 @@ const BirdingSession = (props) => {
   }
 
   useEffect(() => {
-    // fetchBirdingSession(props.match.params.id);
+    // fetchBirdingSession(props._id);
   }, []);
 
   return (
     <div>
-      <BirdingSessionHeader _id={props.match.params.id} users={[]}/>
-      <BirdingSessionBody _id={props.match.params.id} />
+      <BirdContainer _id={props._id} />
     </div>
   )
 }
 
-export default BirdingSession;
+export default BirdingSessionBody;
