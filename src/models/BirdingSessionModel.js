@@ -16,6 +16,10 @@ export default class BirdingSessionModel {
 
   // create new birding session
   // POST '/'
+  static create = (data) => {
+    const request = cookieAxios.post(`${birdingSessionEndpoint}`, data);
+    return request;
+  }
 
   // get one birding session
   // GET '/:id'

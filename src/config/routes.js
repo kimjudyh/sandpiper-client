@@ -1,10 +1,14 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-// Import Components
+// Import Pages
 import Register from '../pages/Register';
 import Login from '../pages/Login';
 import Profile from '../pages/Profile';
+// Import Components
 import BirdingSession from '../components/BirdingSession';
+// Import Forms
+import NewBirdingSessionForm from '../forms/NewBirdingSessionForm';
+import NewBirdForm from '../forms/NewBirdForm';
 
 const Routes = (props) => (
   <Switch>
@@ -24,7 +28,9 @@ const Routes = (props) => (
         storeUser={props.storeUser}
       />
     }} />
+    <Route exact path='/birdingSession/new' component={ NewBirdingSessionForm } />
     <Route path='/birdingSession/:id' component={ BirdingSession}  />
+    <Route exact path='/bird/new' component={ NewBirdForm } />
   </Switch>
 )
 

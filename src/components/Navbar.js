@@ -17,6 +17,9 @@ const Navbar = (props) => {
         <li>
           <Link to={'/profile'}>Profile</Link>
         </li>
+        <li>
+          <Link to={'/birdingSession/new'}>New Birding Session</Link>
+        </li>
       </ul>
     </nav>
   )
