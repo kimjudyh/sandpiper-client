@@ -22,6 +22,7 @@ function App(props) {
       .then(res => {
         console.log(res);
         setCurrentUser(null);
+        props.history.push('/');
       })
       .catch(err => console.log(err))
   }

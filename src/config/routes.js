@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 // Import Components
 import Register from '../pages/Register';
 import Login from '../pages/Login';
+import Profile from '../pages/Profile';
 
 const Routes = (props) => (
   <Switch>
@@ -16,6 +17,12 @@ const Routes = (props) => (
         storeUser={props.storeUser}
       />
     }}/>
+    <Route path='/profile' render={() => {
+      return <Profile 
+        currentUser={props.currentUser}
+        storeUser={props.storeUser}
+      />
+    }} />
   </Switch>
 )
 
