@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import UserModel from '../models/UserModel';
 
-const Register = () => {
+const Register = (props) => {
   const [userData, setUserData] = useState(
     {
       name: '',
@@ -34,8 +34,17 @@ const Register = () => {
           password: '',
           password2: ''
         })
+        props.history.push('/login');
       })
-      .catch(err => console.log(err));
+      .catch((err) => {
+        if (err.response) {
+          console.log(err.response.data);
+        } else if (err.request) {
+          console.log(err.request);
+        } else {
+          console.log(err.message);
+        }
+      })
   }
 
   // need a form where the user can input name, email, passwords

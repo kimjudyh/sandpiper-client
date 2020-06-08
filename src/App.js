@@ -24,7 +24,15 @@ function App(props) {
         setCurrentUser(null);
         props.history.push('/');
       })
-      .catch(err => console.log(err))
+      .catch((err) => {
+        if (err.response) {
+          console.log(err.response.data);
+        } else if (err.request) {
+          console.log(err.request);
+        } else {
+          console.log(err.message);
+        }
+      })
   }
 
   return (

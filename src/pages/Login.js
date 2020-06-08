@@ -38,6 +38,15 @@ const Login = (props) => {
           // say invalid credentials
         }
       })
+      .catch((err) => {
+        if (err.response) {
+          console.log(err.response.data);
+        } else if (err.request) {
+          console.log(err.request);
+        } else {
+          console.log(err.message);
+        }
+      })
   }
 
   return (
