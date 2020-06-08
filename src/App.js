@@ -17,7 +17,9 @@ function App(props) {
   // logout
   const logout = (event) => {
     event.preventDefault();
+    // remove user id from local storage
     localStorage.removeItem('uid');
+    // api request for logout route
     UserModel.logout()
       .then(res => {
         console.log(res);
