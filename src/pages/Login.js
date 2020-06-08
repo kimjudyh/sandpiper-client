@@ -22,18 +22,21 @@ const Login = (props) => {
     event.preventDefault();
     // make API request
     UserModel.login(userData)
-      .then(data => {
-        console.log(data);
-        if (data.status === 200) {
-          // send to profile page
-        } else {
-          // say invalid credentials
-        }
+      .then(res => {
+        console.log(res);
         // reset form inputs
         setUserData({
           email: '',
           password: '',
         })
+        if (res.status === 200) {
+          // store user id in local storage
+          props.storeUser(res.data.id)
+          // send to profile page
+          props.history.push('/profile');
+        } else {
+          // say invalid credentials
+        }
       })
   }
 
