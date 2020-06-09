@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import BirdModel from '../models/BirdModel';
 import Bird from '../components/Bird';
 import NewBirdForm from '../forms/NewBirdForm';
-import { useFormDisplay } from '../pages/Profile';
 
 const BirdContainer = (props) => {
   const [didBirdsChange, setDidBirdsChange] = useState(false);
@@ -78,3 +77,19 @@ const BirdContainer = (props) => {
 }
 
 export default BirdContainer;
+
+export const useFormDisplay = () => {
+  const [formDisplay, setFormDisplay] = useState({display: 'none'})
+  const toggleFormDisplay = () => {
+    // toggle show form state
+    if (formDisplay.display === 'none') {
+      setFormDisplay({display: 'block'})
+    } else {
+      setFormDisplay({display: 'none'})
+    }
+  }
+  return ({
+    formDisplay,
+    toggleFormDisplay
+  })
+}

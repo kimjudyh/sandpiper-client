@@ -1,21 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import BirdingSessionModel from '../models/BirdingSessionModel';
 
 const EditBirdingSessionForm = (props) => {
   const [birdingSessionData, setBirdingSessionData] = useState({
     location: props.birdingSessionHeader.location,
-    date: props.birdingSessionHeader.date,
+    date: props.birdingSessionHeader.date.slice(0, 10),
     notes: props.birdingSessionHeader.notes
   });
 
+  // API call to update birding session
   const updateBirdingSession = (birdingSessionId, data) => {
     BirdingSessionModel.update(birdingSessionId, data)
       .then(res => {
         console.log(res.data);
-        // if success, clear form inputs redirect to birding session's page
+        // if success, hide form 
         if (res.status === 200) {
-          // props.setDidBirdingSessionsChange(true);
-          // props.history.push(`/birdingSession/${res.data.newBirdingSession._id}`)
           props.toggleFormDisplay();
         } else {
           // provide message that something went wrong
@@ -46,7 +45,7 @@ const EditBirdingSessionForm = (props) => {
     updateBirdingSession(props.birdingSessionHeader._id, birdingSessionData);
   }
 
-  if (birdingSessionData) {
+  if (birdingSessionData.date) {
     return (
       <div>
         {birdingSessionData.location}
