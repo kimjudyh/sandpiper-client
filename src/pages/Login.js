@@ -57,7 +57,7 @@ const Login = (props) => {
           <label htmlFor="email">Email</label>
           <input 
             // autofocus this field
-            ref={input => input && input.focus()}
+            // ref={input => input && input.focus()}
             type="text"
             id="email"
             name="email"

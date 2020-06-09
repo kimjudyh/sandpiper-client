@@ -58,7 +58,6 @@ const NewBirdingSessionForm = (props) => {
           <label>Location</label>
           <input 
             // autofocus this field
-            ref={input => input && input.focus()}
             onChange={handleChange}
             type="text"
             id="location"

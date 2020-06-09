@@ -98,7 +98,7 @@ const NewBirdForm = (props) => {
           <input 
             // autofocus this field
             autoFocus
-            ref={input => input && input.focus()}
+            // ref={input => input && input.focus()}
             onChange={name.handleChange}
             type="text"
             id="name"
@@ -142,7 +142,7 @@ const NewBirdForm = (props) => {
           />
         </div>
 
-        <button data-dismiss="modal" type="submit">Save</button>
+        <button className="btn btn-success" data-dismiss="modal" type="submit">Save</button>
       </form>
     </div>
   )
@@ -153,14 +153,12 @@ export default NewBirdForm;
 const useFormInput = (initialValue) => {
   const [value, setValue] = useState(initialValue);
   const handleChange = (event) => {
-    console.log(event.target.type)
     if (event.target.type === 'checkbox') {
       setValue(!value);
     } else if (event.target.type === 'select') {
 
     } 
     else {
-      console.log(event.target.value)
       setValue(event.target.value);
     }
   }

@@ -38,7 +38,7 @@ const BirdContainer = (props) => {
   return (
     <div>
       {/* <button type="button" className="btn btn-info" data-toggle="modal" data-focus="true" data-target="#newBirdForm" >New Bird</button> */}
-      <button onClick={form.toggleFormDisplay}>New Bird</button>
+      <button className="btn btn-info" onClick={form.toggleFormDisplay}>New Bird</button>
       <div style={form.formDisplay}>
       {/* <div  */}
       {/* id="newBirdForm" */}
@@ -61,6 +61,16 @@ const BirdContainer = (props) => {
 
       <div>
         {birdComponents}
+      </div>
+      <div>
+        <button className="btn btn-info" onClick={form.toggleFormDisplay}>New Bird</button>
+        <div style={form.formDisplay}>
+          <NewBirdForm 
+            _id={props._id} 
+            setDidBirdsChange={setDidBirdsChange}
+            toggleFormDisplay={form.toggleFormDisplay}
+          />
+        </div>
       </div>
 
     </div>
