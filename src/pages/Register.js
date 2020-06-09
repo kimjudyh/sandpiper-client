@@ -58,6 +58,8 @@ const Register = (props) => {
         <div>
           <label>Name</label>
           <input 
+            // autofocus this field
+            ref={input => input && input.focus()}
             onChange={ handleChange }
             type="text"
             id="name"

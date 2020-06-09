@@ -19,6 +19,7 @@ const NewBirdingSessionForm = (props) => {
             date: '',
             notes: ''
           })
+          // props.setDidBirdingSessionsChange(true);
           props.history.push(`/birdingSession/${res.data.newBirdingSession._id}`)
         } else {
           // provide message that something went wrong
@@ -41,6 +42,7 @@ const NewBirdingSessionForm = (props) => {
     let newState = Object.assign({}, birdingSessionData);
     newState[event.target.name] = event.target.value;
     setBirdingSessionData(newState);
+    // setState({...data, [event.target.name]: event.target.value})
   }
 
   const handleSubmit = (event) => {
@@ -51,10 +53,12 @@ const NewBirdingSessionForm = (props) => {
   return (
     <div>
       Form
-      <form onSubmit={handleSubmit}>
+      <form className="form-group" onSubmit={handleSubmit}>
         <div>
           <label>Location</label>
           <input 
+            // autofocus this field
+            ref={input => input && input.focus()}
             onChange={handleChange}
             type="text"
             id="location"

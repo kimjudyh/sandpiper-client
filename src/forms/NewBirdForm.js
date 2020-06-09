@@ -18,6 +18,15 @@ const NewBirdForm = (props) => {
         console.log(res.data);
         // if success, do something
         if (res.status === 200) {
+          // reset form fields
+          name.resetField();
+          number.resetField();
+          behavior.resetField();
+          unconfirmed.resetField();
+          fieldNotes.resetField();
+
+          props.setDidBirdsChange(true);
+          props.toggleFormDisplay();
         } else {
           // do something
         }
@@ -75,15 +84,6 @@ const NewBirdForm = (props) => {
       unconfirmed: unconfirmed.value, 
       fieldNotes: fieldNotes.value
     })
-    // reset form fields
-    name.resetField();
-    number.resetField();
-    behavior.resetField();
-    unconfirmed.resetField();
-    fieldNotes.resetField();
-
-    props.setDidBirdsChange(true);
-    props.toggleFormDisplay();
   }
 
   return (
@@ -93,6 +93,8 @@ const NewBirdForm = (props) => {
         <div>
           <label>Name</label>
           <input 
+            // autofocus this field
+            ref={input => input && input.focus()}
             onChange={name.handleChange}
             type="text"
             id="name"
