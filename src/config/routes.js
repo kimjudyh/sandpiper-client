@@ -24,7 +24,7 @@ const Routes = (props) => (
     }}/>
     <Route path='/profile' render={(routeComponentProps) => {
       return <Profile 
-        {...routeComponentProps}
+        routeComponentProps={routeComponentProps}
         currentUser={props.currentUser}
         storeUser={props.storeUser}
       />

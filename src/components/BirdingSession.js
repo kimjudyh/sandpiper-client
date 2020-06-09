@@ -6,13 +6,14 @@ import BirdingSessionHeader from '../components/BirdingSessionHeader';
 import BirdingSessionBody from '../components/BirdingSessionBody';
 
 const BirdingSession = (props) => {
-  const [birdingSession, setBirdingSession] = useState(props);
+  // Shows birding session header and birding session body (show page)
+  const [birdingSession, setBirdingSession] = useState({});
 
+  // API call to get one birding session
   const fetchBirdingSession = (birdingSessionId) => {
     BirdingSessionModel.getOne(birdingSessionId)
       .then(res => {
-        console.log(res.data);
-        // todo: set state
+        console.log('found', res.data.foundBirdingSession);
         setBirdingSession(res.data.foundBirdingSession);
       })
       .catch((err) => {
@@ -26,16 +27,32 @@ const BirdingSession = (props) => {
       })
   }
 
+  // when component mounts, and data in array changes
   useEffect(() => {
-    // fetchBirdingSession(props.match.params.id);
+    fetchBirdingSession(props.match.params.id);
   }, []);
 
-  return (
-    <div>
-      <BirdingSessionHeader _id={props.match.params.id} users={[]}/>
-      <BirdingSessionBody _id={props.match.params.id} />
-    </div>
-  )
+  if (birdingSession.location) {
+    return (
+      <div>
+        {/* Birding Session Header */}
+        {birdingSession.location}
+        <BirdingSessionHeader 
+          _id={props.match.params.id} 
+          {...birdingSession} 
+          users={[]}
+        />
+        {/* Birding Session Body */}
+        <BirdingSessionBody _id={props.match.params.id} />
+      </div>
+    )
+  } else {
+    return (
+      <div>
+        <h1>Loading...</h1>
+      </div>
+    )
+  }
 }
 
 export default BirdingSession;

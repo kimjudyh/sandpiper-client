@@ -9,7 +9,11 @@ const Profile = (props) => {
   return (
     <div>
       <h3>Profile</h3>
-      <BirdingSessionContainer {...props}/>
+      <BirdingSessionContainer 
+        {...props.routeComponentProps}
+        currentUser={props.currentUser}
+        storeUser={props.storeUser}
+      />
 
     </div>
   )

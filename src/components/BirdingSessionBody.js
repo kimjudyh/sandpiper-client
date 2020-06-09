@@ -25,7 +25,7 @@ const BirdingSessionBody = (props) => {
   }
 
   useEffect(() => {
-    // fetchBirdingSession(props._id);
+    fetchBirdingSession(props._id);
   }, []);
 
   return (
