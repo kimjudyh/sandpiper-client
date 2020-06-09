@@ -48,6 +48,9 @@ const NewBirdForm = (props) => {
         console.log(res);
         // get pre-made list of behavior options
         const behaviors = res.data.allBehaviors.map((element, index) => {
+          if (index === 0) {
+            behavior.setValue(element._id)
+          }
           return (
             <option key={element._id} onClick={behavior.handleChange}
             id={element.name} name={element.name} value={element._id}>
@@ -94,6 +97,7 @@ const NewBirdForm = (props) => {
           <label>Name</label>
           <input 
             // autofocus this field
+            autoFocus
             ref={input => input && input.focus()}
             onChange={name.handleChange}
             type="text"
@@ -138,7 +142,7 @@ const NewBirdForm = (props) => {
           />
         </div>
 
-        <button type="submit">Save</button>
+        <button data-dismiss="modal" type="submit">Save</button>
       </form>
     </div>
   )
@@ -165,6 +169,7 @@ const useFormInput = (initialValue) => {
   }
   return ({
     value,
+    setValue,
     resetField,
     handleChange
   })

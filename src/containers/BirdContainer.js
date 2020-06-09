@@ -37,13 +37,26 @@ const BirdContainer = (props) => {
 
   return (
     <div>
+      {/* <button type="button" className="btn btn-info" data-toggle="modal" data-focus="true" data-target="#newBirdForm" >New Bird</button> */}
       <button onClick={form.toggleFormDisplay}>New Bird</button>
       <div style={form.formDisplay}>
+      {/* <div  */}
+      {/* id="newBirdForm" */}
+      {/* tabindex="-1" */}
+      {/* role="dialog" */}
+      {/* className="modal" */}
+      {/* aria-hidden="true" */}
+      {/* > */}
+        {/* <div className="modal-dialog modal-dialog-centered"> */}
+        {/* <div className="modal-content"> */}
         <NewBirdForm 
           _id={props._id} 
           setDidBirdsChange={setDidBirdsChange}
           toggleFormDisplay={form.toggleFormDisplay}
         />
+        {/* <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> */}
+        {/* </div> */}
+        {/* </div> */}
       </div>
 
       <div>
