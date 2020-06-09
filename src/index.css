@@ -5,9 +5,20 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #D7E3C8;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+}
+
+.birdingSessionHeader {
+  background-color: #F1F1F1F1;
+  margin: 10px;
 }

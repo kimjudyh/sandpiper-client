@@ -34,7 +34,7 @@ const BirdingSessionHeader = (props) => {
   })
 
   return (
-    <div>
+    <div className="birdingSessionHeader">
       <Link to={`/birdingSession/${props._id}`}>
         <h3>{birdingSessionHeader.location}</h3>
       </Link>
