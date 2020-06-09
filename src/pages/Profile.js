@@ -9,11 +9,7 @@ const Profile = (props) => {
   return (
     <div>
       <h3>Profile</h3>
-      <button onClick={form.toggleFormDisplay}>New Birding Session</button>
-      <div style={form.formDisplay}>
-        <NewBirdingSessionForm {...props}/>
-      </div>
-      <BirdingSessionContainer />
+      <BirdingSessionContainer {...props}/>
 
     </div>
   )
