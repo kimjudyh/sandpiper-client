@@ -29,16 +29,16 @@ const BirdingSessionHeader = (props) => {
 
   const users = birdingSessionHeader.users.map((user, index) => {
     return (
-      <h3>{user.name}</h3>
+      <span>{user.name} </span>
     )
   })
 
   return (
     <div>
       <Link to={`/birdingSession/${props._id}`}>
-        {birdingSessionHeader.location}
+        <h3>{birdingSessionHeader.location}</h3>
       </Link>
-      {users}
+      Users: {users}
     </div>
   )
 }
