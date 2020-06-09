@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const birdEndpoint = 'http://localhost:4000/api/v1/bird/';
+const birdEndpoint = 'http://localhost:4000/api/v1/bird';
 
 // make an instance of axios that enables passing of cookies
 const cookieAxios = axios.create({
@@ -24,11 +24,23 @@ export default class BirdModel {
 
   // get one bird
   // GET '/:birdingSessionId/bird/:id'
+  static getOne = (birdingSessionId, birdId) => {
+    const request = cookieAxios.get(`${birdEndpoint}/${birdingSessionId}/bird/${birdId}`);
+    return request;
+  }
 
   // update a bird
   // PUT '/:birdingSessionId/bird/:id'
+  static update = (birdingSessionId, birdId, data) => {
+    const request = cookieAxios.put(`${birdEndpoint}/${birdingSessionId}/bird/${birdId}`, data);
+    return request;
+  }
 
   // delete a bird
   // DELETE '/:birdingSessionId/bird/:id'
+  static delete = (birdingSessionId, birdId) => {
+    const request = cookieAxios.delete(`${birdEndpoint}/${birdingSessionId}/bird/${birdId}`);
+    return request;
+  }
 
 }
