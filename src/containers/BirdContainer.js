@@ -32,7 +32,7 @@ const BirdContainer = (props) => {
   }, [didBirdsChange]);
 
   const birdComponents = birds.map((element, index) => (
-    <Bird key={element._id} {...element} />
+    <Bird key={element._id} {...element} birdingSessionId={props._id} />
   ))
 
   return (
