@@ -12,6 +12,7 @@ const NewBirdForm = (props) => {
   const fieldNotes = useFormInput('');
   // TODO: photos
 
+  // API call to make new bird
   const makeNewBird = (birdingSessionId, data) => {
     BirdModel.create(birdingSessionId, data) 
       .then(res => {
@@ -24,8 +25,9 @@ const NewBirdForm = (props) => {
           behavior.resetField();
           unconfirmed.resetField();
           fieldNotes.resetField();
-
+          // tell parent component that a bird was added
           props.setDidBirdsChange(true);
+          // hide form
           props.toggleFormDisplay();
         } else {
           // do something
@@ -42,15 +44,18 @@ const NewBirdForm = (props) => {
       })
   }
 
+  // API request to get all behaviors for drop-down menu
   const getBehaviors = () => {
     BehaviorModel.all()
       .then(res => {
         console.log(res);
         // get pre-made list of behavior options
         const behaviors = res.data.allBehaviors.map((element, index) => {
+          // set default behavior choice to first behavior
           if (index === 0) {
             behavior.setValue(element._id)
           }
+          // return jsx that contains behavior name and _id
           return (
             <option key={element._id} onClick={behavior.handleChange}
             id={element.name} name={element.name} value={element._id}>
@@ -69,14 +74,14 @@ const NewBirdForm = (props) => {
           console.log(err.message);
         }
       })
-    // name = behavior name
-    // value = behavior id
   }
 
+  // when component mounts, get all behaviors
   useEffect(() => {
     getBehaviors();
   }, [])
 
+  // form submission
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log('behavior', behavior.value)
@@ -150,10 +155,13 @@ const NewBirdForm = (props) => {
 
 export default NewBirdForm;
 
+// custom hook for changing form inputs
 const useFormInput = (initialValue) => {
   const [value, setValue] = useState(initialValue);
   const handleChange = (event) => {
+    // special case for checkbox, since default value is on, off
     if (event.target.type === 'checkbox') {
+      // want to set as true or false
       setValue(!value);
     } else if (event.target.type === 'select') {
 
