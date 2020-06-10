@@ -10,6 +10,7 @@ const ShareForm = (props) => {
         console.log('shared', res.data);
         // set did data change
         props.setDidDataChange(!props.didDataChange);
+        setUserEmail('');
       })
       .catch((err) => {
         if (err.response) {
@@ -45,7 +46,7 @@ const ShareForm = (props) => {
             value={userEmail}
           />
         </div>
-        <button type="submit">Share</button>
+        <button className="btn btn-secondary" type="submit">Share</button>
       </form>
     </div>
   )
