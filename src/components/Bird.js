@@ -6,7 +6,10 @@ const Bird = (props) => {
   const [birdData, setBirdData] = useState({...props});
   const [didBirdChange, setDidBirdChange] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  // toggle display of form
   const form = useFormDisplay();
+  // toggle display of bird details
+  const info = useFormDisplay();
   
   // API call to get one bird
   const getOne = (birdingSessionId, birdId) => {
@@ -51,8 +54,14 @@ const Bird = (props) => {
       {/* if edit form chosen, show form */}
       {/* else show birdData */}
       <h4>{birdData.name}</h4>
-    <button className="btn btn-danger" onClick={() => deleteBird(props.birdingSessionId, props._id)}>Delete</button>
-      <button className="btn btn-warning" onClick={form.toggleFormDisplay} >Edit</button>
+      {/* Delete Icon */}
+      <div className="clickable-icon">
+        <i class="fa fa-trash fa-lg" aria-hidden="true" onClick={() => deleteBird(props.birdingSessionId, props._id)}></i>
+      </div>
+      {/* Edit Icon */}
+      <div className="clickable-icon">
+        <i class="fa fa-pencil fa-lg" aria-hidden="true" onClick={form.toggleFormDisplay}></i>
+      </div>
       <div style={form.formDisplay}>
         <EditBirdForm 
           toggleFormDisplay={form.toggleFormDisplay}
@@ -62,7 +71,20 @@ const Bird = (props) => {
           setDidBirdChange={setDidBirdChange}
           birdData={birdData} />
       </div>
-      <div>
+      {/* Show / Hide Info Icon */}
+      {/* TODO: get icons to change between up and down arrow */}
+      {info.formDisplay === 'none' ?
+        <div className="clickable-icon">
+          {/* Show More */}
+          <i class="fa fa-chevron-up fa-lg" aria-hidden="true" onClick={info.toggleFormDisplay}></i>
+        </div>
+        : 
+        <div className="clickable-icon">
+          {/* Hide */}
+          <i class="fa fa-chevron-down fa-lg" aria-hidden="true" onClick={info.toggleFormDisplay}></i>
+        </div>
+    }
+      <div style={info.formDisplay}>
         {birdData.number} |
         {birdData.behavior.name} |
         {birdData.unconfirmed ? 'Unconfirmed' : ''} |

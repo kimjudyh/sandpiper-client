@@ -86,10 +86,18 @@ const BirdingSessionHeader = (props) => {
             setDidDataChange={setDidDataChange}
           />
         </div>
+        {/* Delete Icon */}
+        <div className="clickable-icon">
+          <i class="fa fa-trash fa-lg" aria-hidden="true" onClick={() => deleteBirdingSession(props.data._id) }></i>
+        </div>
+        {/* Edit Icon */}
+        <div className="clickable-icon">
+          <i class="fa fa-pencil fa-lg" aria-hidden="true" onClick={form.toggleFormDisplay} ></i>
+        </div>
         {/* delete birding session */}
-        <button className="btn btn-danger" onClick={() => deleteBirdingSession(props.data._id)}>Delete</button>
+        {/* <button className="btn btn-danger" onClick={() => deleteBirdingSession(props.data._id)}>Delete</button> */}
         {/* edit birding session form */}
-        <button className="btn btn-warning" onClick={form.toggleFormDisplay} >Edit</button>
+        {/* <button className="btn btn-warning" onClick={form.toggleFormDisplay} >Edit</button> */}
         <div style={form.formDisplay}>
           <EditBirdingSessionForm 
             toggleFormDisplay={form.toggleFormDisplay}

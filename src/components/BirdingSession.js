@@ -34,7 +34,7 @@ const BirdingSession = (props) => {
 
   if (birdingSession.location) {
     return (
-      <div>
+      <div className="container">
         {/* Birding Session Header */}
         <BirdingSessionHeader 
           _id={props.match.params.id} 
