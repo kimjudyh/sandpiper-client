@@ -34,7 +34,8 @@ const BirdingSessionHeader = (props) => {
     BirdingSessionModel.delete(birdingSessionId)
       .then(res => {
         console.log('deleted birding session', res.data);
-        if (props.didDataChange) {
+        if (props.didDataChange !== undefined) {
+          console.log('changing data')
           // delete request coming from profile page
           props.setDidDataChange(!props.didDataChange);
         }
