@@ -10,6 +10,12 @@ const Bird = (props) => {
   const form = useFormDisplay();
   // toggle display of bird details
   const info = useFormDisplay();
+  const [infoArrow, setInfoArrow] = useState(
+      <div className="clickable-icon">
+        {/* Show More */}
+        <i class="fa fa-chevron-up fa-lg" aria-hidden="true" onClick={info.toggleFormDisplay}></i>
+      </div>
+  )
   
   // API call to get one bird
   const getOne = (birdingSessionId, birdId) => {
@@ -44,6 +50,23 @@ const Bird = (props) => {
     getOne(props.birdingSessionId, props._id)
   }, [didBirdChange]);
 
+
+  // if (info.formDisplay.display === 'none') {
+  //   setInfoArrow( 
+  //     <div className="clickable-icon">
+  //       {/* Show More */}
+  //       <i class="fa fa-chevron-up fa-lg" aria-hidden="true" onClick={info.toggleFormDisplay}></i>
+  //     </div>
+  //   )
+  // } else {
+  //   setInfoArrow(
+  //     <div className="clickable-icon">
+  //       {/* Hide */}
+  //       <i class="fa fa-chevron-down fa-lg" aria-hidden="true" onClick={info.toggleFormDisplay}></i>
+  //     </div>
+  //   )
+  // }
+
   if (isLoading) {
     return (
       <h1>Loading...</h1>
@@ -53,44 +76,44 @@ const Bird = (props) => {
     <div>
       {/* if edit form chosen, show form */}
       {/* else show birdData */}
-      <h4>{birdData.name}</h4>
-      {/* Delete Icon */}
-      <div className="clickable-icon">
-        <i class="fa fa-trash fa-lg" aria-hidden="true" onClick={() => deleteBird(props.birdingSessionId, props._id)}></i>
-      </div>
-      {/* Edit Icon */}
-      <div className="clickable-icon">
-        <i class="fa fa-pencil fa-lg" aria-hidden="true" onClick={form.toggleFormDisplay}></i>
-      </div>
-      <div style={form.formDisplay}>
-        <EditBirdForm 
-          toggleFormDisplay={form.toggleFormDisplay}
-          birdingSessionId={props.birdingSessionId} 
-          setBirdData={setBirdData} 
-          didBirdChange={didBirdChange}
-          setDidBirdChange={setDidBirdChange}
-          birdData={birdData} />
-      </div>
+      <h4 onClick={info.toggleFormDisplay}>{birdData.name}</h4>
       {/* Show / Hide Info Icon */}
       {/* TODO: get icons to change between up and down arrow */}
-      {info.formDisplay === 'none' ?
+      {info.formDisplay.display === 'none' ?
         <div className="clickable-icon">
           {/* Show More */}
           <i class="fa fa-chevron-up fa-lg" aria-hidden="true" onClick={info.toggleFormDisplay}></i>
         </div>
-        : 
+        :  
         <div className="clickable-icon">
           {/* Hide */}
-          <i class="fa fa-chevron-down fa-lg" aria-hidden="true" onClick={info.toggleFormDisplay}></i>
+          <i class="fa fa-chevron-down fa-lg" aria-hidden="true" onClick={info.toggleFormDisplay}></i> 
         </div>
-    }
-      <div style={info.formDisplay}>
-        {birdData.number} |
-        {birdData.behavior.name} |
-        {birdData.unconfirmed ? 'Unconfirmed' : ''} |
-        {birdData.fieldNotes}
-      </div>
-      <hr/>
+      } 
+      <div style={info.formDisplay} onClick={info.toggleFormDisplay}>
+        {/* Delete Icon */}
+        <div className="clickable-icon">
+          <i class="fa fa-trash fa-lg" aria-hidden="true" onClick={() => deleteBird(props.birdingSessionId, props._id)}></i>
+        </div>
+        {/* Edit Icon */}
+        <div className="clickable-icon">
+          <i class="fa fa-pencil fa-lg" aria-hidden="true" onClick={form.toggleFormDisplay}></i>
+        </div>
+        <div style={form.formDisplay}>
+          <EditBirdForm 
+            toggleFormDisplay={form.toggleFormDisplay}
+            birdingSessionId={props.birdingSessionId} 
+            setBirdData={setBirdData} 
+            didBirdChange={didBirdChange}
+            setDidBirdChange={setDidBirdChange}
+            birdData={birdData} />
+        </div>
+          <p><strong>Number: </strong> {birdData.number !== null ? birdData.number : ''}</p>
+          <p><strong>Behavior: </strong> {birdData.behavior.name}</p>
+          <p><strong>Unconfirmed ID?</strong> {birdData.unconfirmed ? 'Unconfirmed' : ''} </p> 
+          <p><strong>Field Notes: </strong> {birdData.fieldNotes}</p>
+        </div>
+        <hr/>
     </div>
   )
 
