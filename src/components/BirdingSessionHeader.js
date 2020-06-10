@@ -4,7 +4,7 @@ import BirdingSessionModel from '../models/BirdingSessionModel';
 import EditBirdingSessionForm from '../forms/EditBirdingSessionForm';
 
 const BirdingSessionHeader = (props) => {
-  const [birdingSessionHeader, setBirdingSessionHeader] = useState({...props});
+  const [birdingSessionHeader, setBirdingSessionHeader] = useState({...props.data});
   const [didDataChange, setDidDataChange] = useState(false);
   const form = useFormDisplay();
 
@@ -14,6 +14,31 @@ const BirdingSessionHeader = (props) => {
       .then(res => {
         console.log('birding session header', res.data);
         setBirdingSessionHeader(res.data.foundBirdingSession);
+      })
+      .catch((err) => {
+        if (err.response) {
+          // send back to profile
+          props.history.push('/profile');
+          // dispay some error message
+          console.log(err.response.data);
+        } else if (err.request) {
+          console.log(err.request);
+        } else {
+          console.log(err.message);
+        }
+      })
+  }
+
+  // API call to delete birding session
+  const deleteBirdingSession = (birdingSessionId) => {
+    BirdingSessionModel.delete(birdingSessionId)
+      .then(res => {
+        console.log('deleted birding session', res.data);
+        if (props.didDataChange) {
+          // delete request coming from profile page
+          props.setDidDataChange(!props.didDataChange);
+        }
+        props.history.push('/profile');
       })
       .catch((err) => {
         if (err.response) {
@@ -29,7 +54,7 @@ const BirdingSessionHeader = (props) => {
   // when component mounts
   useEffect(() => {
     // get birding session data
-    fetchBirdingSession(props._id);
+    fetchBirdingSession(props.data._id);
     // fetchBirdingSession(props.key);
     // fetchBirdingSession(birdingSessionHeader._id);
     // setDidDataChange(false);
@@ -46,13 +71,15 @@ const BirdingSessionHeader = (props) => {
     return (
       <div className="birdingSessionHeader">
         {/* make birding session location a link to the show page  */}
-        <Link to={`/birdingSession/${props._id}`}>
+        <Link to={`/birdingSession/${props.data._id}`}>
           <h3>{birdingSessionHeader.location}</h3>
         </Link>
         {/* list users */}
         <div>
           Users: {users}
         </div>
+        {/* delete birding session */}
+        <button className="btn btn-danger" onClick={() => deleteBirdingSession(props.data._id)}>Delete</button>
         {/* edit birding session form */}
         <button className="btn btn-warning" onClick={form.toggleFormDisplay} >Edit</button>
         <div style={form.formDisplay}>

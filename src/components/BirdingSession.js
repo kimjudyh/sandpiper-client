@@ -36,11 +36,11 @@ const BirdingSession = (props) => {
     return (
       <div>
         {/* Birding Session Header */}
-        {birdingSession.location}
         <BirdingSessionHeader 
           _id={props.match.params.id} 
-          {...birdingSession} 
+          data={birdingSession} 
           users={[]}
+          {...props}  // route component props: history, match, location
         />
         {/* Birding Session Body */}
         <BirdingSessionBody _id={props.match.params.id} />

@@ -8,7 +8,10 @@ const BirdingSessionContainer = (props) => {
   // Lists all birding session headers (index page)
   const [birdingSessions, setBirdingSessions] = useState([]);
   const [didBirdingSessionsChange, setDidBirdingSessionsChange] = useState(false);
+  // const [birdingSessionComponents, setBirdingSessionComponents] = useState([]);
   const form = useFormDisplay();
+
+// TODO: re-render when something deleted
 
   // API call to get all birding sessions
   const fetchBirdingSessions = () => {
@@ -16,6 +19,9 @@ const BirdingSessionContainer = (props) => {
       .then(res => {
         console.log('birding session container all', res.data.allBirdingSessions);
         setBirdingSessions(res.data.allBirdingSessions);
+        // let mapped = mapBirdingSessionHeaders(res.data.allBirdingSessions);
+        // setBirdingSessionComponents(mapped);
+        // console.log('mapped comps', birdingSessionComponents)
       })
       .catch((err) => {
         if (err.response) {
@@ -33,10 +39,32 @@ const BirdingSessionContainer = (props) => {
     fetchBirdingSessions();
   }, [didBirdingSessionsChange]);
 
+  // const mapBirdingSessionHeaders = (birdingSessions) => {
+  //   console.log('birding sess', birdingSessions)
+  //   const birdingSessionComponents = birdingSessions.map((element, index) => (
+  //     // make array of BirdingSessionHeader components with birding session data passed as props
+  //     // location, users, _id, etc
+  //     <BirdingSessionHeader 
+  //       key={element._id} 
+  //       data={element} 
+  //       setDidDataChange={setDidBirdingSessionsChange}
+  //       didDataChange={didBirdingSessionsChange}
+  //       {...props} // route component props: history, match, location
+  //     />
+  //   ))
+  //   console.log('comps', birdingSessionComponents)
+  //   return birdingSessionComponents;
+  // }
   const birdingSessionComponents = birdingSessions.map((element, index) => (
     // make array of BirdingSessionHeader components with birding session data passed as props
     // location, users, _id, etc
-    <BirdingSessionHeader key={element._id} {...element} />
+    <BirdingSessionHeader 
+      key={element._id} 
+      data={element} 
+      setDidDataChange={setDidBirdingSessionsChange}
+      didDataChange={didBirdingSessionsChange}
+      {...props} // route component props: history, match, location
+    />
   ))
 
   return (

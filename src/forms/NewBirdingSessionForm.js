@@ -85,7 +85,7 @@ const NewBirdingSessionForm = (props) => {
             value={birdingSessionData.notes}
           />
         </div>
-        <button type="submit">Save</button>
+        <button className="btn btn-success" type="submit">Save</button>
       </form>
     </div>
   )
