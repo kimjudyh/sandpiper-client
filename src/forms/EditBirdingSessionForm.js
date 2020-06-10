@@ -12,7 +12,7 @@ const EditBirdingSessionForm = (props) => {
   const updateBirdingSession = (birdingSessionId, data) => {
     BirdingSessionModel.update(birdingSessionId, data)
       .then(res => {
-        console.log(res.data);
+        console.log('updated birding session', res.data);
         // if success, hide form 
         if (res.status === 200) {
           props.toggleFormDisplay();
@@ -34,21 +34,27 @@ const EditBirdingSessionForm = (props) => {
   const handleChange = (event) => {
     // setBirdingSessionData overwrites the state, instead of merging
     // so save the current state to an object and change one field
-    let newState = Object.assign({}, birdingSessionData);
-    newState[event.target.name] = event.target.value;
-    setBirdingSessionData(newState);
-    // setState({...data, [event.target.name]: event.target.value})
+    // let newState = Object.assign({}, birdingSessionData);
+    // newState[event.target.name] = event.target.value;
+    // setBirdingSessionData(newState);
+    // use spread syntax to add changed field to existing state
+    setBirdingSessionData({
+      ...birdingSessionData, 
+      [event.target.name]: event.target.value
+    })
   }
 
+  // on form submission
   const handleSubmit = (event) => {
     event.preventDefault();
     updateBirdingSession(props.birdingSessionHeader._id, birdingSessionData);
+    props.setDidDataChange(!props.didDataChange);
   }
 
+  // if there is birding session data, load the form, else say Loading
   if (birdingSessionData.date) {
     return (
       <div>
-        {birdingSessionData.location}
         Form
         <form className="form-group" onSubmit={handleSubmit}>
           <div>
@@ -82,7 +88,7 @@ const EditBirdingSessionForm = (props) => {
               value={birdingSessionData.notes}
             />
           </div>
-          <button type="submit">Save</button>
+          <button className="btn btn-success" type="submit">Save</button>
         </form>
       </div>
     )
