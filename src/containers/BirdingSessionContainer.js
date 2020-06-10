@@ -42,7 +42,7 @@ const BirdingSessionContainer = (props) => {
   return (
     <div>
       {/* Button to show or hide New Birding Session Form */}
-      <button onClick={form.toggleFormDisplay}>New Birding Session</button>
+      <button className="btn btn-info" onClick={form.toggleFormDisplay}>New Birding Session</button>
       {/* New Birding Session Form */}
       <div style={form.formDisplay}>
         {/* pass route component props, currentUser, storeUser */}
