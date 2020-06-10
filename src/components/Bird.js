@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import BirdModel from '../models/BirdModel';
 import EditBirdForm from '../forms/EditBirdForm';
+import PhotoContainer from '../containers/PhotoContainer';
 
 const Bird = (props) => {
   const [birdData, setBirdData] = useState({...props});
@@ -66,7 +67,7 @@ const Bird = (props) => {
           <i class="fa fa-chevron-down fa-lg" aria-hidden="true" onClick={info.toggleFormDisplay}></i> 
         </div>
       } 
-      <div style={info.formDisplay} onClick={info.toggleFormDisplay}>
+      <div style={info.formDisplay} >
         {/* Delete Icon */}
         <div className="clickable-icon">
           <i class="fa fa-trash fa-lg" aria-hidden="true" onClick={() => deleteBird(props.birdingSessionId, props._id)}></i>
@@ -84,12 +85,20 @@ const Bird = (props) => {
             setDidBirdChange={setDidBirdChange}
             birdData={birdData} />
         </div>
+        <div>
           <p><strong>Number: </strong> {birdData.number !== null ? birdData.number : ''}</p>
           <p><strong>Behavior: </strong> {birdData.behavior.name}</p>
           <p><strong>Unconfirmed ID?</strong> {birdData.unconfirmed ? 'Unconfirmed' : ''} </p> 
           <p><strong>Field Notes: </strong> {birdData.fieldNotes}</p>
         </div>
-        <hr/>
+        <div>
+          <PhotoContainer 
+            birdingSessionId={props.birdingSessionId}
+            birdId={props._id}
+          />
+        </div>
+      </div>
+      <hr/>
     </div>
   )
 
