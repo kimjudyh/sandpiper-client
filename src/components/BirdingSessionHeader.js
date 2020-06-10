@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import BirdingSessionModel from '../models/BirdingSessionModel';
 import EditBirdingSessionForm from '../forms/EditBirdingSessionForm';
+import ShareContainer from '../containers/ShareContainer';
 
 const BirdingSessionHeader = (props) => {
   const [birdingSessionHeader, setBirdingSessionHeader] = useState({...props.data});
@@ -78,6 +79,12 @@ const BirdingSessionHeader = (props) => {
         {/* list users */}
         <div>
           Users: {users}
+          <ShareContainer 
+            birdingSessionId={props.data._id}
+            birdingSessionUsers={birdingSessionHeader.users}
+            didDataChange={didDataChange}
+            setDidDataChange={setDidDataChange}
+          />
         </div>
         {/* delete birding session */}
         <button className="btn btn-danger" onClick={() => deleteBirdingSession(props.data._id)}>Delete</button>
