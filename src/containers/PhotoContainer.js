@@ -130,8 +130,8 @@ const PhotoContainer = (props) => {
     <CloudinaryContext cloudName={process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}>
       <div>
         {mappedImages}
-        <div className="clickable-icon">
-          <i className="fa fa-camera fa-2x" aria-hidden="true" onClick={beginUpload}></i> New 
+        <div className="clickable-icon" onClick={beginUpload}>
+          <i className="fa fa-camera fa-2x" aria-hidden="true" ></i> New 
         </div>
       </div>
     </CloudinaryContext>

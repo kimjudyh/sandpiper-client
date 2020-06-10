@@ -64,8 +64,8 @@ const BirdingSessionContainer = (props) => {
   return (
     <div>
       {/* Button to show or hide New Birding Session Form */}
-      <div className="clickable-icon">
-        <i className="fa fa-binoculars fa-2x" aria-hidden="true" onClick={form.toggleFormDisplay}></i>New
+      <div className="clickable-icon" onClick={form.toggleFormDisplay}>
+        <i className="fa fa-binoculars fa-2x" aria-hidden="true" ></i>New
       </div>
       {/* <button className="btn btn-info" onClick={form.toggleFormDisplay}>New Birding Session</button> */}
       {/* New Birding Session Form */}
