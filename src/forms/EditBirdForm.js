@@ -16,12 +16,12 @@ const EditBirdForm = (props) => {
   const updateBird = (birdingSessionId, birdId, data) => {
     BirdModel.update(birdingSessionId, birdId, data)
       .then(res => {
-        console.log(res.data);
+        console.log('updated bird', res.data);
         // if success
         if (res.status === 200) {
           // tell parent component bird was updated
           props.setBirdData(res.data.updatedBird);
-          props.setDidBirdChange(true);
+          props.setDidBirdChange(!props.didBirdChange);
           props.toggleFormDisplay();
         } else {
           // say some error happened
@@ -42,28 +42,16 @@ const EditBirdForm = (props) => {
   const getBehaviors = () => {
     BehaviorModel.all()
       .then(res => {
-        console.log(res);
+        console.log('all behaviors edit', res.data);
         // get pre-made list of behavior options
         const behaviors = res.data.allBehaviors.map((element, index) => {
-          // set default behavior choice to first behavior
-          // if (element._id === behavior.value) {
-            // behavior.setValue(element._id)
-            // select this behavior
-            // return (
-            //   <option selected key={element._id} 
-            //   id={element.name} name={element.name} value={element._id}>
-            //     {element.name} {element.code}
-            //   </option>
-            // )
-          // } else {
-            // return jsx that contains behavior name and _id
-            return (
-              <option key={element._id} 
+          // return jsx that contains behavior name and _id
+          return (
+            <option key={element._id}
               id={element.name} name={element.name} value={element._id}>
-                {element.name} {element.code}
-              </option>
-            )
-          // }
+              {element.name} {element.code}
+            </option>
+          )
         })
         setAllBehaviors(behaviors);
       })
@@ -94,7 +82,6 @@ const EditBirdForm = (props) => {
       fieldNotes: fieldNotes.value
     });
   }
-
 
   return (
     <form onSubmit={handleSubmit}>
@@ -159,24 +146,25 @@ export default EditBirdForm;
 // custom hook for changing form inputs
 const useFormInput = (initialValue) => {
   const [value, setValue] = useState(initialValue);
+
   const handleChange = (event) => {
-    console.log('event', event.target);
     // special case for checkbox, since default value is on, off
     if (event.target.type === 'checkbox') {
       // want to set as true or false
       setValue(!value);
     } else if (event.target.type === 'select') {
-
+      // something for.. dropdown. maybe
     } 
     else {
       setValue(event.target.value);
     }
-    console.log('event value', event.target.value);
   }
-  console.log('value', value);
+
+  // method to reset form fields
   const resetField = () => {
     setValue('');
   }
+
   return ({
     value,
     setValue,

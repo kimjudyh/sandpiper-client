@@ -26,7 +26,7 @@ const NewBirdForm = (props) => {
           unconfirmed.resetField();
           fieldNotes.resetField();
           // tell parent component that a bird was added
-          props.setDidBirdsChange(true);
+          props.setDidBirdsChange(!props.didBirdsChange);
           // hide form
           props.toggleFormDisplay();
         } else {
@@ -48,11 +48,11 @@ const NewBirdForm = (props) => {
   const getBehaviors = () => {
     BehaviorModel.all()
       .then(res => {
-        console.log(res);
+        console.log('all behaviors', res.data);
         // get pre-made list of behavior options
         const behaviors = res.data.allBehaviors.map((element, index) => {
           // set default behavior choice to first behavior
-          if (index === 0) {
+          if (element.name === "Being a Bird") {
             behavior.setValue(element._id)
           }
           // return jsx that contains behavior name and _id
@@ -123,7 +123,8 @@ const NewBirdForm = (props) => {
         </div>
         <div>
           <label>Behavior</label>
-          <select onChange={behavior.handleChange}>
+          <select  onChange={behavior.handleChange}>
+            <option disabled selected>Select a Behavior</option>
             {allBehaviors}
           </select>
         </div>
