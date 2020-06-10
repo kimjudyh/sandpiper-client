@@ -10,12 +10,6 @@ const Bird = (props) => {
   const form = useFormDisplay();
   // toggle display of bird details
   const info = useFormDisplay();
-  const [infoArrow, setInfoArrow] = useState(
-      <div className="clickable-icon">
-        {/* Show More */}
-        <i class="fa fa-chevron-up fa-lg" aria-hidden="true" onClick={info.toggleFormDisplay}></i>
-      </div>
-  )
   
   // API call to get one bird
   const getOne = (birdingSessionId, birdId) => {
@@ -50,23 +44,6 @@ const Bird = (props) => {
     getOne(props.birdingSessionId, props._id)
   }, [didBirdChange]);
 
-
-  // if (info.formDisplay.display === 'none') {
-  //   setInfoArrow( 
-  //     <div className="clickable-icon">
-  //       {/* Show More */}
-  //       <i class="fa fa-chevron-up fa-lg" aria-hidden="true" onClick={info.toggleFormDisplay}></i>
-  //     </div>
-  //   )
-  // } else {
-  //   setInfoArrow(
-  //     <div className="clickable-icon">
-  //       {/* Hide */}
-  //       <i class="fa fa-chevron-down fa-lg" aria-hidden="true" onClick={info.toggleFormDisplay}></i>
-  //     </div>
-  //   )
-  // }
-
   if (isLoading) {
     return (
       <h1>Loading...</h1>
@@ -78,7 +55,6 @@ const Bird = (props) => {
       {/* else show birdData */}
       <h4 onClick={info.toggleFormDisplay}>{birdData.name}</h4>
       {/* Show / Hide Info Icon */}
-      {/* TODO: get icons to change between up and down arrow */}
       {info.formDisplay.display === 'none' ?
         <div className="clickable-icon">
           {/* Show More */}
