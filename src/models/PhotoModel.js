@@ -32,6 +32,12 @@ export default class PhotoModel {
   // get one photo
   // update photo
   // delete photo
+  // DELETE '/:birdingSessionId/:id'
+  static delete = (birdingSessionId, id) => {
+    const request = cookieAxios.delete(`${photoEndpoint}/${birdingSessionId}/${id}`);
+    return request;
+  }
+
 }
 
 

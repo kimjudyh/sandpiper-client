@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { CloudinaryContext, Image } from 'cloudinary-react';
 import PhotoModel, { openUploadWidget } from '../models/PhotoModel';
+import Photo from '../components/Photo';
 
 const PhotoContainer = (props) => {
   const [images, setImages] = useState([]);
@@ -32,6 +33,25 @@ const PhotoContainer = (props) => {
         console.log('got from db', res.data);
         // set state
         setImages(res.data.foundPhotos);
+      })
+      .catch((err) => {
+        console.log('axios error')
+        if (err.response) {
+          console.log(err.response.data);
+        } else if (err.request) {
+          console.log(err.request);
+        } else {
+          console.log(err.message);
+        }
+      })
+  }
+
+  // API call to delete photo
+  const deletePhoto = (birdingSessionId, imageId) => {
+    PhotoModel.delete(birdingSessionId, imageId)
+      .then(res => {
+        console.log('deleted photo', res.data);
+        setDidDataChange(!didDataChange);
       })
       .catch((err) => {
         console.log('axios error')
@@ -82,12 +102,28 @@ const PhotoContainer = (props) => {
   }, [didDataChange])
 
   const mappedImages = images.map((image, index) => (
+    <>
     <Image
+      data-toggle="modal" data-focus="true" data-target={`#bird${image._id}`}
       className="thumbnail"
       src={image.url} alt="bird image" 
       key={image._id}
       publicId={image.cloudinaryPublicId}
     />
+    <Photo 
+      key={index} 
+      birdData={props.birdData}
+      deletePhoto={deletePhoto}
+      imageId={image._id} 
+      image={
+      <Image 
+        className="img-fluid"
+        src={image.url} alt="bird image" 
+        key={image._id}
+        publicId={image.cloudinaryPublicId}
+      />}
+    />
+    </>
   ))
 
   return (
