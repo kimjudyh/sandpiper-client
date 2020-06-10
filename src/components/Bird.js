@@ -68,6 +68,7 @@ const Bird = (props) => {
         {birdData.unconfirmed ? 'Unconfirmed' : ''} |
         {birdData.fieldNotes}
       </div>
+      <hr/>
     </div>
   )
 
