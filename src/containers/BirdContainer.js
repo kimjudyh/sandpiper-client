@@ -27,25 +27,6 @@ const BirdContainer = (props) => {
       })
   }
 
-  // API call to delete bird
-  const deleteBird = (birdingSessionId, birdId) => {
-    BirdModel.delete(birdingSessionId, birdId)
-      .then(res => {
-        console.log('deleted bird', res.data);
-        // trigger re-render
-        setDidBirdsChange(!didBirdsChange);
-      })
-      .catch((err) => {
-        if (err.response) {
-          console.log(err.response.data);
-        } else if (err.request) {
-          console.log(err.request);
-        } else {
-          console.log(err.message);
-        }
-      })
-  }
-
   useEffect(() => {
     fetchBirds(props._id);
   }, [didBirdsChange]);
