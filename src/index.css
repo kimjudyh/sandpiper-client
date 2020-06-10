@@ -39,11 +39,22 @@ nav ul {
   transition: .3s linear;
 }
 
-.clickable-icon:hover{
+.clickable-icon:hover {
   transform: scale(1.1);
 }
 
 .thumbnail {
   width: auto;
   max-height: 150px;
+  cursor: pointer;
+  transition: .3s linear;
+}
+
+.thumbnail:hover {
+  transform: scale(1.01);
+}
+
+.modal-header {
+  padding: 4px 4px;
+  align-items: center;
 }
