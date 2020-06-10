@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import BirdingSessionModel from '../models/BirdingSessionModel';
-import BirdingSession from '../components/BirdingSession';
 import BirdingSessionHeader from '../components/BirdingSessionHeader';
 import NewBirdingSessionForm from '../forms/NewBirdingSessionForm';
 
@@ -11,17 +10,12 @@ const BirdingSessionContainer = (props) => {
   // const [birdingSessionComponents, setBirdingSessionComponents] = useState([]);
   const form = useFormDisplay();
 
-// TODO: re-render when something deleted
-
   // API call to get all birding sessions
   const fetchBirdingSessions = () => {
     BirdingSessionModel.all()
       .then(res => {
         console.log('birding session container all', res.data.allBirdingSessions);
         setBirdingSessions(res.data.allBirdingSessions);
-        // let mapped = mapBirdingSessionHeaders(res.data.allBirdingSessions);
-        // setBirdingSessionComponents(mapped);
-        // console.log('mapped comps', birdingSessionComponents)
       })
       .catch((err) => {
         if (err.response) {

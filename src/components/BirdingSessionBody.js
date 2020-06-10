@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import BirdingSessionModel from '../models/BirdingSessionModel';
 import BirdContainer from '../containers/BirdContainer';
 
@@ -28,7 +27,7 @@ const BirdingSessionBody = (props) => {
   }, []);
 
   return (
-    <div>
+    <div className="birdingSessionBody">
       <BirdContainer _id={props._id} />
     </div>
   )
