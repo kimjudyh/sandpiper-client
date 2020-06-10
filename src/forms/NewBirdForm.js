@@ -4,6 +4,7 @@ import BehaviorModel from '../models/BehaviorModel';
 
 const NewBirdForm = (props) => {
   const [allBehaviors, setAllBehaviors] = useState([]);
+  const [defaultBehavior, setDefaultBehavior] = useState('');
   const name = useFormInput('');
   const number = useFormInput('');
   // fix.. set to some disabled choice
@@ -22,8 +23,10 @@ const NewBirdForm = (props) => {
           // reset form fields
           name.resetField();
           number.resetField();
-          behavior.resetField();
-          unconfirmed.resetField();
+          // reset behavior to default 'Being a Bird' behavior
+          behavior.setValue(defaultBehavior);
+          // reset unconfirmed to false
+          unconfirmed.setValue(false);
           fieldNotes.resetField();
           // tell parent component that a bird was added
           props.setDidBirdsChange(!props.didBirdsChange);
@@ -54,6 +57,7 @@ const NewBirdForm = (props) => {
           // set default behavior choice to first behavior
           if (element.name === "Being a Bird") {
             behavior.setValue(element._id)
+            setDefaultBehavior(element._id);
           }
           // return jsx that contains behavior name and _id
           return (

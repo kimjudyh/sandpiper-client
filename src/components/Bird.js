@@ -17,7 +17,25 @@ const Bird = (props) => {
       })
   }
 
-  // edit bird function
+  // API call to delete bird
+  const deleteBird = (birdingSessionId, birdId) => {
+    BirdModel.delete(birdingSessionId, birdId)
+      .then(res => {
+        console.log('deleted bird', res.data);
+        // trigger re-render
+        props.setDidDataChange(!props.didDataChange);
+      })
+      .catch((err) => {
+        if (err.response) {
+          console.log(err.response.data);
+        } else if (err.request) {
+          console.log(err.request);
+        } else {
+          console.log(err.message);
+        }
+      })
+  }
+
   useEffect(() => {
     setIsLoading(false);
     getOne(props.birdingSessionId, props._id)
@@ -33,6 +51,7 @@ const Bird = (props) => {
       {/* if edit form chosen, show form */}
       {/* else show birdData */}
       <h4>{birdData.name}</h4>
+    <button className="btn btn-danger" onClick={() => deleteBird(props.birdingSessionId, props._id)}>Delete</button>
       <button className="btn btn-warning" onClick={form.toggleFormDisplay} >Edit</button>
       <div style={form.formDisplay}>
         <EditBirdForm 

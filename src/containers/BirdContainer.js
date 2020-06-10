@@ -8,6 +8,7 @@ const BirdContainer = (props) => {
   const [birds, setBirds] = useState([]);
   const form = useFormDisplay();
 
+  // API call to get all birds
   const fetchBirds = (birdingSessionId) => {
     // get all birds from birding session specified by _id
     BirdModel.all(birdingSessionId)
@@ -26,12 +27,41 @@ const BirdContainer = (props) => {
       })
   }
 
+  // API call to delete bird
+  const deleteBird = (birdingSessionId, birdId) => {
+    BirdModel.delete(birdingSessionId, birdId)
+      .then(res => {
+        console.log('deleted bird', res.data);
+        // trigger re-render
+        setDidBirdsChange(!didBirdsChange);
+      })
+      .catch((err) => {
+        if (err.response) {
+          console.log(err.response.data);
+        } else if (err.request) {
+          console.log(err.request);
+        } else {
+          console.log(err.message);
+        }
+      })
+  }
+
   useEffect(() => {
     fetchBirds(props._id);
   }, [didBirdsChange]);
 
+  // map bird data to Bird components
   const birdComponents = birds.map((element, index) => (
-    <Bird key={element._id} {...element} birdingSessionId={props._id} />
+    <>
+    <Bird 
+      key={element._id} 
+      {...element} 
+      birdingSessionId={props._id} 
+      didDataChange={didBirdsChange}
+      setDidDataChange={setDidBirdsChange}
+    />
+    {/* <button className="btn btn-danger" onClick={() => deleteBird(props._id, element._id)}>Delete</button> */}
+    </>
   ))
 
   return (
