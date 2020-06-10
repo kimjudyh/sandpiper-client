@@ -23,7 +23,7 @@ const Login = (props) => {
     // make API request
     UserModel.login(userData)
       .then(res => {
-        console.log(res);
+        console.log('login', res.data);
         // reset form inputs
         setUserData({
           email: '',
@@ -31,7 +31,11 @@ const Login = (props) => {
         })
         if (res.status === 200) {
           // store user id in local storage
-          props.storeUser(res.data.id)
+          props.storeUser({
+            _id: res.data.id,
+            name: res.data.name,
+            email: res.data.email
+          })
           // send to profile page
           props.history.push('/profile');
         } else {

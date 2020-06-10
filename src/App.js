@@ -6,12 +6,18 @@ import UserModel from './models/UserModel';
 import './App.css';
 
 function App(props) {
-  const [currentUser, setCurrentUser] = useState(localStorage.getItem('uid'));
+  const [currentUser, setCurrentUser] = useState({
+    uid: localStorage.getItem('uid'),
+    email: localStorage.getItem('email'),
+    name: localStorage.getItem('name')
+  });
 
   // store the currently logged in user in local storage
-  const storeUser = (userId) => {
-    setCurrentUser(userId);
-    localStorage.setItem('uid', userId);
+  const storeUser = (user) => {
+    setCurrentUser(user);
+    localStorage.setItem('uid', user._id);
+    localStorage.setItem('email', user.email);
+    localStorage.setItem('name', user.name);
   }
 
   // logout
@@ -19,6 +25,8 @@ function App(props) {
     event.preventDefault();
     // remove user id from local storage
     localStorage.removeItem('uid');
+    localStorage.removeItem('email');
+    localStorage.removeItem('name');
     // api request for logout route
     UserModel.logout()
       .then(res => {
@@ -43,7 +51,6 @@ function App(props) {
         currentUser={currentUser}
         logout={logout}
       />
-      Hello
       <Routes 
         currentUser={currentUser}
         storeUser={storeUser}
