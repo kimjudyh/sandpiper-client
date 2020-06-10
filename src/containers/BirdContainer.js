@@ -12,7 +12,7 @@ const BirdContainer = (props) => {
     // get all birds from birding session specified by _id
     BirdModel.all(birdingSessionId)
       .then(res => {
-        console.log(res);
+        console.log('all birds', res.data);
         setBirds(res.data.allBirds);
       })
       .catch((err) => {
@@ -37,8 +37,8 @@ const BirdContainer = (props) => {
   return (
     <div>
       {/* <button type="button" className="btn btn-info" data-toggle="modal" data-focus="true" data-target="#newBirdForm" >New Bird</button> */}
-      <button className="btn btn-info" onClick={form.toggleFormDisplay}>New Bird</button>
-      <div style={form.formDisplay}>
+      {/* <button className="btn btn-info" onClick={form.toggleFormDisplay}>New Bird</button>
+      <div style={form.formDisplay}> */}
       {/* <div  */}
       {/* id="newBirdForm" */}
       {/* tabindex="-1" */}
@@ -48,15 +48,16 @@ const BirdContainer = (props) => {
       {/* > */}
         {/* <div className="modal-dialog modal-dialog-centered"> */}
         {/* <div className="modal-content"> */}
-        <NewBirdForm 
+        {/* <NewBirdForm 
           _id={props._id} 
+          didBirdsChange={didBirdsChange}
           setDidBirdsChange={setDidBirdsChange}
           toggleFormDisplay={form.toggleFormDisplay}
-        />
+        /> */}
         {/* <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> */}
         {/* </div> */}
         {/* </div> */}
-      </div>
+      {/* </div> */}
 
       <div>
         {birdComponents}
@@ -66,6 +67,7 @@ const BirdContainer = (props) => {
         <div style={form.formDisplay}>
           <NewBirdForm 
             _id={props._id} 
+            didBirdsChange={didBirdsChange}
             setDidBirdsChange={setDidBirdsChange}
             toggleFormDisplay={form.toggleFormDisplay}
           />

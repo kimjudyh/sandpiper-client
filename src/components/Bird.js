@@ -25,9 +25,7 @@ const Bird = (props) => {
 
   if (isLoading) {
     return (
-      <div>
-        loading...
-      </div>
+      <h1>Loading...</h1>
     )
   } else {
   return (
@@ -41,13 +39,16 @@ const Bird = (props) => {
           toggleFormDisplay={form.toggleFormDisplay}
           birdingSessionId={props.birdingSessionId} 
           setBirdData={setBirdData} 
+          didBirdChange={didBirdChange}
           setDidBirdChange={setDidBirdChange}
           birdData={birdData} />
       </div>
-      {birdData.number} |
-      {birdData.behavior.name} |
-      {birdData.unconfirmed ? 'Unconfirmed' : ''} |
-      {birdData.fieldNotes}
+      <div>
+        {birdData.number} |
+        {birdData.behavior.name} |
+        {birdData.unconfirmed ? 'Unconfirmed' : ''} |
+        {birdData.fieldNotes}
+      </div>
     </div>
   )
 

@@ -32,37 +32,40 @@ const BirdingSessionHeader = (props) => {
     fetchBirdingSession(props._id);
     // fetchBirdingSession(props.key);
     // fetchBirdingSession(birdingSessionHeader._id);
+    // setDidDataChange(false);
   }, [didDataChange]);
 
   // get all users that birding session is shared with
   const users = birdingSessionHeader.users.map((user, index) => {
     return (
-      <span>{user.name} </span>
+      <span key={user._id}>{user.name} </span>
     )
   })
 
   if (birdingSessionHeader.location) {
-    console.log('bsh', birdingSessionHeader);
-  return (
-    <div className="birdingSessionHeader">
-      {/* make birding session location a link to the show page  */}
-      <Link to={`/birdingSession/${props._id}`}>
-        <h3>{birdingSessionHeader.location}</h3>
-      </Link>
-      {/* list users */}
-      Users: {users}
-      {/* edit birding session form */}
-      <button className="btn btn-warning" onClick={form.toggleFormDisplay} >Edit</button>
-      <div style={form.formDisplay}>
-        <EditBirdingSessionForm 
-          toggleFormDisplay={form.toggleFormDisplay}
-          setDidDataChange={setDidDataChange}
-          birdingSessionHeader={birdingSessionHeader}
-          setBirdingSessionHeader={setBirdingSessionHeader}
-        />
+    return (
+      <div className="birdingSessionHeader">
+        {/* make birding session location a link to the show page  */}
+        <Link to={`/birdingSession/${props._id}`}>
+          <h3>{birdingSessionHeader.location}</h3>
+        </Link>
+        {/* list users */}
+        <div>
+          Users: {users}
+        </div>
+        {/* edit birding session form */}
+        <button className="btn btn-warning" onClick={form.toggleFormDisplay} >Edit</button>
+        <div style={form.formDisplay}>
+          <EditBirdingSessionForm 
+            toggleFormDisplay={form.toggleFormDisplay}
+            didDataChange={didDataChange}
+            setDidDataChange={setDidDataChange}
+            birdingSessionHeader={birdingSessionHeader}
+            setBirdingSessionHeader={setBirdingSessionHeader}
+          />
+        </div>
       </div>
-    </div>
-  )
+    )
   } else {
     return (
       <h1>Loading...</h1>

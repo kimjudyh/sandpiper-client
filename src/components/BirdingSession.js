@@ -48,9 +48,7 @@ const BirdingSession = (props) => {
     )
   } else {
     return (
-      <div>
-        <h1>Loading...</h1>
-      </div>
+      <h1>Loading...</h1>
     )
   }
 }

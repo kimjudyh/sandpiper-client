@@ -9,8 +9,7 @@ const BirdingSessionBody = (props) => {
   const fetchBirdingSession = (birdingSessionId) => {
     BirdingSessionModel.getOne(birdingSessionId)
       .then(res => {
-        console.log(res.data);
-        // todo: set state
+        console.log('birding session body', res.data);
         setBirdingSessionBody(res.data.foundBirdingSession);
       })
       .catch((err) => {
@@ -25,7 +24,7 @@ const BirdingSessionBody = (props) => {
   }
 
   useEffect(() => {
-    fetchBirdingSession(props._id);
+    // fetchBirdingSession(props._id);
   }, []);
 
   return (
