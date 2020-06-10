@@ -64,7 +64,10 @@ const BirdingSessionContainer = (props) => {
   return (
     <div>
       {/* Button to show or hide New Birding Session Form */}
-      <button className="btn btn-info" onClick={form.toggleFormDisplay}>New Birding Session</button>
+      <div className="clickable-icon">
+        <i className="fa fa-binoculars fa-2x" aria-hidden="true" onClick={form.toggleFormDisplay}></i>New
+      </div>
+      {/* <button className="btn btn-info" onClick={form.toggleFormDisplay}>New Birding Session</button> */}
       {/* New Birding Session Form */}
       <div style={form.formDisplay}>
         {/* pass route component props, currentUser, storeUser */}
