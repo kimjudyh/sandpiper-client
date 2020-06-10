@@ -21,7 +21,7 @@ const ShareContainer = (props) => {
   return (
     <div>
       <div className="clickable-icon">
-        <i class="fa fa-share-alt fa-lg" aria-hidden="true" onClick={form.toggleFormDisplay}></i>
+        <i className="fa fa-share-alt fa-lg" aria-hidden="true" onClick={form.toggleFormDisplay}></i>
       </div>
       <div style={form.formDisplay}>
         info about sharing

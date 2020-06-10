@@ -42,3 +42,8 @@ nav ul {
 .clickable-icon:hover{
   transform: scale(1.1);
 }
+
+.thumbnail {
+  width: auto;
+  max-height: 150px;
+}
