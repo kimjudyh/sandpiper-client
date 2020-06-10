@@ -59,22 +59,22 @@ const Bird = (props) => {
       {info.formDisplay.display === 'none' ?
         <div className="clickable-icon">
           {/* Show More */}
-          <i class="fa fa-chevron-up fa-lg" aria-hidden="true" onClick={info.toggleFormDisplay}></i>
+          <i className="fa fa-chevron-up fa-lg" aria-hidden="true" onClick={info.toggleFormDisplay}></i>
         </div>
         :  
         <div className="clickable-icon">
           {/* Hide */}
-          <i class="fa fa-chevron-down fa-lg" aria-hidden="true" onClick={info.toggleFormDisplay}></i> 
+          <i className="fa fa-chevron-down fa-lg" aria-hidden="true" onClick={info.toggleFormDisplay}></i> 
         </div>
       } 
       <div style={info.formDisplay} >
         {/* Delete Icon */}
         <div className="clickable-icon">
-          <i class="fa fa-trash fa-lg" aria-hidden="true" onClick={() => deleteBird(props.birdingSessionId, props._id)}></i>
+          <i className="fa fa-trash fa-lg" aria-hidden="true" onClick={() => deleteBird(props.birdingSessionId, props._id)}></i>
         </div>
         {/* Edit Icon */}
         <div className="clickable-icon">
-          <i class="fa fa-pencil fa-lg" aria-hidden="true" onClick={form.toggleFormDisplay}></i>
+          <i className="fa fa-pencil fa-lg" aria-hidden="true" onClick={form.toggleFormDisplay}></i>
         </div>
         <div style={form.formDisplay}>
           <EditBirdForm 
@@ -93,6 +93,7 @@ const Bird = (props) => {
         </div>
         <div>
           <PhotoContainer 
+            birdData={birdData}
             birdingSessionId={props.birdingSessionId}
             birdId={props._id}
           />
