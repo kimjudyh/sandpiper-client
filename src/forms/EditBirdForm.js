@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import BirdModel from '../models/BirdModel';
 import BehaviorModel from '../models/BehaviorModel';
+import Error from '../components/Error';
 
 const EditBirdForm = (props) => {
   const [allBehaviors, setAllBehaviors] = useState([]);
@@ -10,7 +11,7 @@ const EditBirdForm = (props) => {
   const behavior = useFormInput(props.birdData.behavior._id);
   const unconfirmed = useFormInput(props.birdData.unconfirmed);
   const fieldNotes = useFormInput(props.birdData.fieldNotes);
-  // TODO: photos
+  const [error, setError] = useState('');
 
   // API call to update bird
   const updateBird = (birdingSessionId, birdId, data) => {
@@ -30,10 +31,15 @@ const EditBirdForm = (props) => {
       .catch((err) => {
         if (err.response) {
           console.log(err.response.data);
+          if (typeof err.response.data.message === 'string'){
+            setError(err.response.data.message);
+          }
         } else if (err.request) {
           console.log(err.request);
+          setError('Something went wrong...');
         } else {
           console.log(err.message);
+          setError('Something went wrong...');
         }
       })
   }
@@ -84,6 +90,8 @@ const EditBirdForm = (props) => {
   }
 
   return (
+    <>
+    <Error error={error} />
     <form onSubmit={handleSubmit}>
       <div>
         <label>Name</label>
@@ -96,6 +104,7 @@ const EditBirdForm = (props) => {
           id="name"
           name="name"
           value={name.value}
+          required
         />
       </div>
       <div>
@@ -137,7 +146,7 @@ const EditBirdForm = (props) => {
       <button className="btn btn-success" data-dismiss="modal" type="submit">Save</button>
 
     </form>
-
+    </>
   )
 }
 

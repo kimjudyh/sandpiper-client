@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import BirdingSessionModel from '../models/BirdingSessionModel';
+import PhotoModel from '../models/PhotoModel';
 import EditBirdingSessionForm from '../forms/EditBirdingSessionForm';
 import ShareContainer from '../containers/ShareContainer';
-import PhotoModel from '../models/PhotoModel';
+import Error from '../components/Error';
 
 const BirdingSessionHeader = (props) => {
   const [birdingSessionHeader, setBirdingSessionHeader] = useState({...props.data});
   const [didDataChange, setDidDataChange] = useState(false);
   const form = useFormDisplay();
   const [images, setImages] = useState([]);
+  const [error, setError] = useState('');
 
   // API call to get one birding session
   const fetchBirdingSession = (birdingSessionId) => {
@@ -24,10 +26,15 @@ const BirdingSessionHeader = (props) => {
           props.history.push('/profile');
           // dispay some error message
           console.log(err.response.data);
+          if (typeof err.response.data.message === 'string'){
+            setError(err.response.data.message);
+          }
         } else if (err.request) {
           console.log(err.request);
+          setError('Something went wrong...');
         } else {
           console.log(err.message);
+          setError('Something went wrong...');
         }
       })
   }
@@ -45,10 +52,15 @@ const BirdingSessionHeader = (props) => {
           props.history.push('/profile');
           // dispay some error message
           console.log(err.response.data);
+          if (typeof err.response.data.message === 'string'){
+            setError(err.response.data.message);
+          }
         } else if (err.request) {
           console.log(err.request);
+          setError('Something went wrong...');
         } else {
           console.log(err.message);
+          setError('Something went wrong...');
         }
       })
   }
@@ -64,10 +76,15 @@ const BirdingSessionHeader = (props) => {
         console.log('axios error')
         if (err.response) {
           console.log(err.response.data);
+          if (typeof err.response.data.message === 'string'){
+            setError(err.response.data.message);
+          }
         } else if (err.request) {
           console.log(err.request);
+          setError('Something went wrong...');
         } else {
           console.log(err.message);
+          setError('Something went wrong...');
         }
       })
   }
@@ -92,10 +109,15 @@ const BirdingSessionHeader = (props) => {
       .catch((err) => {
         if (err.response) {
           console.log(err.response.data);
+          if (typeof err.response.data.message === 'string'){
+            setError(err.response.data.message);
+          }
         } else if (err.request) {
           console.log(err.request);
+          setError('Something went wrong...');
         } else {
           console.log(err.message);
+          setError('Something went wrong...');
         }
       })
     // trigger re-render
@@ -127,6 +149,7 @@ const BirdingSessionHeader = (props) => {
   if (birdingSessionHeader.location) {
     return (
       <div className="birdingSessionHeader">
+        <Error error={error} />
         {/* make birding session location a link to the show page  */}
         <Link to={`/birdingSession/${props.data._id}`}>
           <h3>{birdingSessionHeader.location}</h3>

@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import BirdingSessionModel from '../models/BirdingSessionModel';
+import Error from '../components/Error';
 
 const ShareForm = (props) => {
   const [userEmail, setUserEmail] = useState('');
+  const [error, setError] = useState('');
+
   // API call to share birding session
   const share = (birdingSessionId, data) => {
     BirdingSessionModel.share(birdingSessionId, data)
@@ -15,10 +18,15 @@ const ShareForm = (props) => {
       .catch((err) => {
         if (err.response) {
           console.log(err.response.data);
+          if (typeof err.response.data.message === 'string'){
+            setError(err.response.data.message);
+          }
         } else if (err.request) {
           console.log(err.request);
+          setError('Something went wrong...');
         } else {
           console.log(err.message);
+          setError('Something went wrong...');
         }
       })
   }
@@ -35,6 +43,7 @@ const ShareForm = (props) => {
 
   return (
     <div>
+      <Error error={error} />
       <form onSubmit={handleSubmit}>
         <div>
           <label>Email: </label>
@@ -44,6 +53,7 @@ const ShareForm = (props) => {
             id="email"
             name="email"
             value={userEmail}
+            required
           />
         </div>
         <button className="btn btn-secondary" type="submit">Share</button>

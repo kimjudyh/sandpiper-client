@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import BirdModel from '../models/BirdModel';
 import BehaviorModel from '../models/BehaviorModel';
+import Error from '../components/Error';
 
 const NewBirdForm = (props) => {
   const [allBehaviors, setAllBehaviors] = useState([]);
@@ -11,7 +12,7 @@ const NewBirdForm = (props) => {
   const behavior = useFormInput('');
   const unconfirmed = useFormInput(false);
   const fieldNotes = useFormInput('');
-  // TODO: photos
+  const [error, setError] = useState('');
 
   // API call to make new bird
   const makeNewBird = (birdingSessionId, data) => {
@@ -39,10 +40,15 @@ const NewBirdForm = (props) => {
       .catch((err) => {
         if (err.response) {
           console.log(err.response.data);
+          if (typeof err.response.data.message === 'string'){
+            setError(err.response.data.message);
+          }
         } else if (err.request) {
           console.log(err.request);
+          setError('Something went wrong...');
         } else {
           console.log(err.message);
+          setError('Something went wrong...');
         }
       })
   }
@@ -101,6 +107,7 @@ const NewBirdForm = (props) => {
   return (
     <div>
       new bird form
+      <Error error={error} />
       <form onSubmit={handleSubmit}>
         <div>
           <label>Name</label>
@@ -113,6 +120,7 @@ const NewBirdForm = (props) => {
             id="name"
             name="name"
             value={name.value}
+            required
           />
         </div>
         <div>

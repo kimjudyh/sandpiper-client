@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import BirdingSessionModel from '../models/BirdingSessionModel';
+import Error from '../components/Error';
 
 const NewBirdingSessionForm = (props) => {
   const [birdingSessionData, setBirdingSessionData] = useState({
@@ -7,6 +8,7 @@ const NewBirdingSessionForm = (props) => {
     date: '',
     notes: ''
   });
+  const [error, setError] = useState('');
 
   const makeNewBirdingSession = (data) => {
     BirdingSessionModel.create(data)
@@ -28,6 +30,9 @@ const NewBirdingSessionForm = (props) => {
       .catch((err) => {
         if (err.response) {
           console.log(err.response.data);
+          if (typeof err.response.data.message === 'string'){
+            setError(err.response.data.message);
+          }
         } else if (err.request) {
           console.log(err.request);
         } else {
@@ -53,6 +58,7 @@ const NewBirdingSessionForm = (props) => {
   return (
     <div>
       Form
+      <Error error={error} />
       <form className="form-group" onSubmit={handleSubmit}>
         <div>
           <label>Location</label>
@@ -63,6 +69,7 @@ const NewBirdingSessionForm = (props) => {
             id="location"
             name="location"
             value={birdingSessionData.location}
+            required
           />
         </div>
         <div>
@@ -73,6 +80,7 @@ const NewBirdingSessionForm = (props) => {
             id="date"
             name="date"
             value={birdingSessionData.date}
+            required
           />
         </div>
         <div>

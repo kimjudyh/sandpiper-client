@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import BirdingSessionModel from '../models/BirdingSessionModel';
+import Error from '../components/Error';
 
 const EditBirdingSessionForm = (props) => {
   const [birdingSessionData, setBirdingSessionData] = useState({
@@ -7,6 +8,7 @@ const EditBirdingSessionForm = (props) => {
     date: props.birdingSessionHeader.date.slice(0, 10),
     notes: props.birdingSessionHeader.notes
   });
+  const [error, setError] = useState('');
 
   // API call to update birding session
   const updateBirdingSession = (birdingSessionId, data) => {
@@ -23,10 +25,15 @@ const EditBirdingSessionForm = (props) => {
       .catch((err) => {
         if (err.response) {
           console.log(err.response.data);
+          if (typeof err.response.data.message === 'string'){
+            setError(err.response.data.message);
+          }
         } else if (err.request) {
           console.log(err.request);
+          setError('Something went wrong...');
         } else {
           console.log(err.message);
+          setError('Something went wrong...');
         }
       })
   }
@@ -56,6 +63,7 @@ const EditBirdingSessionForm = (props) => {
     return (
       <div>
         Form
+      <Error error={error} />
         <form className="form-group" onSubmit={handleSubmit}>
           <div>
             <label>Location</label>
@@ -66,6 +74,7 @@ const EditBirdingSessionForm = (props) => {
               id="location"
               name="location"
               value={birdingSessionData.location}
+              required
             />
           </div>
           <div>
@@ -76,6 +85,7 @@ const EditBirdingSessionForm = (props) => {
               id="date"
               name="date"
               value={birdingSessionData.date}
+              required
             />
           </div>
           <div>
