@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import UserModel from '../models/UserModel';
+import Error from '../components/Error';
 
 const Register = (props) => {
   const [userData, setUserData] = useState(
@@ -10,6 +11,7 @@ const Register = (props) => {
       password2: ''
     }
   )
+  const [error, setError] = useState('');
 
   // handle form input change
   const handleChange = (event) => {
@@ -39,6 +41,9 @@ const Register = (props) => {
       .catch((err) => {
         if (err.response) {
           console.log(err.response.data);
+          if (typeof err.response.data.message === 'string'){
+            setError(err.response.data.message);
+          }
         } else if (err.request) {
           console.log(err.request);
         } else {
@@ -54,6 +59,7 @@ const Register = (props) => {
   return (
     <div>
       Register Page
+      <Error error={error} />
       <form onSubmit={ handleSubmit }>
         <div>
           <label>Name</label>
@@ -63,6 +69,7 @@ const Register = (props) => {
             id="name"
             name="name"
             value={ userData.name }
+            required
           />
         </div> 
         <div>
@@ -73,6 +80,7 @@ const Register = (props) => {
             id="email"
             name="email"
             value={ userData.email }
+            required
           />
         </div> 
         <div>
@@ -83,6 +91,7 @@ const Register = (props) => {
             id="password"
             name="password"
             value={ userData.password }
+            required
           />
         </div> 
         <div>
@@ -93,6 +102,7 @@ const Register = (props) => {
             id="password2"
             name="password2"
             value={ userData.password2 }
+            required
           />
         </div> 
         <button type="submit">Sign Up</button>

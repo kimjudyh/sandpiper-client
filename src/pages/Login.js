@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import UserModel from '../models/UserModel';
+import Error from '../components/Error';
 
 const Login = (props) => {
   const [userData, setUserData] = useState({
     email: '',
     password: ''
   });
+  const [error, setError] = useState('');
+
   // render a form 
   // want to update the form inputs when changes are made to it
   const handleChange = (event) => {
@@ -45,6 +48,9 @@ const Login = (props) => {
       .catch((err) => {
         if (err.response) {
           console.log(err.response.data);
+          if (typeof err.response.data.message === 'string'){
+            setError(err.response.data.message);
+          }
         } else if (err.request) {
           console.log(err.request);
         } else {
@@ -56,6 +62,7 @@ const Login = (props) => {
   return (
     <div>
       Login Page
+      <Error error={error} />
       <form onSubmit={ handleSubmit }>
         <div>
           <label htmlFor="email">Email</label>
@@ -67,6 +74,7 @@ const Login = (props) => {
             name="email"
             value={ userData.email }
             onChange={ handleChange }
+            required
           />
         </div>
         <div>
@@ -77,6 +85,7 @@ const Login = (props) => {
             name="password"
             value={ userData.password } 
             onChange={ handleChange }
+            required
           />
         </div>
         <button type="submit">Log In</button>

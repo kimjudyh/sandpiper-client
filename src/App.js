@@ -6,6 +6,7 @@ import UserModel from './models/UserModel';
 import './App.css';
 
 function App(props) {
+  // function to save user data to browser local storage
   const [currentUser, setCurrentUser] = useState({
     uid: localStorage.getItem('uid'),
     email: localStorage.getItem('email'),

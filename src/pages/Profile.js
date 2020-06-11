@@ -3,11 +3,7 @@ import BirdingSessionContainer from '../containers/BirdingSessionContainer';
 
 const Profile = (props) => {
 
-  // if (!props.currentUser.uid) {
-  //   props.routeComponentProps.history.push('/');
-  // }
-
-  if (props.currentUser.uid) {
+  if (props.currentUser !== null) {
     return (
       <div className="container">
         <h3>{props.currentUser.name}'s Profile</h3>
