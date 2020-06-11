@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import BirdModel from '../models/BirdModel';
 import EditBirdForm from '../forms/EditBirdForm';
 import PhotoContainer from '../containers/PhotoContainer';
+import PhotoModel from '../models/PhotoModel';
 
 const Bird = (props) => {
   const [birdData, setBirdData] = useState({...props});
   const [didBirdChange, setDidBirdChange] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [images, setImages] = useState([]);
   // toggle display of form
   const form = useFormDisplay();
   // toggle display of bird details
@@ -21,15 +23,17 @@ const Bird = (props) => {
       })
   }
 
-  // API call to delete bird
-  const deleteBird = (birdingSessionId, birdId) => {
-    BirdModel.delete(birdingSessionId, birdId)
+  // API call to get photos of bird from birding session
+  const getBirdPhotos = (birdingSessionId, birdId) => {
+    console.log('inside bird')
+    PhotoModel.getBirdPhotos(birdingSessionId, birdId)
       .then(res => {
-        console.log('deleted bird', res.data);
-        // trigger re-render
-        props.setDidDataChange(!props.didDataChange);
+        console.log('bird got from db', res.data);
+        // set state
+        setImages(res.data.foundPhotos);
       })
       .catch((err) => {
+        console.log('axios error')
         if (err.response) {
           console.log(err.response.data);
         } else if (err.request) {
@@ -40,9 +44,59 @@ const Bird = (props) => {
       })
   }
 
+  // API call to delete photo
+  const deletePhoto = (birdingSessionId, imageId) => {
+    PhotoModel.delete(birdingSessionId, imageId)
+      .then(res => {
+        console.log('deleted photo', res.data);
+        // setDidDataChange(!didDataChange);
+      })
+      .catch((err) => {
+        console.log('axios error')
+        if (err.response) {
+          console.log(err.response.data);
+        } else if (err.request) {
+          console.log(err.request);
+        } else {
+          console.log(err.message);
+        }
+      })
+  }
+
+  // API call to delete bird
+  const deleteBird = async (birdingSessionId, birdId) => {
+    await BirdModel.delete(birdingSessionId, birdId)
+      .then(res => {
+        console.log('deleted bird', res.data);
+      })
+      .catch((err) => {
+        if (err.response) {
+          console.log(err.response.data);
+        } else if (err.request) {
+          console.log(err.request);
+        } else {
+          console.log(err.message);
+        }
+      })
+    // find photos associated with deleted bird
+    console.log('in get bird photos')
+    console.log('in delete photos then');
+    console.log(images)
+    // loop through list of photos to delete and delete them
+    await images.forEach((element) => {
+      console.log('element', element._id)
+      deletePhoto(birdingSessionId, element._id);
+    })
+    // trigger re-render
+    props.setDidDataChange(!props.didDataChange);
+  }
+
   useEffect(() => {
     setIsLoading(false);
-    getOne(props.birdingSessionId, props._id)
+    getOne(props.birdingSessionId, props._id);
+    getBirdPhotos(props.birdingSessionId, props._id);
+    // let parent component know something changed
+    props.setDidDataChange(!props.didDataChange);
   }, [didBirdChange]);
 
   if (isLoading) {
@@ -96,6 +150,8 @@ const Bird = (props) => {
             birdData={birdData}
             birdingSessionId={props.birdingSessionId}
             birdId={props._id}
+            didBirdChange={didBirdChange}
+            setDidBirdChange={setDidBirdChange}
           />
         </div>
       </div>

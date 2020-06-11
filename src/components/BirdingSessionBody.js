@@ -28,7 +28,11 @@ const BirdingSessionBody = (props) => {
 
   return (
     <div className="birdingSessionBody">
-      <BirdContainer _id={props._id} />
+      <BirdContainer 
+        _id={props._id} 
+        didDataChange={props.didDataChange}
+        setDidDataChange={props.setDidDataChange}
+      />
     </div>
   )
 }

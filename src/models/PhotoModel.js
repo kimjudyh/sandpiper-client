@@ -15,6 +15,13 @@ export default class PhotoModel {
     return request;
   }
 
+  // get photos from a birding session
+  // GET '/:birdingSessionId'
+  static getBirdingSessionPhotos = (birdingSessionId) => {
+    const request = cookieAxios.get(`${photoEndpoint}/${birdingSessionId}`);
+    return request;
+  }
+
   // get photos of one bird from birding session
   // GET '/:birdingSessionId/bird/:birdId
   static getBirdPhotos = (birdingSessionId, birdId) => {

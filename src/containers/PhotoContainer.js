@@ -13,6 +13,7 @@ const PhotoContainer = (props) => {
       .then(res => {
         console.log('saved', res);
         setDidDataChange(!didDataChange);
+        props.setDidBirdChange(!props.didBirdChange);
       })
       .catch((err) => {
         console.log('axios error')

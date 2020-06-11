@@ -29,6 +29,8 @@ const BirdContainer = (props) => {
 
   useEffect(() => {
     fetchBirds(props._id);
+    // let parent component know something changed
+    props.setDidDataChange(!props.didDataChange);
   }, [didBirdsChange]);
 
   // map bird data to Bird components

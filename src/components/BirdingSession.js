@@ -8,6 +8,7 @@ import MapContainer from '../containers/MapContainer';
 const BirdingSession = (props) => {
   // Shows birding session header and birding session body (show page)
   const [birdingSession, setBirdingSession] = useState({});
+  const [didDataChange, setDidDataChange] = useState(false);
 
   // API call to get one birding session
   const fetchBirdingSession = (birdingSessionId) => {
@@ -30,13 +31,16 @@ const BirdingSession = (props) => {
   // when component mounts, and data in array changes
   useEffect(() => {
     fetchBirdingSession(props.match.params.id);
-  }, []);
+    console.log('birding session re-rendered');
+  }, [didDataChange]);
 
   if (birdingSession.location) {
     return (
       <div className="container">
         {/* Birding Session Header */}
         <BirdingSessionHeader 
+          didDataChange={didDataChange}
+          setDidDataChange={setDidDataChange}
           _id={props.match.params.id} 
           data={birdingSession} 
           users={[]}
@@ -45,7 +49,11 @@ const BirdingSession = (props) => {
         {/* Map */}
         <MapContainer />
         {/* Birding Session Body */}
-        <BirdingSessionBody _id={props.match.params.id} />
+        <BirdingSessionBody 
+          _id={props.match.params.id} 
+          didDataChange={didDataChange}
+          setDidDataChange={setDidDataChange}
+        />
       </div>
     )
   } else {
