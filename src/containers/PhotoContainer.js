@@ -113,10 +113,14 @@ const PhotoContainer = (props) => {
     />
     <Photo 
       key={index} 
-      birdData={props.birdData}
+      // birdData={props.birdData}
+      birdData={{
+        name: image.bird.name,
+        birdingSession: image.birdingSession,
+      }}
       deletePhoto={deletePhoto}
       imageId={image._id} 
-      birdId={image.bird}
+      birdId={image.bird._id}
       image={
       <Image 
         className="img-fluid"
