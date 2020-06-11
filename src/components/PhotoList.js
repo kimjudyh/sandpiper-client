@@ -7,10 +7,10 @@ import Photo from '../components/Photo';
 const PhotoList = (props) => {
   const [images, setImages] = useState([]);
   const [didDataChange, setDidDataChange] = useState(false);
-  const [birdData, setBirdData] = useState({
-    name: '',
-    birdingSession: ''
-  });
+  // const [birdData, setBirdData] = useState({
+  //   name: '',
+  //   birdingSession: '',
+  // });
 
   // API call to get all photos
   const getAllPhotos = () => {
@@ -52,62 +52,60 @@ const PhotoList = (props) => {
       })
   }
 
-  // API call to get one bird
-  const getOne = (birdingSessionId, birdId) => {
-    BirdModel.getOne(birdingSessionId, birdId)
-      .then(res => {
-        console.log('getting bird', birdId);
-        console.log('bird data', res.data);
-        setBirdData(res.data.foundBird);
-      })
-      .catch((err) => {
-        console.log('axios error')
-        if (err.response) {
-          console.log(err.response.data);
-        } else if (err.request) {
-          console.log(err.request);
-        } else {
-          console.log(err.message);
-        }
-      })
-  }
+  // // API call to get one bird
+  // const getOne = (birdingSessionId, birdId) => {
+  //   BirdModel.getOne(birdingSessionId, birdId)
+  //     .then(res => {
+  //       console.log('getting bird', birdId);
+  //       console.log('bird data', res.data);
+  //       setBirdData(res.data.foundBird);
+  //     })
+  //     .catch((err) => {
+  //       console.log('axios error')
+  //       if (err.response) {
+  //         console.log(err.response.data);
+  //       } else if (err.request) {
+  //         console.log(err.request);
+  //       } else {
+  //         console.log(err.message);
+  //       }
+  //     })
+  // }
 
   const mappedImages = images.map((image, index) => {
-    // get bird data related to image
-    // getOne(image.birdingSession, image.bird); 
     return (
-    <>
-    <Image
-      data-toggle="modal" data-focus="true" data-target={`#bird${image._id}`}
-      className="thumbnail"
-      src={image.url} alt="bird image" 
-      key={image._id}
-      publicId={image.cloudinaryPublicId}
-    />
-    <Photo 
-      key={index}
-      birdData={{
-        name: '',
-        birdingSession: image.birdingSession
-      }}
-      deletePhoto={deletePhoto}
-      imageId={image._id}
-      image={
-        <Image 
-          className="img-fluid"
-          src={image.url} alt="bird image"
-          key={image._id}
-          publicId={image.cloudinaryPublicId}
-        />}
-    />
-    </>
-
+      <>
+      <Image
+        data-toggle="modal" data-focus="true" data-target={`#bird${image._id}`}
+        className="thumbnail"
+        src={image.url} alt="bird image" 
+        key={image._id}
+        publicId={image.cloudinaryPublicId}
+      />
+      <Photo 
+        key={index}
+        birdData={{
+          name: '',
+          birdingSession: image.birdingSession,
+        }}
+        deletePhoto={deletePhoto}
+        imageId={image._id}
+        birdId={image.bird}
+        image={
+          <Image 
+            className="img-fluid"
+            src={image.url} alt="bird image"
+            key={image._id}
+            publicId={image.cloudinaryPublicId}
+          />}
+      />
+      </>
     )
   })
 
   useEffect(() => {
     getAllPhotos();
-  }, [])
+  }, [didDataChange])
 
   return (
     <CloudinaryContext cloudName={process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}>

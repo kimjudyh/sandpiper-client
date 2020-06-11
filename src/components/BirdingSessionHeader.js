@@ -26,15 +26,10 @@ const BirdingSessionHeader = (props) => {
           props.history.push('/profile');
           // dispay some error message
           console.log(err.response.data);
-          if (typeof err.response.data.message === 'string'){
-            setError(err.response.data.message);
-          }
         } else if (err.request) {
           console.log(err.request);
-          setError('Something went wrong...');
         } else {
           console.log(err.message);
-          setError('Something went wrong...');
         }
       })
   }
@@ -52,15 +47,10 @@ const BirdingSessionHeader = (props) => {
           props.history.push('/profile');
           // dispay some error message
           console.log(err.response.data);
-          if (typeof err.response.data.message === 'string'){
-            setError(err.response.data.message);
-          }
         } else if (err.request) {
           console.log(err.request);
-          setError('Something went wrong...');
         } else {
           console.log(err.message);
-          setError('Something went wrong...');
         }
       })
   }
@@ -76,15 +66,10 @@ const BirdingSessionHeader = (props) => {
         console.log('axios error')
         if (err.response) {
           console.log(err.response.data);
-          if (typeof err.response.data.message === 'string'){
-            setError(err.response.data.message);
-          }
         } else if (err.request) {
           console.log(err.request);
-          setError('Something went wrong...');
         } else {
           console.log(err.message);
-          setError('Something went wrong...');
         }
       })
   }
@@ -109,15 +94,10 @@ const BirdingSessionHeader = (props) => {
       .catch((err) => {
         if (err.response) {
           console.log(err.response.data);
-          if (typeof err.response.data.message === 'string'){
-            setError(err.response.data.message);
-          }
         } else if (err.request) {
           console.log(err.request);
-          setError('Something went wrong...');
         } else {
           console.log(err.message);
-          setError('Something went wrong...');
         }
       })
     // trigger re-render

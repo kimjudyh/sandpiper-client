@@ -1,6 +1,32 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import BirdModel from '../models/BirdModel';
 
 const Photo = (props) => {
+  const [birdData, setBirdData] = useState(props.birdData);
+
+  // API call to get one bird
+  const getOne = (birdingSessionId, birdId) => {
+    BirdModel.getOne(birdingSessionId, birdId)
+      .then(res => {
+        console.log('getting bird', birdId);
+        console.log('bird data', res.data);
+        setBirdData(res.data.foundBird);
+      })
+      .catch((err) => {
+        console.log('axios error')
+        if (err.response) {
+          console.log(err.response.data);
+        } else if (err.request) {
+          console.log(err.request);
+        } else {
+          console.log(err.message);
+        }
+      })
+  }
+
+  useEffect(() => {
+    getOne(props.birdData.birdingSession, props.birdId);
+  }, [])
 
   // make this a modal
   return (
@@ -16,7 +42,8 @@ const Photo = (props) => {
           <div className="modal-header">
             {/* Bird name */}
             <div className="modal-title">
-              {props.birdData.name}
+              {/* {props.birdData.name} */}
+              {birdData.name}
             </div>
             {/* Delete Icon */}
             <div className="clickable-icon">
