@@ -25,7 +25,7 @@ const Photo = (props) => {
   }
 
   useEffect(() => {
-    getOne(props.birdData.birdingSession, props.birdId);
+    getOne(props.birdData.birdingSession._id, props.birdId);
   }, [])
 
   // make this a modal
@@ -43,11 +43,11 @@ const Photo = (props) => {
             {/* Bird name */}
             <div className="modal-title">
               {/* {props.birdData.name} */}
-              {birdData.name}
+              {props.birdData.name} | {props.birdData.birdingSession.location}
             </div>
             {/* Delete Icon */}
             <div className="clickable-icon">
-              <i className="fa fa-trash fa-lg" aria-hidden="true" data-dismiss="modal" onClick={() => props.deletePhoto(props.birdData.birdingSession, props.imageId)}></i>
+              <i className="fa fa-trash fa-lg" aria-hidden="true" data-dismiss="modal" onClick={() => props.deletePhoto(props.birdData.birdingSession._id, props.imageId)}></i>
             </div>
             {/* Close Modal button */}
             <button type="button" className="close" data-dismiss="modal" aria-label="Close">
