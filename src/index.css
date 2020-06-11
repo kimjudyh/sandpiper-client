@@ -58,3 +58,18 @@ nav ul {
   padding: 4px 4px;
   align-items: center;
 }
+
+.map-header {
+  background-color: #F1F1F1F1;
+  margin: 0 10px;
+}
+
+.map-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+  /* width: 70%; */
+  margin: 0 10px;
+  background-color: #f1f1f1;
+}

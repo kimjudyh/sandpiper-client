@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import BirdingSessionModel from '../models/BirdingSessionModel';
-import BirdContainer from '../containers/BirdContainer';
 import BirdingSessionHeader from '../components/BirdingSessionHeader';
 import BirdingSessionBody from '../components/BirdingSessionBody';
+import MapContainer from '../containers/MapContainer';
 
 const BirdingSession = (props) => {
   // Shows birding session header and birding session body (show page)
@@ -42,6 +42,8 @@ const BirdingSession = (props) => {
           users={[]}
           {...props}  // route component props: history, match, location
         />
+        {/* Map */}
+        <MapContainer />
         {/* Birding Session Body */}
         <BirdingSessionBody _id={props.match.params.id} />
       </div>
