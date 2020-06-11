@@ -59,37 +59,31 @@ const PhotoList = (props) => {
   // sets images state
   // do this on button click - Sort onClick
   const sortPhotos = (sortCategory) => {
-    function compare(a, b) {
-      if (a < b) {
-        return -1;
-      }
-      if (a > b) {
-        return 1;
-      }
-      // a must be equal to b
-      return 0;
-    }
     if (sortCategory === 'date created') {
       getAllPhotos();
     } else if (sortCategory === 'birding session') {
       // images.sort(compare(a.birdingSession, b.birdingSession))
       images.sort((a, b) => {
-        if (a.birdingSession < b.birdingSession) return -1;
-        if (a.birdingSession > b.birdingSession) return 1;
+        if (a.birdingSession.location.toLowerCase() < b.birdingSession.location.toLowerCase()) return -1;
+        if (a.birdingSession.location.toLowerCase() > b.birdingSession.location.toLowerCase()) return 1;
         return 0;
       })
       console.log('sorted by session', images);
 
     } else if (sortCategory === 'bird') {
-      // images.sort(compare(a.bird, b.bird))
       images.sort((a, b) => {
-        if (a.bird < b.bird) return -1;
-        if (a.bird > b.bird) return 1;
+        if (a.bird.name.toLowerCase() < b.bird.name.toLowerCase()) return -1;
+        if (a.bird.name.toLowerCase() > b.bird.name.toLowerCase()) return 1;
         return 0;
       })
       console.log(images);
 
     } else if (sortCategory === 'behavior') {
+      images.sort((a, b) => {
+        if (a.bird.behavior.toLowerCase() < b.bird.behavior.toLowerCase()) return -1;
+        if (a.bird.behavior.toLowerCase() > b.bird.behavior.toLowerCase()) return 1;
+        return 0;
+      })
 
     }
     setImages(images);
@@ -110,12 +104,12 @@ const PhotoList = (props) => {
           <Photo
             key={index}
             birdData={{
-              name: '',
+              name: image.bird.name,
               birdingSession: image.birdingSession,
             }}
             deletePhoto={deletePhoto}
             imageId={image._id}
-            birdId={image.bird}
+            birdId={image.bird._id}
             image={
               <Image
                 className="img-fluid"
