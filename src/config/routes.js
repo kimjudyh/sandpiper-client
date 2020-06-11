@@ -6,9 +6,7 @@ import Login from '../pages/Login';
 import Profile from '../pages/Profile';
 // Import Components
 import BirdingSession from '../components/BirdingSession';
-// Import Forms
-import NewBirdingSessionForm from '../forms/NewBirdingSessionForm';
-import NewBirdForm from '../forms/NewBirdForm';
+import PhotoList from '../components/PhotoList';
 
 const Routes = (props) => (
   <Switch>
@@ -29,9 +27,15 @@ const Routes = (props) => (
         storeUser={props.storeUser}
       />
     }} />
-    <Route exact path='/birdingSession/new' component={ NewBirdingSessionForm } />
     <Route path='/birdingSession/:id' component={ BirdingSession}  />
-    <Route exact path='/bird/new' component={ NewBirdForm } />
+    <Route path='/photos' render={(routeComponentProps) => {
+      return <PhotoList 
+        routeComponentProps={routeComponentProps}
+        currentUser={props.currentUser}
+        storeUser={props.storeUser}
+      />
+    }} />
+
   </Switch>
 )
 

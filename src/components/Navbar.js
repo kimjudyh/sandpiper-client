@@ -6,9 +6,9 @@ const Navbar = (props) => {
 <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
   <div className="container">
     <Link className="navbar-brand" to={'/'}>Sandpiper</Link>
-    <Link className="navbar-brand" to={'/register'}>Register</Link>
     <Link className="navbar-brand" to={'/login'}>Login</Link>
     <Link className="navbar-brand" to={'/profile'}>Profile</Link>
+    <Link className="navbar-brand" to={'/photos'}>Photos</Link>
     <Link className="navbar-brand" to={'/logout'} onClick={props.logout}>Logout</Link>
     {/* Hamburger Menu Button */}
     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,6 +19,7 @@ const Navbar = (props) => {
       <ul className="navbar-nav mr-auto">
         <li className="nav-item active">
           <Link className="nav-link" to={'/birdingSession/new'}>New Birding Session</Link>
+          <Link className="nav-link" to={'/register'}>Register</Link>
         </li>
         <li className="nav-item">
           <a className="nav-link disabled" href="#" tabIndex="-1" aria-disabled="true">Disabled</a>
