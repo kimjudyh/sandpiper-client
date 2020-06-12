@@ -23,6 +23,7 @@ const MapContainer = (props) => {
         <ReactBingmaps 
           bingmapKey = {`${process.env.REACT_APP_BING_MAPS_KEY}`} 
           center = {[37.4216408920133, -122.18513723405881]}
+          mapTypeId={'aerial'}
           > 
         </ReactBingmaps>
       </div>
