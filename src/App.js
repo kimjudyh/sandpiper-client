@@ -8,7 +8,7 @@ import './App.css';
 function App(props) {
   // function to save user data to browser local storage
   const [currentUser, setCurrentUser] = useState({
-    uid: localStorage.getItem('uid'),
+    _id: localStorage.getItem('_id'),
     email: localStorage.getItem('email'),
     name: localStorage.getItem('name')
   });
@@ -16,7 +16,7 @@ function App(props) {
   // store the currently logged in user in local storage
   const storeUser = (user) => {
     setCurrentUser(user);
-    localStorage.setItem('uid', user._id);
+    localStorage.setItem('_id', user._id);
     localStorage.setItem('email', user.email);
     localStorage.setItem('name', user.name);
   }
@@ -25,14 +25,21 @@ function App(props) {
   const logout = (event) => {
     event.preventDefault();
     // remove user id from local storage
-    localStorage.removeItem('uid');
+    // localStorage.setItem('_id', null);
+    // localStorage.setItem('email', null);
+    // localStorage.setItem('name', null);
+    localStorage.removeItem('_id');
     localStorage.removeItem('email');
     localStorage.removeItem('name');
     // api request for logout route
     UserModel.logout()
       .then(res => {
         console.log(res);
-        setCurrentUser(null);
+        setCurrentUser({
+          _id: localStorage.getItem('_id'),
+          email: localStorage.getItem('email'),
+          name: localStorage.getItem('name')
+        });
         props.history.push('/');
       })
       .catch((err) => {
