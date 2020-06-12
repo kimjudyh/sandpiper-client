@@ -25,10 +25,10 @@ const ShareContainer = (props) => {
 
   return (
     <>
-      <div className="clickable-icon">
+      {/* <div className="clickable-icon">
         <i className="fa fa-share-alt fa-lg" aria-hidden="true" onClick={form.toggleFormDisplay}></i>
-      </div>
-      <div style={form.formDisplay}>
+      </div> */}
+      <div style={props.shareForm.formDisplay}>
         <div>
           Users: {users}
         </div>

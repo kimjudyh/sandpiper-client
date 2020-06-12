@@ -45,8 +45,8 @@ const Bird = (props) => {
   }
 
   // API call to delete photo
-  const deletePhoto = (birdingSessionId, imageId) => {
-    PhotoModel.delete(birdingSessionId, imageId)
+  const deletePhoto = async (birdingSessionId, imageId) => {
+    await PhotoModel.delete(birdingSessionId, imageId)
       .then(res => {
         console.log('deleted photo', res.data);
         // setDidDataChange(!didDataChange);

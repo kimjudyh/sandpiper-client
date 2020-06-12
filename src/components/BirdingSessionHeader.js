@@ -10,6 +10,7 @@ const BirdingSessionHeader = (props) => {
   const [birdingSessionHeader, setBirdingSessionHeader] = useState({...props.data});
   const [didDataChange, setDidDataChange] = useState(false);
   const form = useFormDisplay();
+  const shareForm = useFormDisplay();
   const [images, setImages] = useState([]);
   const [error, setError] = useState('');
 
@@ -134,14 +135,11 @@ const BirdingSessionHeader = (props) => {
         <Link to={`/birdingSession/${props.data._id}`}>
           <h3>{birdingSessionHeader.location}</h3>
         </Link>
-        {/* list users */}
         <div className="icon-container">
-            <ShareContainer
-              birdingSessionId={props.data._id}
-              birdingSessionUsers={birdingSessionHeader.users}
-              didDataChange={didDataChange}
-              setDidDataChange={setDidDataChange}
-            />
+          {/* Share Icon */}
+          <div className="clickable-icon">
+            <i className="fa fa-share-alt fa-lg" aria-hidden="true" onClick={shareForm.toggleFormDisplay}></i>
+          </div>
           {/* Delete Icon */}
           <div className="clickable-icon">
             <i className="fa fa-trash fa-lg" aria-hidden="true" onClick={() => deleteBirdingSession(props.data._id)}></i>
@@ -157,6 +155,7 @@ const BirdingSessionHeader = (props) => {
               birdingSessionUsers={birdingSessionHeader.users}
               didDataChange={didDataChange}
               setDidDataChange={setDidDataChange}
+              shareForm={shareForm}
             />
             <div style={form.formDisplay}>
               <EditBirdingSessionForm
