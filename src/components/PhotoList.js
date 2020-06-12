@@ -135,12 +135,12 @@ const PhotoList = (props) => {
   }
 
   // attach event listener, listen for keyup
-  useEffect(() => {
-    let modalElement = document.getElementById(modalId);
-    let body = document.querySelector('body');
-    let div = document.createElement('div')
-    div.classList.add('modal-backdrop', 'show')
-    console.log(body)
+  // useEffect(() => {
+  //   let modalElement = document.getElementById(modalId);
+  //   let body = document.querySelector('body');
+  //   let div = document.createElement('div')
+  //   div.classList.add('modal-backdrop', 'show')
+  //   console.log(body)
     // if (modalElement) {
     //     modalElement.classList.add('show');
     //     modalElement.setAttribute('style', 'display: block')
@@ -153,50 +153,47 @@ const PhotoList = (props) => {
     // window.addEventListener('click', (event) => {
     //   console.log(event.target.classList);
     // })
-    console.log(modalElement)
+    // console.log(modalElement)
     
-    const handleKeyEvent = (event) => {
-      console.log('key pressed', event.key)
-      console.log('index of photo', photoIndex)
-      let index = photoIndex;
-      if (event.key === 'ArrowRight' && photoIndex !== mappedImages.length) {
+    // const handleKeyEvent = (event) => {
+    //   console.log('key pressed', event.key)
+    //   console.log('index of photo', photoIndex)
+    //   let index = photoIndex;
+    //   if (event.key === 'ArrowRight' && photoIndex !== mappedImages.length) {
         // go to next photo, if it exists
-        console.log('pressed right arrow')
-        index = photoIndex + 1;
-        setPhotoIndex(index)
-        setModalId(`bird${images[index]._id}`)
+        // console.log('pressed right arrow')
+        // index = photoIndex + 1;
+        // setPhotoIndex(index)
+        // setModalId(`bird${images[index]._id}`)
         // remove show class from current modal
         // add show class to next modal
-        modalElement.classList.remove('show')
-        modalElement.setAttribute('style', 'display: none')
-        // body.classList.remove('modal-open');
-        // document.querySelector('body').removeChild(document.querySelector('.modal-backdrop'))
-        modalElement = document.getElementById(`bird${images[index]._id}`)
-        modalElement.classList.add('show');
-        modalElement.setAttribute('style', 'display: block')
-        // body.classList.add('modal-open');
+        // modalElement.classList.remove('show')
+        // modalElement.setAttribute('style', 'display: none')
+        // modalElement = document.getElementById(`bird${images[index]._id}`)
+        // modalElement.classList.add('show');
+        // modalElement.setAttribute('style', 'display: block')
 
-        console.log(div)
+        // console.log(div)
         // document.querySelector('body').appendChild(div)
 
 
         
         // modalElement = document.getElementById(modalId);
-      } else if (event.key === 'ArrowLeft') {
-        console.log('pressed left arrow')
-      }
-      console.log('photo index', photoIndex);
-      console.log('modal id', modalId)
+      // } else if (event.key === 'ArrowLeft') {
+      //   console.log('pressed left arrow')
+      // }
+      // console.log('photo index', photoIndex);
+      // console.log('modal id', modalId)
       // ArrowRight
       // ArrowLeft
-    }
+    // }
 
     // if modal is open, attach event listener to it
-    if (modalElement) {
-      modalElement.addEventListener('keyup', handleKeyEvent)
-      return () => modalElement.removeEventListener('keyup', handleKeyEvent);
-    }
-  })
+    // if (modalElement) {
+    //   modalElement.addEventListener('keyup', handleKeyEvent)
+    //   return () => modalElement.removeEventListener('keyup', handleKeyEvent);
+    // }
+  // })
 
   useEffect(() => {
     getAllPhotos();
