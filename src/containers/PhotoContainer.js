@@ -103,16 +103,16 @@ const PhotoContainer = (props) => {
   }, [didDataChange])
 
   const mappedImages = images.map((image, index) => (
-    <>
+    <React.Fragment key={image._id}>
     <Image
       data-toggle="modal" data-focus="true" data-target={`#bird${image._id}`}
       className="thumbnail"
       src={image.url} alt="bird image" 
-      key={image._id}
+      // key={image._id}
       publicId={image.cloudinaryPublicId}
     />
     <Photo 
-      key={index} 
+      // key={index} 
       // birdData={props.birdData}
       birdData={{
         name: image.bird.name,
@@ -125,11 +125,11 @@ const PhotoContainer = (props) => {
       <Image 
         className="img-fluid"
         src={image.url} alt="bird image" 
-        key={image._id}
+        // key={image._id}
         publicId={image.cloudinaryPublicId}
       />}
     />
-    </>
+    </React.Fragment>
   ))
 
   return (
