@@ -5,6 +5,7 @@ import Photo from '../components/Photo';
 
 const PhotoContainer = (props) => {
   const [images, setImages] = useState([]);
+  const [mappedImages, setMappedImages] = useState([]);
   const [didDataChange, setDidDataChange] = useState(false);
 
   // API call to save photo to backend
@@ -34,6 +35,7 @@ const PhotoContainer = (props) => {
         console.log('got from db', res.data);
         // set state
         setImages(res.data.foundPhotos);
+        mapImages(res.data.foundPhotos);
       })
       .catch((err) => {
         console.log('axios error')
@@ -98,39 +100,43 @@ const PhotoContainer = (props) => {
     })
   }
 
-  useEffect(() => {
-    getBirdPhotos(props.birdingSessionId, props.birdId);
-  }, [didDataChange])
+  const mapImages = (images) => {
 
-  const mappedImages = images.map((image, index) => (
-    <React.Fragment key={image._id}>
-    <Image
-      data-toggle="modal" data-focus="true" data-target={`#bird${image._id}`}
-      className="thumbnail"
-      src={image.url} alt="bird image" 
-      // key={image._id}
-      publicId={image.cloudinaryPublicId}
-    />
-    <Photo 
-      // key={index} 
-      // birdData={props.birdData}
-      birdData={{
-        name: image.bird.name,
-        birdingSession: image.birdingSession,
-      }}
-      deletePhoto={deletePhoto}
-      imageId={image._id} 
-      birdId={image.bird._id}
-      image={
-      <Image 
-        className="img-fluid"
+    const mappedImagesArray = images.map((image, index) => (
+      <React.Fragment key={image._id}>
+      <Image
+        data-toggle="modal" data-focus="true" data-target={`#bird${image._id}`}
+        className="thumbnail"
         src={image.url} alt="bird image" 
         // key={image._id}
         publicId={image.cloudinaryPublicId}
-      />}
-    />
-    </React.Fragment>
-  ))
+      />
+      <Photo 
+        // key={index} 
+        // birdData={props.birdData}
+        birdData={{
+          name: image.bird.name,
+          birdingSession: image.birdingSession,
+        }}
+        deletePhoto={deletePhoto}
+        imageId={image._id} 
+        birdId={image.bird._id}
+        image={
+        <Image 
+          className="img-fluid"
+          src={image.url} alt="bird image" 
+          // key={image._id}
+          publicId={image.cloudinaryPublicId}
+        />}
+      />
+      </React.Fragment>
+    ))
+    setMappedImages(mappedImagesArray);
+  }
+
+  useEffect(() => {
+    getBirdPhotos(props.birdingSessionId, props.birdId);
+  }, [didDataChange])
 
   return (
     <CloudinaryContext cloudName={process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}>
