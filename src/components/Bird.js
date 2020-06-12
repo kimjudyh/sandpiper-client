@@ -105,7 +105,8 @@ const Bird = (props) => {
     )
   } else {
   return (
-    <div>
+    <>
+    <div className="bird">
       {/* if edit form chosen, show form */}
       {/* else show birdData */}
       <h4 onClick={info.toggleFormDisplay}>{birdData.name}</h4>
@@ -121,14 +122,17 @@ const Bird = (props) => {
           <i className="fa fa-chevron-down fa-lg" aria-hidden="true" onClick={info.toggleFormDisplay}></i> 
         </div>
       } 
-      <div style={info.formDisplay} >
-        {/* Delete Icon */}
-        <div className="clickable-icon">
-          <i className="fa fa-trash fa-lg" aria-hidden="true" onClick={() => deleteBird(props.birdingSessionId, props._id)}></i>
-        </div>
-        {/* Edit Icon */}
-        <div className="clickable-icon">
-          <i className="fa fa-pencil fa-lg" aria-hidden="true" onClick={form.toggleFormDisplay}></i>
+      <div style={info.formDisplay} className="bird">
+        {/* Row of Icons */}
+        <div className="icon-container">
+          {/* Delete Icon */}
+          <div className="clickable-icon">
+            <i className="fa fa-trash fa-lg" aria-hidden="true" onClick={() => deleteBird(props.birdingSessionId, props._id)}></i>
+          </div>
+          {/* Edit Icon */}
+          <div className="clickable-icon">
+            <i className="fa fa-pencil fa-lg" aria-hidden="true" onClick={form.toggleFormDisplay}></i>
+          </div>
         </div>
         <div style={form.formDisplay}>
           <EditBirdForm 
@@ -139,11 +143,40 @@ const Bird = (props) => {
             setDidBirdChange={setDidBirdChange}
             birdData={birdData} />
         </div>
-        <div>
-          <p><strong>Number: </strong> {birdData.number !== null ? birdData.number : ''}</p>
-          <p><strong>Behavior: </strong> {birdData.behavior.name}</p>
-          <p><strong>Unconfirmed ID?</strong> {birdData.unconfirmed ? 'Unconfirmed' : ''} </p> 
-          <p><strong>Field Notes: </strong> {birdData.fieldNotes}</p>
+        <div className="bird-info">
+          <div className="row">
+            <div className="col col-xl text-right border">
+              <strong>Number: </strong>
+            </div>
+            <div className="col col-xl text-left border">
+                {birdData.number !== null ? birdData.number : ''}
+            </div>
+          </div>
+          <div className="row ">
+            <div className="col col-xl text-right border">
+              <strong>Behavior: </strong>
+            </div>
+            <div className="col col-xl text-left border">
+                {birdData.behavior.name}
+            </div>
+          </div>
+          <div className="row ">
+            <div className="col col-xl text-right border">
+              <strong>Unconfirmed Id?: </strong>
+            </div>
+            <div className="col col-xl text-left border">
+                {birdData.unconfirmed ? 'Yes' : 'No'}
+            </div>
+          </div>
+          <div className="row">
+            <div className="col col-xl text-right border">
+              <strong>Field Notes: </strong>
+
+            </div>
+            <div className="col col-xl text-left border">
+                {birdData.fieldNotes}
+            </div>
+          </div>
         </div>
         <div>
           <PhotoContainer 
@@ -155,8 +188,9 @@ const Bird = (props) => {
           />
         </div>
       </div>
-      <hr/>
     </div>
+      <hr/>
+      </>
   )
 
   }
@@ -169,7 +203,7 @@ export const useFormDisplay = () => {
   const toggleFormDisplay = () => {
     // toggle show form state
     if (formDisplay.display === 'none') {
-      setFormDisplay({display: 'block'})
+      setFormDisplay({display: 'flex'})
     } else {
       setFormDisplay({display: 'none'})
     }

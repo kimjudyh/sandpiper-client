@@ -135,6 +135,7 @@ const BirdingSessionHeader = (props) => {
         <Link to={`/birdingSession/${props.data._id}`}>
           <h3>{birdingSessionHeader.location}</h3>
         </Link>
+        {/* Row of Icons */}
         <div className="icon-container">
           {/* Share Icon */}
           <div className="clickable-icon">
@@ -148,24 +149,23 @@ const BirdingSessionHeader = (props) => {
             <div className="clickable-icon">
               <i className="fa fa-pencil fa-lg" aria-hidden="true" onClick={form.toggleFormDisplay} ></i>
             </div>
-
         </div>
-            <ShareContainer
-              birdingSessionId={props.data._id}
-              birdingSessionUsers={birdingSessionHeader.users}
-              didDataChange={didDataChange}
-              setDidDataChange={setDidDataChange}
-              shareForm={shareForm}
-            />
-            <div style={form.formDisplay}>
-              <EditBirdingSessionForm
-                toggleFormDisplay={form.toggleFormDisplay}
-                didDataChange={didDataChange}
-                setDidDataChange={setDidDataChange}
-                birdingSessionHeader={birdingSessionHeader}
-                setBirdingSessionHeader={setBirdingSessionHeader}
-              />
-            </div>
+        <ShareContainer
+          birdingSessionId={props.data._id}
+          birdingSessionUsers={birdingSessionHeader.users}
+          didDataChange={didDataChange}
+          setDidDataChange={setDidDataChange}
+          shareForm={shareForm}
+        />
+        <div style={form.formDisplay}>
+          <EditBirdingSessionForm
+            toggleFormDisplay={form.toggleFormDisplay}
+            didDataChange={didDataChange}
+            setDidDataChange={setDidDataChange}
+            birdingSessionHeader={birdingSessionHeader}
+            setBirdingSessionHeader={setBirdingSessionHeader}
+          />
+        </div>
       </div>
     )
   } else {
