@@ -5,7 +5,7 @@ import Error from '../components/Error';
 const NewBirdingSessionForm = (props) => {
   const [birdingSessionData, setBirdingSessionData] = useState({
     location: '',
-    date: '',
+    date: new Date().toISOString().slice(0, 10),
     notes: ''
   });
   const [error, setError] = useState('');
@@ -18,7 +18,7 @@ const NewBirdingSessionForm = (props) => {
         if (res.status === 200) {
           setBirdingSessionData({
             location: '',
-            date: '',
+            date: new Date().toISOString().slice(0, 10),
             notes: ''
           })
           // props.setDidBirdingSessionsChange(true);
