@@ -90,19 +90,28 @@ const PhotoList = (props) => {
     mapImages(images);
   }
 
+  // for keyboard event listener
+  const [modalId, setModalId] = useState('');
+  const [photoIndex, setPhotoIndex] = useState(0);
+
   const mapImages = (images) => {
     const mappedImagesArray = images.map((image, index) => {
       return (
         <>
           <Image
             data-toggle="modal" data-focus="true" data-target={`#bird${image._id}`}
+            onClick={()=> {
+              setModalId(`bird${image._id}`)
+              setPhotoIndex(index);
+            }}
             className="thumbnail"
             src={image.url} alt="bird image"
-            key={image._id}
+            // key={image._id}
+            key={index}
             publicId={image.cloudinaryPublicId}
           />
           <Photo
-            key={index}
+            // key={index}
             birdData={{
               name: image.bird.name,
               birdingSession: image.birdingSession,
@@ -125,36 +134,69 @@ const PhotoList = (props) => {
     // return mappedImagesArray;
   }
 
-  // let mappedImages = images.map((image, index) => {
-  //   return (
-  //     <>
-  //     <Image
-  //       data-toggle="modal" data-focus="true" data-target={`#bird${image._id}`}
-  //       className="thumbnail"
-  //       src={image.url} alt="bird image" 
-  //       key={image._id}
-  //       publicId={image.cloudinaryPublicId}
-  //     />
-  //     <Photo 
-  //       key={index}
-  //       birdData={{
-  //         name: '',
-  //         birdingSession: image.birdingSession,
-  //       }}
-  //       deletePhoto={deletePhoto}
-  //       imageId={image._id}
-  //       birdId={image.bird}
-  //       image={
-  //         <Image 
-  //           className="img-fluid"
-  //           src={image.url} alt="bird image"
-  //           key={image._id}
-  //           publicId={image.cloudinaryPublicId}
-  //         />}
-  //     />
-  //     </>
-  //   )
-  // })
+  // attach event listener, listen for keyup
+  useEffect(() => {
+    let modalElement = document.getElementById(modalId);
+    let body = document.querySelector('body');
+    let div = document.createElement('div')
+    div.classList.add('modal-backdrop', 'show')
+    console.log(body)
+    // if (modalElement) {
+    //     modalElement.classList.add('show');
+    //     modalElement.setAttribute('style', 'display: block')
+    //     body.classList.add('modal-open');
+
+    //     console.log(div)
+    //     document.querySelector('body').appendChild(div)
+
+    // }
+    // window.addEventListener('click', (event) => {
+    //   console.log(event.target.classList);
+    // })
+    console.log(modalElement)
+    
+    const handleKeyEvent = (event) => {
+      console.log('key pressed', event.key)
+      console.log('index of photo', photoIndex)
+      let index = photoIndex;
+      if (event.key === 'ArrowRight' && photoIndex !== mappedImages.length) {
+        // go to next photo, if it exists
+        console.log('pressed right arrow')
+        index = photoIndex + 1;
+        setPhotoIndex(index)
+        setModalId(`bird${images[index]._id}`)
+        // remove show class from current modal
+        // add show class to next modal
+        modalElement.classList.remove('show')
+        modalElement.setAttribute('style', 'display: none')
+        // body.classList.remove('modal-open');
+        // document.querySelector('body').removeChild(document.querySelector('.modal-backdrop'))
+        modalElement = document.getElementById(`bird${images[index]._id}`)
+        modalElement.classList.add('show');
+        modalElement.setAttribute('style', 'display: block')
+        // body.classList.add('modal-open');
+
+        console.log(div)
+        // document.querySelector('body').appendChild(div)
+
+
+        
+        // modalElement = document.getElementById(modalId);
+      } else if (event.key === 'ArrowLeft') {
+        console.log('pressed left arrow')
+      }
+      console.log('photo index', photoIndex);
+      console.log('modal id', modalId)
+      // ArrowRight
+      // ArrowLeft
+    }
+
+    // if modal is open, attach event listener to it
+    if (modalElement) {
+      modalElement.addEventListener('keyup', handleKeyEvent)
+      return () => modalElement.removeEventListener('keyup', handleKeyEvent);
+    }
+  })
 
   useEffect(() => {
     getAllPhotos();

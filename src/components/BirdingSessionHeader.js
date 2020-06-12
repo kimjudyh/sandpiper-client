@@ -135,32 +135,38 @@ const BirdingSessionHeader = (props) => {
           <h3>{birdingSessionHeader.location}</h3>
         </Link>
         {/* list users */}
-        <div>
-          Users: {users}
-          <ShareContainer 
-            birdingSessionId={props.data._id}
-            birdingSessionUsers={birdingSessionHeader.users}
-            didDataChange={didDataChange}
-            setDidDataChange={setDidDataChange}
-          />
+        <div className="icon-container">
+            <ShareContainer
+              birdingSessionId={props.data._id}
+              birdingSessionUsers={birdingSessionHeader.users}
+              didDataChange={didDataChange}
+              setDidDataChange={setDidDataChange}
+            />
+          {/* Delete Icon */}
+          <div className="clickable-icon">
+            <i className="fa fa-trash fa-lg" aria-hidden="true" onClick={() => deleteBirdingSession(props.data._id)}></i>
+          </div>
+          {/* Edit Icon */}
+            <div className="clickable-icon">
+              <i className="fa fa-pencil fa-lg" aria-hidden="true" onClick={form.toggleFormDisplay} ></i>
+            </div>
+
         </div>
-        {/* Delete Icon */}
-        <div className="clickable-icon">
-          <i className="fa fa-trash fa-lg" aria-hidden="true" onClick={() => deleteBirdingSession(props.data._id) }></i>
-        </div>
-        {/* Edit Icon */}
-        <div className="clickable-icon">
-          <i className="fa fa-pencil fa-lg" aria-hidden="true" onClick={form.toggleFormDisplay} ></i>
-        </div>
-        <div style={form.formDisplay}>
-          <EditBirdingSessionForm 
-            toggleFormDisplay={form.toggleFormDisplay}
-            didDataChange={didDataChange}
-            setDidDataChange={setDidDataChange}
-            birdingSessionHeader={birdingSessionHeader}
-            setBirdingSessionHeader={setBirdingSessionHeader}
-          />
-        </div>
+            <ShareContainer
+              birdingSessionId={props.data._id}
+              birdingSessionUsers={birdingSessionHeader.users}
+              didDataChange={didDataChange}
+              setDidDataChange={setDidDataChange}
+            />
+            <div style={form.formDisplay}>
+              <EditBirdingSessionForm
+                toggleFormDisplay={form.toggleFormDisplay}
+                didDataChange={didDataChange}
+                setDidDataChange={setDidDataChange}
+                birdingSessionHeader={birdingSessionHeader}
+                setBirdingSessionHeader={setBirdingSessionHeader}
+              />
+            </div>
       </div>
     )
   } else {

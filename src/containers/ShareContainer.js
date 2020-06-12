@@ -17,13 +17,21 @@ const ShareContainer = (props) => {
   useEffect(() => {
 
   })
+  const users = props.birdingSessionUsers.map((user, index) => {
+    return (
+      <span key={user._id}>{user.name} </span>
+    )
+  })
 
   return (
-    <div>
+    <>
       <div className="clickable-icon">
         <i className="fa fa-share-alt fa-lg" aria-hidden="true" onClick={form.toggleFormDisplay}></i>
       </div>
       <div style={form.formDisplay}>
+        <div>
+          Users: {users}
+        </div>
         info about sharing
         who it's being shared with, ability to remove them
         (share)
@@ -33,7 +41,7 @@ const ShareContainer = (props) => {
           setDidDataChange={props.setDidDataChange}
         />
       </div>
-    </div>
+    </>
   )
 }
 
