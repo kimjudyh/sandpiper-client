@@ -62,13 +62,13 @@ const EditBirdingSessionForm = (props) => {
   if (birdingSessionData.date) {
     return (
       <div>
-        Form
       <Error error={error} />
-        <form className="form-group" onSubmit={handleSubmit}>
-          <div>
+        <form  onSubmit={handleSubmit}>
+          <div className="form-group">
             <label>Location</label>
             <input 
               // autofocus this field
+              className="form-control"
               onChange={handleChange}
               type="text"
               id="location"
@@ -77,9 +77,10 @@ const EditBirdingSessionForm = (props) => {
               required
             />
           </div>
-          <div>
+          <div className="form-group">
             <label>Date</label>
             <input 
+              className="form-control"
               onChange={handleChange}
               type="date"
               id="date"
@@ -88,13 +89,16 @@ const EditBirdingSessionForm = (props) => {
               required
             />
           </div>
-          <div>
+          <div className="form-group">
             <label>Notes</label>
             <textarea 
+              className="form-control"
               onChange={handleChange}
               type="text"
               id="notes"
               name="notes"
+              rows="5"
+              cols="30"
               value={birdingSessionData.notes}
             />
           </div>

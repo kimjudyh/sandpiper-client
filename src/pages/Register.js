@@ -59,13 +59,14 @@ const Register = (props) => {
   // for now, console log that user was registered
 
   return (
-    <div>
+    <div className=" register">
       Register Page
       <Error error={error} />
       <form onSubmit={ handleSubmit }>
         <div>
           <label>Name</label>
           <input 
+            className="form-control"
             onChange={ handleChange }
             type="text"
             id="name"
@@ -77,6 +78,7 @@ const Register = (props) => {
         <div>
           <label>Email</label>
           <input 
+            className="form-control"
             onChange={ handleChange }
             type="text"
             id="email"
@@ -88,6 +90,7 @@ const Register = (props) => {
         <div>
           <label>Password</label>
           <input 
+            className="form-control"
             onChange={ handleChange }
             type="password"
             id="password"
@@ -99,6 +102,7 @@ const Register = (props) => {
         <div>
           <label>Confirm Password</label>
           <input 
+            className="form-control"
             onChange={ handleChange }
             type="password"
             id="password2"
@@ -107,7 +111,7 @@ const Register = (props) => {
             required
           />
         </div> 
-        <button type="submit">Sign Up</button>
+        <button className="btn btn-info" type="submit">Sign Up</button>
       </form>
     </div>
   )

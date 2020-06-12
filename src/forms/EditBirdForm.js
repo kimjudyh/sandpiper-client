@@ -92,10 +92,11 @@ const EditBirdForm = (props) => {
   return (
     <>
     <Error error={error} />
-    <form onSubmit={handleSubmit}>
-      <div>
+    <form  onSubmit={handleSubmit}>
+      <div className="form-group">
         <label>Name</label>
         <input
+          className="form-control"
           // autofocus this field
           autoFocus
           // ref={input => input && input.focus()}
@@ -107,9 +108,10 @@ const EditBirdForm = (props) => {
           required
         />
       </div>
-      <div>
+      <div className="form-group">
         <label>Number</label>
         <input
+          className="form-control"
           onChange={number.handleChange}
           type="number"
           id="number"
@@ -117,28 +119,32 @@ const EditBirdForm = (props) => {
           value={number.value}
         />
       </div>
-      <div>
+      <div className="form-group">
         <label>Behavior</label>
-        <select value={behavior.value} onChange={behavior.handleChange}>
+        <select value={behavior.value} onChange={behavior.handleChange} className="form-control" >
           {allBehaviors}
         </select>
       </div>
-      <div>
-        <label>Unconfirmed ID?</label>
+      <div className="form-group form-check">
         <input
+          className="form-check-input"
           onChange={unconfirmed.handleChange}
           type="checkbox"
           id="unconfirmed"
           name="unconfirmed"
           checked={unconfirmed.value}
         />
+        <label className="form-check-label">Unconfirmed ID?</label>
       </div>
-      <div>
+      <div className="form-group">
         <label>Field Notes</label>
         <textarea
+          className="form-control"
           onChange={fieldNotes.handleChange}
           id="fieldNotes"
           name="fieldNotes"
+          rows="5"
+          cols="30"
           value={fieldNotes.value}
         />
       </div>

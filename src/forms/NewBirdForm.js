@@ -105,13 +105,15 @@ const NewBirdForm = (props) => {
   }
 
   return (
-    <div>
-      new bird form
+    <div className="form-row">
+      <div className="col">
+
       <Error error={error} />
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="form-group">
           <label>Name</label>
           <input 
+            className="form-control"
             // autofocus this field
             autoFocus
             // ref={input => input && input.focus()}
@@ -123,9 +125,10 @@ const NewBirdForm = (props) => {
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label>Number</label>
           <input 
+            className="form-control"
             onChange={number.handleChange}
             type="number"
             id="number"
@@ -133,35 +136,40 @@ const NewBirdForm = (props) => {
             value={number.value}
           />
         </div>
-        <div>
+        <div className="form-group">
           <label>Behavior</label>
-          <select  onChange={behavior.handleChange}>
+          <select  onChange={behavior.handleChange} className="form-control">
             <option disabled selected>Select a Behavior</option>
             {allBehaviors}
           </select>
         </div>
-        <div>
-          <label>Unconfirmed ID?</label>
+        <div className="form-group form-check">
           <input 
+            className="form-check-input"
             onChange={unconfirmed.handleChange}
             type="checkbox"
             id="unconfirmed"
             name="unconfirmed"
             checked={unconfirmed.value}
           />
+          <label className="form-check-label">Unconfirmed ID?</label>
         </div>
-        <div>
+        <div className="form-group">
           <label>Field Notes</label>
           <textarea 
+            className="form-control"
             onChange={fieldNotes.handleChange}
             id="fieldNotes"
             name="fieldNotes"
+            rows="5"
+            cols="30"
             value={fieldNotes.value}
           />
         </div>
 
         <button className="btn btn-success" data-dismiss="modal" type="submit">Save</button>
       </form>
+      </div>
     </div>
   )
 }

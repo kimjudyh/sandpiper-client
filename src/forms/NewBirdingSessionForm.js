@@ -57,12 +57,12 @@ const NewBirdingSessionForm = (props) => {
 
   return (
     <div>
-      Form
       <Error error={error} />
-      <form className="form-group" onSubmit={handleSubmit}>
-        <div>
+      <form  onSubmit={handleSubmit}>
+        <div className="form-group">
           <label>Location</label>
           <input 
+            className="form-control"
             // autofocus this field
             onChange={handleChange}
             type="text"
@@ -75,6 +75,7 @@ const NewBirdingSessionForm = (props) => {
         <div>
           <label>Date</label>
           <input 
+            className="form-control"
             onChange={handleChange}
             type="date"
             id="date"
@@ -86,10 +87,13 @@ const NewBirdingSessionForm = (props) => {
         <div>
           <label>Notes</label>
           <textarea 
+            className="form-control"
             onChange={handleChange}
             type="text"
             id="notes"
             name="notes"
+            rows="5"
+            cols="30"
             value={birdingSessionData.notes}
           />
         </div>
