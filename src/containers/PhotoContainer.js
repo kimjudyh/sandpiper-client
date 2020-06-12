@@ -100,12 +100,18 @@ const PhotoContainer = (props) => {
     })
   }
 
-  const mapImages = (images) => {
+  const [modalId, setModalId] = useState('');
+  const [photoIndex, setPhotoIndex] = useState(0);
 
+  const mapImages = (images) => {
     const mappedImagesArray = images.map((image, index) => (
       <React.Fragment key={image._id}>
       <Image
         data-toggle="modal" data-focus="true" data-target={`#bird${image._id}`}
+        onClick={()=> {
+          setModalId(`bird${image._id}`)
+          setPhotoIndex(index);
+        }}
         className="thumbnail"
         src={image.url} alt="bird image" 
         // key={image._id}

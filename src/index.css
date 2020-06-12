@@ -139,6 +139,12 @@ label {
   align-items: center;
 }
 
+body:not(.modal-open){
+  padding-right: 0px !important;
+}
+
+.modal-open{overflow:auto;padding-right:0 !important;}
+
 /* ====================== */
 .map-header {
   background-color: #F1F1F1F1;
