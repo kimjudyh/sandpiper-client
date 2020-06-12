@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const birdEndpoint = 'http://localhost:4000/api/v1/bird';
+const birdEndpoint = `${process.env.REACT_APP_API_URL}/api/v1/bird` ||'http://localhost:4000/api/v1/bird';
 
 // make an instance of axios that enables passing of cookies
 const cookieAxios = axios.create({

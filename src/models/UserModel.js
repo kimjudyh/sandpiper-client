@@ -1,7 +1,7 @@
 // Communicate with API 
 import axios from 'axios';
 
-const authEndpoint = 'http://localhost:4000/api/v1/auth';
+const authEndpoint = `${process.env.REACT_APP_API_URL}/api/v1/auth` ||'http://localhost:4000/api/v1/auth';
 // make an instance of axios that enables passing of cookies
 const cookieAxios = axios.create({
   withCredentials: true

@@ -1,7 +1,7 @@
 import { Cloudinary as CoreCloudinary, Util } from 'cloudinary-core';
 import axios from 'axios';
 
-const photoEndpoint = 'http://localhost:4000/api/v1/photo';
+const photoEndpoint = `${process.env.REACT_APP_API_URL}/api/v1/photo` ||'http://localhost:4000/api/v1/photo';
 // make an instance of axios that enables passing of cookies
 const cookieAxios = axios.create({
   withCredentials: true
