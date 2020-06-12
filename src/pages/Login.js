@@ -62,38 +62,40 @@ const Login = (props) => {
   }
 
   return (
-    <div className="form-row login">
-      Login Page
-      <Error error={error} />
-      <form onSubmit={ handleSubmit }>
-        <div className="form-group">
-          <label htmlFor="email">Email</label>
-          <input 
-            className="form-control"
-            // autofocus this field
-            // ref={input => input && input.focus()}
-            type="text"
-            id="email"
-            name="email"
-            value={ userData.email }
-            onChange={ handleChange }
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="password">Password</label>
-          <input 
-            className="form-control"
-            type="password"
-            id="password"
-            name="password"
-            value={ userData.password } 
-            onChange={ handleChange }
-            required
-          />
-        </div>
-        <button className="btn btn-info" type="submit">Log In</button>
-      </form>
+    <div className="login-container">
+      <div className="login form-row">
+        <h3>Login</h3>
+        <Error error={error} />
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="email">Email</label>
+            <input
+              className="form-control"
+              // autofocus this field
+              // ref={input => input && input.focus()}
+              type="text"
+              id="email"
+              name="email"
+              value={userData.email}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input
+              className="form-control"
+              type="password"
+              id="password"
+              name="password"
+              value={userData.password}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <button className="btn btn-info" type="submit">Log In</button>
+        </form>
+      </div>
     </div>
   )
 }

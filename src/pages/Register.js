@@ -59,60 +59,62 @@ const Register = (props) => {
   // for now, console log that user was registered
 
   return (
-    <div className=" register">
-      Register Page
-      <Error error={error} />
-      <form onSubmit={ handleSubmit }>
-        <div>
-          <label>Name</label>
-          <input 
-            className="form-control"
-            onChange={ handleChange }
-            type="text"
-            id="name"
-            name="name"
-            value={ userData.name }
-            required
-          />
-        </div> 
-        <div>
-          <label>Email</label>
-          <input 
-            className="form-control"
-            onChange={ handleChange }
-            type="text"
-            id="email"
-            name="email"
-            value={ userData.email }
-            required
-          />
-        </div> 
-        <div>
-          <label>Password</label>
-          <input 
-            className="form-control"
-            onChange={ handleChange }
-            type="password"
-            id="password"
-            name="password"
-            value={ userData.password }
-            required
-          />
-        </div> 
-        <div>
-          <label>Confirm Password</label>
-          <input 
-            className="form-control"
-            onChange={ handleChange }
-            type="password"
-            id="password2"
-            name="password2"
-            value={ userData.password2 }
-            required
-          />
-        </div> 
-        <button className="btn btn-info" type="submit">Sign Up</button>
-      </form>
+    <div className="register-container">
+      <div className=" register">
+        <h3>Register New User</h3>
+        <Error error={error} />
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label>Name</label>
+            <input
+              className="form-control"
+              onChange={handleChange}
+              type="text"
+              id="name"
+              name="name"
+              value={userData.name}
+              required
+            />
+          </div>
+          <div>
+            <label>Email</label>
+            <input
+              className="form-control"
+              onChange={handleChange}
+              type="text"
+              id="email"
+              name="email"
+              value={userData.email}
+              required
+            />
+          </div>
+          <div>
+            <label>Password</label>
+            <input
+              className="form-control"
+              onChange={handleChange}
+              type="password"
+              id="password"
+              name="password"
+              value={userData.password}
+              required
+            />
+          </div>
+          <div>
+            <label>Confirm Password</label>
+            <input
+              className="form-control"
+              onChange={handleChange}
+              type="password"
+              id="password2"
+              name="password2"
+              value={userData.password2}
+              required
+            />
+          </div>
+          <button className="btn btn-info" type="submit">Sign Up</button>
+        </form>
+      </div>
     </div>
   )
 }
