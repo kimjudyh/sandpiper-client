@@ -119,7 +119,7 @@ const NewBirdForm = (props) => {
             // ref={input => input && input.focus()}
             onChange={name.handleChange}
             type="text"
-            id="name"
+            // id="new-name"
             name="name"
             value={name.value}
             required
@@ -131,7 +131,7 @@ const NewBirdForm = (props) => {
             className="form-control"
             onChange={number.handleChange}
             type="number"
-            id="number"
+            // id="new-number"
             name="number"
             value={number.value}
           />
@@ -139,7 +139,7 @@ const NewBirdForm = (props) => {
         <div className="form-group">
           <label>Behavior</label>
           <select  onChange={behavior.handleChange} className="form-control">
-            <option disabled selected>Select a Behavior</option>
+            <option disabled >Select a Behavior</option>
             {allBehaviors}
           </select>
         </div>
@@ -148,7 +148,7 @@ const NewBirdForm = (props) => {
             className="form-check-input"
             onChange={unconfirmed.handleChange}
             type="checkbox"
-            id="unconfirmed"
+            // id="new-unconfirmed"
             name="unconfirmed"
             checked={unconfirmed.value}
           />
@@ -159,7 +159,7 @@ const NewBirdForm = (props) => {
           <textarea 
             className="form-control"
             onChange={fieldNotes.handleChange}
-            id="fieldNotes"
+            // id="new-fieldNotes"
             name="fieldNotes"
             rows="5"
             cols="30"

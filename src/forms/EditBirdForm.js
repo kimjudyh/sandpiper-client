@@ -102,7 +102,7 @@ const EditBirdForm = (props) => {
           // ref={input => input && input.focus()}
           onChange={name.handleChange}
           type="text"
-          id="name"
+          // id="name"
           name="name"
           value={name.value}
           required
@@ -114,7 +114,7 @@ const EditBirdForm = (props) => {
           className="form-control"
           onChange={number.handleChange}
           type="number"
-          id="number"
+          // id="number"
           name="number"
           value={number.value}
         />
@@ -130,7 +130,7 @@ const EditBirdForm = (props) => {
           className="form-check-input"
           onChange={unconfirmed.handleChange}
           type="checkbox"
-          id="unconfirmed"
+          // id="unconfirmed"
           name="unconfirmed"
           checked={unconfirmed.value}
         />
@@ -141,7 +141,7 @@ const EditBirdForm = (props) => {
         <textarea
           className="form-control"
           onChange={fieldNotes.handleChange}
-          id="fieldNotes"
+          // id="fieldNotes"
           name="fieldNotes"
           rows="5"
           cols="30"
@@ -160,6 +160,9 @@ export default EditBirdForm;
 
 // custom hook for changing form inputs
 const useFormInput = (initialValue) => {
+  if (initialValue === null) {
+    initialValue = ''; 
+  }
   const [value, setValue] = useState(initialValue);
 
   const handleChange = (event) => {
