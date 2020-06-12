@@ -35,16 +35,16 @@ const BirdContainer = (props) => {
 
   // map bird data to Bird components
   const birdComponents = birds.map((element, index) => (
-    <>
+    <React.Fragment key={element._id}>
     <Bird 
-      key={element._id} 
+      // key={element._id} 
       {...element} 
       birdingSessionId={props._id} 
       didDataChange={didBirdsChange}
       setDidDataChange={setDidBirdsChange}
     />
     {/* <button className="btn btn-danger" onClick={() => deleteBird(props._id, element._id)}>Delete</button> */}
-    </>
+    </React.Fragment>
   ))
 
   return (
