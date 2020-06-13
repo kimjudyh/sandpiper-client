@@ -43,7 +43,7 @@ const Photo = (props) => {
             {/* Bird name */}
             <div className="modal-title">
               {/* {props.birdData.name} */}
-              {props.birdData.name} | {props.birdData.birdingSession.location}
+              <h5>{props.birdData.name} | {props.birdData.birdingSession.location}</h5>
             </div>
             {/* Delete Icon */}
             <div className="clickable-icon">

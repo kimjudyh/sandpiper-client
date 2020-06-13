@@ -5,7 +5,7 @@ const Confirmation = (props) => {
 
   return (
     <div className="modal" id={`modal${props.id}`} tabIndex="-1" role="dialog" aria-labelledby="warning-modal" aria-hidden="true">
-      <div className="modal-dialog">
+      <div className="modal-dialog modal-dialog-centered">
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title">Delete Confirmation</h5>
