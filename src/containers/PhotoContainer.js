@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { CloudinaryContext, Image } from 'cloudinary-react';
 import PhotoModel, { openUploadWidget } from '../models/PhotoModel';
 import Photo from '../components/Photo';
+import Confirmation from '../components/Confirmation';
 
 const PhotoContainer = (props) => {
   const [images, setImages] = useState([]);
@@ -106,6 +107,11 @@ const PhotoContainer = (props) => {
   const mapImages = (images) => {
     const mappedImagesArray = images.map((image, index) => (
       <React.Fragment key={image._id}>
+        <Confirmation
+          componentName="photo"
+          id={image._id}
+          delete={() => deletePhoto(image.birdingSession._id, image._id)}
+        />
       <Image
         data-toggle="modal" data-focus="true" data-target={`#bird${image._id}`}
         onClick={()=> {
