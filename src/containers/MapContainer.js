@@ -45,20 +45,26 @@ const MapContainer = (props) => {
 
 
   return (
-    <div >
+    <>
       <div className="map-header">
-        <h2>Map</h2>
-        {map.formDisplay.display === 'none' ?
-          <div className="clickable-icon">
-            {/* Show More */}
-            <i className="fa fa-chevron-up fa-lg" aria-hidden="true" onClick={map.toggleFormDisplay}></i>
+        <div className="row justify-content-center" onClick={map.toggleFormDisplay}>
+          <div className="col col-6 offset-2">
+            <h3 onClick={map.toggleFormDisplay}>Map</h3>
           </div>
-          :  
-          <div className="clickable-icon">
-            {/* Hide */}
-            <i className="fa fa-chevron-down fa-lg" aria-hidden="true" onClick={map.toggleFormDisplay}></i> 
+          <div className="col col-1 offset-1 ">
+            {map.formDisplay.display === 'none' ?
+              <div className="clickable-icon ">
+                {/* Show More */}
+                <i className="fa fa-chevron-right fa-lg" aria-hidden="true" onClick={map.toggleFormDisplay}></i>
+              </div>
+              :  
+              <div className="clickable-icon">
+                {/* Hide */}
+                <i className="fa fa-chevron-down fa-lg" aria-hidden="true" onClick={map.toggleFormDisplay}></i> 
+              </div>
+            } 
           </div>
-        } 
+        </div>
       </div>
       <div className="map-container" style={map.formDisplay}>
         <ReactBingmaps 
@@ -71,14 +77,14 @@ const MapContainer = (props) => {
         </ReactBingmaps>
       </div>
 
-    </div>
+    </>
   )
 }
 
 export default MapContainer;
 
 export const useFormDisplay = () => {
-  const [formDisplay, setFormDisplay] = useState({display: 'block'})
+  const [formDisplay, setFormDisplay] = useState({display: 'none'})
   const toggleFormDisplay = () => {
     // toggle show form state
     if (formDisplay.display === 'none') {

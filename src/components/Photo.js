@@ -37,17 +37,21 @@ const Photo = (props) => {
       className="modal"
       aria-hidden="true"
     >
-      <div className="modal-dialog modal-dialog-centered modal-xl">
+      <div className="modal-dialog modal-dialog-centered modal-lg">
         <div className="modal-content">
           <div className="modal-header">
             {/* Bird name */}
             <div className="modal-title">
               {/* {props.birdData.name} */}
-              {props.birdData.name} | {props.birdData.birdingSession.location}
+              <h5>{props.birdData.name} | {props.birdData.birdingSession.location}</h5>
             </div>
             {/* Delete Icon */}
             <div className="clickable-icon">
-              <i className="fa fa-trash fa-lg" aria-hidden="true" data-dismiss="modal" onClick={() => props.deletePhoto(props.birdData.birdingSession._id, props.imageId)}></i>
+              <i className="fa fa-trash fa-lg" aria-hidden="true" 
+            data-toggle="modal" data-focus="true" data-target={`#modal${props.imageId}`}
+              data-dismiss="modal" 
+              // onClick={() => props.deletePhoto(props.birdData.birdingSession._id, props.imageId)}
+              ></i>
             </div>
             {/* Close Modal button */}
             <button type="button" className="close" data-dismiss="modal" aria-label="Close">

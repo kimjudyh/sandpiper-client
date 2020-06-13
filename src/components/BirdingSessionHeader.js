@@ -5,12 +5,14 @@ import PhotoModel from '../models/PhotoModel';
 import EditBirdingSessionForm from '../forms/EditBirdingSessionForm';
 import ShareContainer from '../containers/ShareContainer';
 import Error from '../components/Error';
+import Confirmation from './Confirmation';
 
 const BirdingSessionHeader = (props) => {
   const [birdingSessionHeader, setBirdingSessionHeader] = useState({...props.data});
   const [didDataChange, setDidDataChange] = useState(false);
   const form = useFormDisplay();
   const shareForm = useFormDisplay();
+  const header = useFormDisplay();
   const [images, setImages] = useState([]);
   const [error, setError] = useState('');
 
@@ -101,53 +103,72 @@ const BirdingSessionHeader = (props) => {
           console.log(err.message);
         }
       })
-    // trigger re-render
-        // if (props.didDataChange !== undefined) {
-        //   console.log('changing data')
-        //   // delete request coming from profile page
-        //   props.setDidDataChange(!props.didDataChange);
-        // }
-        // props.history.push('/profile');
   }
+
 
   // when component mounts
   useEffect(() => {
     // get birding session data
     fetchBirdingSession(props.data._id);
     getBirdingSessionPhotos(props.data._id);
-    // fetchBirdingSession(props.key);
-    // fetchBirdingSession(birdingSessionHeader._id);
-    // setDidDataChange(false);
   }, [props.didDataChange, didDataChange]);
 
-  // get all users that birding session is shared with
-  const users = birdingSessionHeader.users.map((user, index) => {
-    return (
-      <span key={user._id}>{user.name} </span>
-    )
-  })
 
   if (birdingSessionHeader.location) {
     return (
       <div className="birdingSessionHeader">
         <Error error={error} />
+        <Confirmation 
+          componentName="birding session"
+          id={birdingSessionHeader._id}
+          delete={() => deleteBirdingSession(props.data._id)}
+        />
         {/* make birding session location a link to the show page  */}
         <Link to={`/birdingSession/${props.data._id}`}>
           <h3>{birdingSessionHeader.location}</h3>
         </Link>
+        {/* Show or hide birding session details */}
+        {header.formDisplay.display === 'none' ?
+          <div className="clickable-icon">
+            {/* Show More */}
+            <i className="fa fa-chevron-up fa-lg" aria-hidden="true" onClick={header.toggleFormDisplay}></i>
+          </div>
+          :
+          <div className="clickable-icon">
+            {/* Hide */}
+            <i className="fa fa-chevron-down fa-lg" aria-hidden="true"
+            onClick={header.toggleFormDisplay}></i>
+          </div>
+        } 
+        <div style={header.formDisplay} className="flex-column">
+          <div className="row">
+            <div className="col">
+              {new Date(birdingSessionHeader.date).toLocaleDateString()}
+            </div>
+          </div>
+          <div className="row">
+            <div className="col">
+              {birdingSessionHeader.notes}
+            </div>
+          </div>
+        </div>
         {/* Row of Icons */}
         <div className="icon-container">
+          {/* Delete Icon */}
+          <div className="clickable-icon">
+            <i className="fa fa-trash fa-lg" aria-hidden="true" 
+            
+            data-toggle="modal" data-focus="true" data-target={`#modal${birdingSessionHeader._id}`}
+            // onClick={() => deleteBirdingSession(props.data._id)}
+            ></i>
+          </div>
           {/* Share Icon */}
           <div className="clickable-icon">
             <i className="fa fa-share-alt fa-lg" aria-hidden="true" onClick={shareForm.toggleFormDisplay}></i>
           </div>
-          {/* Delete Icon */}
-          <div className="clickable-icon">
-            <i className="fa fa-trash fa-lg" aria-hidden="true" onClick={() => deleteBirdingSession(props.data._id)}></i>
-          </div>
           {/* Edit Icon */}
             <div className="clickable-icon">
-              <i className="fa fa-pencil fa-lg" aria-hidden="true" onClick={form.toggleFormDisplay} ></i>
+              <i className="fa fa-pencil-alt fa-lg" aria-hidden="true" onClick={form.toggleFormDisplay} ></i>
             </div>
         </div>
         <ShareContainer

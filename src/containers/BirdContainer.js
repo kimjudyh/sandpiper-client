@@ -53,7 +53,11 @@ const BirdContainer = (props) => {
         {birdComponents}
       </div>
       <div>
-        <button className="btn btn-info" onClick={form.toggleFormDisplay}>New Bird</button>
+        {/* <button className="btn btn-info" onClick={form.toggleFormDisplay}>New Bird</button> */}
+          <div className="clickable-icon">
+            <i className="fa fa-feather fa-2x" aria-hidden="true" onClick={form.toggleFormDisplay}></i>
+            New
+          </div>
         <div className="bird" style={form.formDisplay}>
           <NewBirdForm 
             _id={props._id} 

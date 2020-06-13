@@ -3,6 +3,7 @@ import { CloudinaryContext, Image } from 'cloudinary-react';
 import PhotoModel, { openUploadWidget } from '../models/PhotoModel';
 import BirdModel from '../models/BirdModel';
 import Photo from '../components/Photo';
+import Confirmation from '../components/Confirmation';
 
 const PhotoList = (props) => {
   const [images, setImages] = useState([]);
@@ -98,6 +99,11 @@ const PhotoList = (props) => {
     const mappedImagesArray = images.map((image, index) => {
       return (
         <>
+          <Confirmation
+            componentName="photo"
+            id={image._id}
+            delete={() => deletePhoto(image.birdingSession._id, image._id)}
+          />
           <Image
             data-toggle="modal" data-focus="true" data-target={`#bird${image._id}`}
             onClick={()=> {
