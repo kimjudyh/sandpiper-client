@@ -5,6 +5,7 @@ import PhotoModel from '../models/PhotoModel';
 import EditBirdingSessionForm from '../forms/EditBirdingSessionForm';
 import ShareContainer from '../containers/ShareContainer';
 import Error from '../components/Error';
+import Confirmation from './Confirmation';
 
 const BirdingSessionHeader = (props) => {
   const [birdingSessionHeader, setBirdingSessionHeader] = useState({...props.data});
@@ -104,6 +105,13 @@ const BirdingSessionHeader = (props) => {
       })
   }
 
+  const openDeleteWarning = (birdingSessionId) => {
+    // open modal id={`modal${props.id}`} 
+    // if click yes, delete
+    deleteBirdingSession(birdingSessionId);
+    // else close modal
+  }
+
 
   // when component mounts
   useEffect(() => {
@@ -117,6 +125,11 @@ const BirdingSessionHeader = (props) => {
     return (
       <div className="birdingSessionHeader">
         <Error error={error} />
+        <Confirmation 
+          componentName="birding session"
+          id={birdingSessionHeader._id}
+          delete={deleteBirdingSession}
+        />
         {/* make birding session location a link to the show page  */}
         <Link to={`/birdingSession/${props.data._id}`}>
           <h3>{birdingSessionHeader.location}</h3>
@@ -130,10 +143,11 @@ const BirdingSessionHeader = (props) => {
           :
           <div className="clickable-icon">
             {/* Hide */}
-            <i className="fa fa-chevron-down fa-lg" aria-hidden="true" onClick={header.toggleFormDisplay}></i>
+            <i className="fa fa-chevron-down fa-lg" aria-hidden="true"
+            onClick={header.toggleFormDisplay}></i>
           </div>
         } 
-        <div style={header.formDisplay}>
+        <div style={header.formDisplay} className="flex-column">
           <div className="row">
             <div className="col">
               {new Date(birdingSessionHeader.date).toLocaleDateString()}
@@ -153,7 +167,11 @@ const BirdingSessionHeader = (props) => {
           </div>
           {/* Delete Icon */}
           <div className="clickable-icon">
-            <i className="fa fa-trash fa-lg" aria-hidden="true" onClick={() => deleteBirdingSession(props.data._id)}></i>
+            <i className="fa fa-trash fa-lg" aria-hidden="true" 
+            
+            data-toggle="modal" data-focus="true" data-target={`#modal${birdingSessionHeader._id}`}
+            // onClick={() => deleteBirdingSession(props.data._id)}
+            ></i>
           </div>
           {/* Edit Icon */}
             <div className="clickable-icon">
