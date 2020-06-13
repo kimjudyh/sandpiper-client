@@ -154,10 +154,6 @@ const BirdingSessionHeader = (props) => {
         </div>
         {/* Row of Icons */}
         <div className="icon-container">
-          {/* Share Icon */}
-          <div className="clickable-icon">
-            <i className="fa fa-share-alt fa-lg" aria-hidden="true" onClick={shareForm.toggleFormDisplay}></i>
-          </div>
           {/* Delete Icon */}
           <div className="clickable-icon">
             <i className="fa fa-trash fa-lg" aria-hidden="true" 
@@ -166,9 +162,13 @@ const BirdingSessionHeader = (props) => {
             // onClick={() => deleteBirdingSession(props.data._id)}
             ></i>
           </div>
+          {/* Share Icon */}
+          <div className="clickable-icon">
+            <i className="fa fa-share-alt fa-lg" aria-hidden="true" onClick={shareForm.toggleFormDisplay}></i>
+          </div>
           {/* Edit Icon */}
             <div className="clickable-icon">
-              <i className="fa fa-pencil fa-lg" aria-hidden="true" onClick={form.toggleFormDisplay} ></i>
+              <i className="fa fa-pencil-alt fa-lg" aria-hidden="true" onClick={form.toggleFormDisplay} ></i>
             </div>
         </div>
         <ShareContainer
