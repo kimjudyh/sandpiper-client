@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import BirdModel from '../models/BirdModel';
 
 const Photo = (props) => {
@@ -28,6 +29,14 @@ const Photo = (props) => {
     getOne(props.birdData.birdingSession._id, props.birdId);
   }, [])
 
+  // remove modal backdrop
+  const closeModal = () => {
+    let body = document.querySelector('body');
+    let modalDiv = document.querySelector('.modal-backdrop');
+    body.classList.remove('modal-open');
+    body.removeChild(modalDiv);
+  }
+
   // make this a modal
   return (
     <div
@@ -42,21 +51,33 @@ const Photo = (props) => {
           <div className="modal-header">
             {/* Bird name */}
             <div className="modal-title">
-              {/* {props.birdData.name} */}
-              <h5>{props.birdData.name} | {props.birdData.birdingSession.location}</h5>
+              {/* Bird Name and Link to Birding Session */}
+              <h5>{props.birdData.name} | <Link onClick={closeModal}  to={`/birdingSession/${props.birdData.birdingSession._id}`}>{props.birdData.birdingSession.location}</Link></h5>
             </div>
             {/* Delete Icon */}
             <div className="clickable-icon">
+              {/* Close photo modal and open the delete confirmation modal */}
               <i className="fa fa-trash fa-lg" aria-hidden="true" 
-            data-toggle="modal" data-focus="true" data-target={`#modal${props.imageId}`}
+              data-toggle="modal" data-focus="true" data-target={`#modal${props.imageId}`}
               data-dismiss="modal" 
-              // onClick={() => props.deletePhoto(props.birdData.birdingSession._id, props.imageId)}
               ></i>
             </div>
             {/* Close Modal button */}
             <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
+              <span aria-hidden="true"><i className="fa fa-times fa-lg"></i></span>
             </button>
+          </div>
+          {/* Previous Image */}
+          <div className="clickable-icon">
+            <i className="fa fa-chevron-right fa-lg" aria-hidden="true"
+            data-toggle="modal" data-focus="true" data-target={`#bird${props.previousImageId}`}
+            ></i>
+          </div>
+          {/* Next Image */}
+          <div className="clickable-icon">
+            <i className="fa fa-chevron-right fa-lg" aria-hidden="true"
+            data-toggle="modal" data-focus="true" data-target={`#bird${props.nextImageId}`}
+            ></i>
           </div>
           {/* Image */}
           {props.image}
