@@ -7,7 +7,6 @@ const BirdingSessionContainer = (props) => {
   // Lists all birding session headers (index page)
   const [birdingSessions, setBirdingSessions] = useState([]);
   const [didBirdingSessionsChange, setDidBirdingSessionsChange] = useState(false);
-  // const [birdingSessionComponents, setBirdingSessionComponents] = useState([]);
   const form = useFormDisplay();
 
   // API call to get all birding sessions
@@ -33,22 +32,6 @@ const BirdingSessionContainer = (props) => {
     fetchBirdingSessions();
   }, [didBirdingSessionsChange]);
 
-  // const mapBirdingSessionHeaders = (birdingSessions) => {
-  //   console.log('birding sess', birdingSessions)
-  //   const birdingSessionComponents = birdingSessions.map((element, index) => (
-  //     // make array of BirdingSessionHeader components with birding session data passed as props
-  //     // location, users, _id, etc
-  //     <BirdingSessionHeader 
-  //       key={element._id} 
-  //       data={element} 
-  //       setDidDataChange={setDidBirdingSessionsChange}
-  //       didDataChange={didBirdingSessionsChange}
-  //       {...props} // route component props: history, match, location
-  //     />
-  //   ))
-  //   console.log('comps', birdingSessionComponents)
-  //   return birdingSessionComponents;
-  // }
   const birdingSessionComponents = birdingSessions.map((element, index) => (
     // make array of BirdingSessionHeader components with birding session data passed as props
     // location, users, _id, etc
@@ -63,11 +46,10 @@ const BirdingSessionContainer = (props) => {
 
   return (
     <div>
-      {/* Button to show or hide New Birding Session Form */}
+      {/* Icon to show or hide New Birding Session Form */}
       <div className="clickable-icon" onClick={form.toggleFormDisplay}>
         <i className="fa fa-binoculars fa-2x" aria-hidden="true" ></i>New
       </div>
-      {/* <button className="btn btn-info" onClick={form.toggleFormDisplay}>New Birding Session</button> */}
       {/* New Birding Session Form */}
       <div style={form.formDisplay} className="align-items-center justify-content-center">
         {/* pass route component props, currentUser, storeUser */}

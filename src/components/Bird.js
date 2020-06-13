@@ -107,8 +107,6 @@ const Bird = (props) => {
   return (
     <>
     <div className="bird">
-      {/* if edit form chosen, show form */}
-      {/* else show birdData */}
       <h4 onClick={info.toggleFormDisplay}>{birdData.name}</h4>
       {/* Show / Hide Info Icon */}
       {info.formDisplay.display === 'none' ?
@@ -135,6 +133,7 @@ const Bird = (props) => {
           </div>
         </div>
         <div style={form.formDisplay}>
+          {/* if edit form chosen, show form */}
           <EditBirdForm 
             toggleFormDisplay={form.toggleFormDisplay}
             birdingSessionId={props.birdingSessionId} 
