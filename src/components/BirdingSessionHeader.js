@@ -11,6 +11,7 @@ const BirdingSessionHeader = (props) => {
   const [didDataChange, setDidDataChange] = useState(false);
   const form = useFormDisplay();
   const shareForm = useFormDisplay();
+  const header = useFormDisplay();
   const [images, setImages] = useState([]);
   const [error, setError] = useState('');
 
@@ -101,31 +102,16 @@ const BirdingSessionHeader = (props) => {
           console.log(err.message);
         }
       })
-    // trigger re-render
-        // if (props.didDataChange !== undefined) {
-        //   console.log('changing data')
-        //   // delete request coming from profile page
-        //   props.setDidDataChange(!props.didDataChange);
-        // }
-        // props.history.push('/profile');
   }
+
 
   // when component mounts
   useEffect(() => {
     // get birding session data
     fetchBirdingSession(props.data._id);
     getBirdingSessionPhotos(props.data._id);
-    // fetchBirdingSession(props.key);
-    // fetchBirdingSession(birdingSessionHeader._id);
-    // setDidDataChange(false);
   }, [props.didDataChange, didDataChange]);
 
-  // get all users that birding session is shared with
-  const users = birdingSessionHeader.users.map((user, index) => {
-    return (
-      <span key={user._id}>{user.name} </span>
-    )
-  })
 
   if (birdingSessionHeader.location) {
     return (
@@ -135,6 +121,30 @@ const BirdingSessionHeader = (props) => {
         <Link to={`/birdingSession/${props.data._id}`}>
           <h3>{birdingSessionHeader.location}</h3>
         </Link>
+        {/* Show or hide birding session details */}
+        {header.formDisplay.display === 'none' ?
+          <div className="clickable-icon">
+            {/* Show More */}
+            <i className="fa fa-chevron-up fa-lg" aria-hidden="true" onClick={header.toggleFormDisplay}></i>
+          </div>
+          :
+          <div className="clickable-icon">
+            {/* Hide */}
+            <i className="fa fa-chevron-down fa-lg" aria-hidden="true" onClick={header.toggleFormDisplay}></i>
+          </div>
+        } 
+        <div style={header.formDisplay}>
+          <div className="row">
+            <div className="col">
+              {new Date(birdingSessionHeader.date).toLocaleDateString()}
+            </div>
+          </div>
+          <div className="row">
+            <div className="col">
+              {birdingSessionHeader.notes}
+            </div>
+          </div>
+        </div>
         {/* Row of Icons */}
         <div className="icon-container">
           {/* Share Icon */}
