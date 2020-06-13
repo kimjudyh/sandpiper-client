@@ -47,7 +47,7 @@ const MapContainer = (props) => {
   return (
     <div >
       <div className="map-header">
-        <h2>Map</h2>
+        <h2 onClick={map.toggleFormDisplay}>Map</h2>
         {map.formDisplay.display === 'none' ?
           <div className="clickable-icon">
             {/* Show More */}
@@ -78,7 +78,7 @@ const MapContainer = (props) => {
 export default MapContainer;
 
 export const useFormDisplay = () => {
-  const [formDisplay, setFormDisplay] = useState({display: 'block'})
+  const [formDisplay, setFormDisplay] = useState({display: 'none'})
   const toggleFormDisplay = () => {
     // toggle show form state
     if (formDisplay.display === 'none') {
