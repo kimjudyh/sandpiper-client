@@ -105,13 +105,6 @@ const BirdingSessionHeader = (props) => {
       })
   }
 
-  const openDeleteWarning = (birdingSessionId) => {
-    // open modal id={`modal${props.id}`} 
-    // if click yes, delete
-    deleteBirdingSession(birdingSessionId);
-    // else close modal
-  }
-
 
   // when component mounts
   useEffect(() => {
@@ -128,7 +121,7 @@ const BirdingSessionHeader = (props) => {
         <Confirmation 
           componentName="birding session"
           id={birdingSessionHeader._id}
-          delete={deleteBirdingSession}
+          delete={() => deleteBirdingSession(props.data._id)}
         />
         {/* make birding session location a link to the show page  */}
         <Link to={`/birdingSession/${props.data._id}`}>

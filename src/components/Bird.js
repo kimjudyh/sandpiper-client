@@ -3,6 +3,7 @@ import BirdModel from '../models/BirdModel';
 import EditBirdForm from '../forms/EditBirdForm';
 import PhotoContainer from '../containers/PhotoContainer';
 import PhotoModel from '../models/PhotoModel';
+import Confirmation from './Confirmation';
 
 const Bird = (props) => {
   const [birdData, setBirdData] = useState({...props});
@@ -107,6 +108,11 @@ const Bird = (props) => {
   return (
     <>
     <div className="bird">
+      <Confirmation 
+        componentName="bird"
+        id={props._id}
+        delete={() => deleteBird(props.birdingSessionId, props._id)}
+      />
       <h4 onClick={info.toggleFormDisplay}>{birdData.name}</h4>
       {/* Show / Hide Info Icon */}
       {info.formDisplay.display === 'none' ?
@@ -125,7 +131,11 @@ const Bird = (props) => {
         <div className="icon-container">
           {/* Delete Icon */}
           <div className="clickable-icon">
-            <i className="fa fa-trash fa-lg" aria-hidden="true" onClick={() => deleteBird(props.birdingSessionId, props._id)}></i>
+            <i className="fa fa-trash fa-lg" aria-hidden="true" 
+            data-toggle="modal" data-focus="true" data-target={`#modal${props._id}`}
+            // onClick={() => deleteBird(props.birdingSessionId, props._id)}
+            
+            ></i>
           </div>
           {/* Edit Icon */}
           <div className="clickable-icon">

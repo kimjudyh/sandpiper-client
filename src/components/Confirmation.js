@@ -1,6 +1,8 @@
 import React from 'react';
 
 const Confirmation = (props) => {
+  // unpack delete parameters
+
   return (
     <div className="modal" id={`modal${props.id}`} tabIndex="-1" role="dialog" aria-labelledby="warning-modal" aria-hidden="true">
       <div className="modal-dialog">
@@ -16,7 +18,7 @@ const Confirmation = (props) => {
           </div>
           <div className="modal-footer">
             <button type="button" className="btn btn-secondary" data-dismiss="modal">Cancel</button>
-            <button onClick={() => props.delete(props.id)} type="button" className="btn btn-danger" data-dismiss="modal">Delete</button>
+            <button onClick={props.delete} type="button" className="btn btn-danger" data-dismiss="modal">Delete</button>
           </div>
         </div>
       </div>
