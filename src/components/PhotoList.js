@@ -96,7 +96,24 @@ const PhotoList = (props) => {
   const [photoIndex, setPhotoIndex] = useState(0);
 
   const mapImages = (images) => {
-    const mappedImagesArray = images.map((image, index) => {
+    const mappedImagesArray = images.map((image, index, array) => {
+      // for navigating between photos in the modal
+      let nextId = '';
+      let prevId='';
+      if (index === 0) {
+        // no previous photo, make prevId equal to current id
+        prevId = image._id;
+      } else {
+        // make prevId equal to id of previous image in array
+        prevId = array[index - 1]._id;
+      }
+      if (index === (array.length - 1)) {
+        // no next photo, make nextId equal to current id
+        nextId = image._id;
+      } else {
+        // make nextId equal to id of next image in array
+        nextId = array[index + 1]._id;
+      }
       return (
         <>
           <Confirmation
@@ -124,6 +141,8 @@ const PhotoList = (props) => {
             }}
             deletePhoto={deletePhoto}
             imageId={image._id}
+            previousImageId={prevId}
+            nextImageId={nextId}
             birdId={image.bird._id}
             image={
               <Image
@@ -208,16 +227,24 @@ const PhotoList = (props) => {
 
 
   return (
-    <div>
-      <div>
-        <label>Sort By: </label>
-        <select defaultValue="date created" onChange={sort.handleChange}>
-          <option id="date created" name="date created" value="date created">date created</option>
-          <option id="birding session" name="birding session" value="birding session">Birding Session</option>
-          <option id="bird" name="bird" value="bird">Bird</option>
-          <option id="behavior" name="behavior" value="behavior">Behavior</option>
-        </select>
-        <button onClick={() => sortPhotos(sort.value)}>Sort</button>
+    <div className="photo-list">
+      <div className="form-row justify-content-center">
+        <div className="col col-2 align-items-center">
+            <label>Sort By: </label>
+        </div>
+        <div className="col col-3">
+          <div className="form-group">
+            <select className="form-control" defaultValue="date created" onChange={sort.handleChange}>
+              <option id="date created" name="date created" value="date created">date created</option>
+              <option id="birding session" name="birding session" value="birding session">Birding Session</option>
+              <option id="bird" name="bird" value="bird">Bird</option>
+              <option id="behavior" name="behavior" value="behavior">Behavior</option>
+            </select>
+          </div>
+        </div>
+        <div className="col col-1">
+          <button onClick={() => sortPhotos(sort.value)} className="btn btn-info">Sort</button>
+        </div>
       </div>
       <CloudinaryContext cloudName={process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}>
         <div>
