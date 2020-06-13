@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import BirdingSessionModel from '../models/BirdingSessionModel';
 import Error from '../components/Error';
 
@@ -9,6 +9,11 @@ const NewBirdingSessionForm = (props) => {
     notes: ''
   });
   const [error, setError] = useState('');
+  const fixedDate = useFixedDate();
+
+  useEffect(() => {
+    fixedDate.fixDate(new Date());
+  }, [])
 
   const makeNewBirdingSession = (data) => {
     BirdingSessionModel.create(data)
@@ -18,10 +23,9 @@ const NewBirdingSessionForm = (props) => {
         if (res.status === 200) {
           setBirdingSessionData({
             location: '',
-            date: new Date().toISOString().slice(0, 10),
+            date: fixedDate.fixedDateString,
             notes: ''
           })
-          // props.setDidBirdingSessionsChange(true);
           props.history.push(`/birdingSession/${res.data.newBirdingSession._id}`)
         } else {
           // provide message that something went wrong
@@ -80,7 +84,7 @@ const NewBirdingSessionForm = (props) => {
             type="date"
             id="date"
             name="date"
-            value={birdingSessionData.date}
+            value={fixedDate.fixedDateString}
             required
           />
         </div>
@@ -104,3 +108,26 @@ const NewBirdingSessionForm = (props) => {
 }
 
 export default NewBirdingSessionForm;
+
+// custom hook to adjust date from UTC to Local Timezone and make it a string that the date input accepts
+const useFixedDate = () => {
+  const [fixedDateString, setFixedDateString] = useState('');
+
+  // adjust date for timezone
+  const fixDate = (utcDateObject) => {
+    // convert date string to Date object
+    let date = utcDateObject;
+    // convert date to ms
+    // get timezone offset and convert from min to ms
+    // convert ms to date
+    date = new Date(date.getTime() - (date.getTimezoneOffset() * 60000));
+    // format date to match input type="date": yyyy-mm-dd
+    const dateString = date.toISOString().slice(0, 10);
+    setFixedDateString(dateString)
+  }
+  return ({
+    fixedDateString,
+    fixDate
+  })
+
+}
