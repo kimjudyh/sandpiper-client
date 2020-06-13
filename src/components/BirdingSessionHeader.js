@@ -182,7 +182,7 @@ export const useFormDisplay = () => {
   const toggleFormDisplay = () => {
     // toggle show form state
     if (formDisplay.display === 'none') {
-      setFormDisplay({display: 'block'})
+      setFormDisplay({display: 'flex'})
     } else {
       setFormDisplay({display: 'none'})
     }

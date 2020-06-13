@@ -139,6 +139,12 @@ label {
   align-items: center;
 }
 
+body:not(.modal-open){
+  padding-right: 0px !important;
+}
+
+.modal-open{overflow:auto;padding-right:0 !important;}
+
 /* ====================== */
 .map-header {
   background-color: #F1F1F1F1;
@@ -156,5 +162,20 @@ label {
   background-color: #f1f1f1;
 }
 
+/* ====================== */
+.share-container {
+  flex-direction: column;
+  align-items: center;
+}
+
+.share-info {
+  width: 60%;
+  font-size: 0.9rem;
+}
+
+.share-info p {
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
 
 /* Media Queries */
