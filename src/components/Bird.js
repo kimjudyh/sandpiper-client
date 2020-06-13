@@ -113,19 +113,25 @@ const Bird = (props) => {
         id={props._id}
         delete={() => deleteBird(props.birdingSessionId, props._id)}
       />
-      <h4 onClick={info.toggleFormDisplay}>{birdData.name}</h4>
-      {/* Show / Hide Info Icon */}
-      {info.formDisplay.display === 'none' ?
-        <div className="clickable-icon">
-          {/* Show More */}
-          <i className="fa fa-chevron-up fa-lg" aria-hidden="true" onClick={info.toggleFormDisplay}></i>
+      <div className="row justify-content-center" onClick={info.toggleFormDisplay}>
+        <div className="col col-6 offset-2">
+          <h4 onClick={info.toggleFormDisplay}>{birdData.name}</h4>
         </div>
-        :  
-        <div className="clickable-icon">
-          {/* Hide */}
-          <i className="fa fa-chevron-down fa-lg" aria-hidden="true" onClick={info.toggleFormDisplay}></i> 
+        <div className="col col-1 offset-1">
+          {/* Show / Hide Info Icon */}
+          {info.formDisplay.display === 'none' ?
+            <div className="clickable-icon">
+              {/* Show More */}
+              <i className="fa fa-chevron-right fa-lg" aria-hidden="true" onClick={info.toggleFormDisplay}></i>
+            </div>
+            :  
+            <div className="clickable-icon">
+              {/* Hide */}
+              <i className="fa fa-chevron-down fa-lg" aria-hidden="true" onClick={info.toggleFormDisplay}></i> 
+            </div>
+          } 
         </div>
-      } 
+      </div>
       <div style={info.formDisplay} className="bird">
         {/* Row of Icons */}
         <div className="icon-container">
@@ -139,7 +145,7 @@ const Bird = (props) => {
           </div>
           {/* Edit Icon */}
           <div className="clickable-icon">
-            <i className="fa fa-pencil fa-lg" aria-hidden="true" onClick={form.toggleFormDisplay}></i>
+            <i className="fa fa-pencil-alt fa-lg" aria-hidden="true" onClick={form.toggleFormDisplay}></i>
           </div>
         </div>
         <div style={form.formDisplay}>

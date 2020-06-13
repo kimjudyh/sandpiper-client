@@ -13,6 +13,9 @@ code {
     monospace;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 0;
+}
 
 nav ul {
   list-style: none;
@@ -62,6 +65,7 @@ label {
   margin: 5px;
   border-radius: 8px;
 }
+
 /* ====================== */
 .birdingSessionHeader {
   background-color: #F1F1F1F1;
@@ -84,6 +88,9 @@ label {
   display: flex;
   flex-direction: column;
   align-items: center;
+  /* width: 100%; */
+}
+.bird .row {
   width: 100%;
 }
 
@@ -92,7 +99,7 @@ label {
 }
 
 /* ====================== */
-
+/* ICONS */
 .clickable-icon {
   width: 20px;
   cursor: pointer;
@@ -116,8 +123,9 @@ label {
 .bird .icon-container {
   width: 30vw;
 }
-/* ====================== */
 
+/* ====================== */
+/* IMAGE THUMBNAIL */
 .thumbnail {
   width: auto;
   max-height: 150px;
@@ -133,10 +141,18 @@ label {
 }
 
 /* ====================== */
-
+/* MODAL */
 .modal-header {
-  padding: 4px 4px;
+  padding: 10px 10px;
   align-items: center;
+}
+
+.modal-body p {
+  margin: 0;
+}
+
+.modal-footer {
+  padding: 10px 10px;
 }
 
 body:not(.modal-open){
@@ -146,10 +162,18 @@ body:not(.modal-open){
 .modal-open{overflow:auto;padding-right:0 !important;}
 
 /* ====================== */
+/* MAP */
 .map-header {
   background-color: #F1F1F1F1;
-  padding: 5px;
+  padding: 10px;
   margin: 0 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.map-header .row {
+  width: 100%;
 }
 
 .map-container {
@@ -163,6 +187,7 @@ body:not(.modal-open){
 }
 
 /* ====================== */
+/* SHARE */
 .share-container {
   flex-direction: column;
   align-items: center;
