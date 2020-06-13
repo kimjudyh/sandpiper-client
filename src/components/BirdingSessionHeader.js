@@ -127,6 +127,11 @@ const BirdingSessionHeader = (props) => {
         <Link to={`/birdingSession/${props.data._id}`}>
           <h3>{birdingSessionHeader.location}</h3>
         </Link>
+          <div className="row">
+            <div className="col">
+              {new Date(birdingSessionHeader.date).toLocaleDateString()}
+            </div>
+          </div>
         {/* Show or hide birding session details */}
         {header.formDisplay.display === 'none' ?
           <div className="clickable-icon">
@@ -141,11 +146,6 @@ const BirdingSessionHeader = (props) => {
           </div>
         } 
         <div style={header.formDisplay} className="flex-column">
-          <div className="row">
-            <div className="col">
-              {new Date(birdingSessionHeader.date).toLocaleDateString()}
-            </div>
-          </div>
           <div className="row">
             <div className="col">
               {birdingSessionHeader.notes}
