@@ -162,5 +162,20 @@ body:not(.modal-open){
   background-color: #f1f1f1;
 }
 
+/* ====================== */
+.share-container {
+  flex-direction: column;
+  align-items: center;
+}
+
+.share-info {
+  width: 60%;
+  font-size: 0.9rem;
+}
+
+.share-info p {
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
 
 /* Media Queries */
