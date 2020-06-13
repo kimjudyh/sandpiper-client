@@ -96,7 +96,24 @@ const PhotoList = (props) => {
   const [photoIndex, setPhotoIndex] = useState(0);
 
   const mapImages = (images) => {
-    const mappedImagesArray = images.map((image, index) => {
+    const mappedImagesArray = images.map((image, index, array) => {
+      // for navigating between photos in the modal
+      let nextId = '';
+      let prevId='';
+      if (index === 0) {
+        // no previous photo, make prevId equal to current id
+        prevId = image._id;
+      } else {
+        // make prevId equal to id of previous image in array
+        prevId = array[index - 1]._id;
+      }
+      if (index === (array.length - 1)) {
+        // no next photo, make nextId equal to current id
+        nextId = image._id;
+      } else {
+        // make nextId equal to id of next image in array
+        nextId = array[index + 1]._id;
+      }
       return (
         <>
           <Confirmation
@@ -124,6 +141,8 @@ const PhotoList = (props) => {
             }}
             deletePhoto={deletePhoto}
             imageId={image._id}
+            previousImageId={prevId}
+            nextImageId={nextId}
             birdId={image.bird._id}
             image={
               <Image

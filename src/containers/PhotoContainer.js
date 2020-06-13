@@ -105,44 +105,65 @@ const PhotoContainer = (props) => {
   const [photoIndex, setPhotoIndex] = useState(0);
 
   const mapImages = (images) => {
-    const mappedImagesArray = images.map((image, index) => (
-      <React.Fragment key={image._id}>
-        <Confirmation
-          componentName="photo"
-          id={image._id}
-          delete={() => deletePhoto(image.birdingSession._id, image._id)}
-        />
-      <Image
-        data-toggle="modal" data-focus="true" data-target={`#bird${image._id}`}
-        onClick={()=> {
-          setModalId(`bird${image._id}`)
-          setPhotoIndex(index);
-        }}
-        className="thumbnail"
-        src={image.url} alt="bird image" 
-        // key={image._id}
-        publicId={image.cloudinaryPublicId}
-      />
-      <Photo 
-        // key={index} 
-        // birdData={props.birdData}
-        birdData={{
-          name: image.bird.name,
-          birdingSession: image.birdingSession,
-        }}
-        deletePhoto={deletePhoto}
-        imageId={image._id} 
-        birdId={image.bird._id}
-        image={
-        <Image 
-          className="img-fluid"
-          src={image.url} alt="bird image" 
-          // key={image._id}
-          publicId={image.cloudinaryPublicId}
-        />}
-      />
-      </React.Fragment>
-    ))
+    const mappedImagesArray = images.map((image, index, array) => {
+      // for navigating between photos in the modal
+      let nextId = '';
+      let prevId='';
+      if (index === 0) {
+        // no previous photo, make prevId equal to current id
+        prevId = image._id;
+      } else {
+        // make prevId equal to id of previous image in array
+        prevId = array[index - 1]._id;
+      }
+      if (index === (array.length - 1)) {
+        // no next photo, make nextId equal to current id
+        nextId = image._id;
+      } else {
+        // make nextId equal to id of next image in array
+        nextId = array[index + 1]._id;
+      }
+      return (
+        <React.Fragment key={image._id}>
+          <Confirmation
+            componentName="photo"
+            id={image._id}
+            delete={() => deletePhoto(image.birdingSession._id, image._id)}
+          />
+          <Image
+            data-toggle="modal" data-focus="true" data-target={`#bird${image._id}`}
+            onClick={() => {
+              setModalId(`bird${image._id}`)
+              setPhotoIndex(index);
+            }}
+            className="thumbnail"
+            src={image.url} alt="bird image"
+            // key={image._id}
+            publicId={image.cloudinaryPublicId}
+          />
+          <Photo
+            // key={index} 
+            // birdData={props.birdData}
+            birdData={{
+              name: image.bird.name,
+              birdingSession: image.birdingSession,
+            }}
+            deletePhoto={deletePhoto}
+            imageId={image._id}
+            previousImageId={prevId}
+            nextImageId={nextId}
+            birdId={image.bird._id}
+            image={
+              <Image
+                className="img-fluid"
+                src={image.url} alt="bird image"
+                // key={image._id}
+                publicId={image.cloudinaryPublicId}
+              />}
+          />
+        </React.Fragment>
+      )
+    })
     setMappedImages(mappedImagesArray);
   }
 
