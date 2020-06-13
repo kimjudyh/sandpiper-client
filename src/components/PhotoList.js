@@ -208,16 +208,24 @@ const PhotoList = (props) => {
 
 
   return (
-    <div>
-      <div>
-        <label>Sort By: </label>
-        <select defaultValue="date created" onChange={sort.handleChange}>
-          <option id="date created" name="date created" value="date created">date created</option>
-          <option id="birding session" name="birding session" value="birding session">Birding Session</option>
-          <option id="bird" name="bird" value="bird">Bird</option>
-          <option id="behavior" name="behavior" value="behavior">Behavior</option>
-        </select>
-        <button onClick={() => sortPhotos(sort.value)}>Sort</button>
+    <div className="photo-list">
+      <div className="form-row justify-content-center">
+        <div className="col col-2 align-items-center">
+            <label>Sort By: </label>
+        </div>
+        <div className="col col-3">
+          <div className="form-group">
+            <select className="form-control" defaultValue="date created" onChange={sort.handleChange}>
+              <option id="date created" name="date created" value="date created">date created</option>
+              <option id="birding session" name="birding session" value="birding session">Birding Session</option>
+              <option id="bird" name="bird" value="bird">Bird</option>
+              <option id="behavior" name="behavior" value="behavior">Behavior</option>
+            </select>
+          </div>
+        </div>
+        <div className="col col-1">
+          <button onClick={() => sortPhotos(sort.value)} className="btn btn-info">Sort</button>
+        </div>
       </div>
       <CloudinaryContext cloudName={process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}>
         <div>
