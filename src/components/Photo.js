@@ -67,17 +67,25 @@ const Photo = (props) => {
               <span aria-hidden="true"><i className="fa fa-times fa-lg"></i></span>
             </button>
           </div>
-          {/* Previous Image */}
-          <div className="clickable-icon">
-            <i className="fa fa-chevron-right fa-lg" aria-hidden="true"
-            data-toggle="modal" data-focus="true" data-target={`#bird${props.previousImageId}`}
-            ></i>
-          </div>
-          {/* Next Image */}
-          <div className="clickable-icon">
-            <i className="fa fa-chevron-right fa-lg" aria-hidden="true"
-            data-toggle="modal" data-focus="true" data-target={`#bird${props.nextImageId}`}
-            ></i>
+          <div className="row">
+            <div className="col">
+              {/* Previous Image */}
+              <div className="clickable-icon">
+                <i className="fa fa-chevron-left fa-lg" aria-hidden="true"
+                  data-toggle="modal" data-dismiss="modal" data-focus="true"
+                  data-target={`#bird${props.previousImageId}`}
+                ></i>
+              </div>
+            </div>
+            <div className="col">
+              {/* Next Image */}
+              <div className="clickable-icon">
+                <i className="fa fa-chevron-right fa-lg" aria-hidden="true"
+                  data-toggle="modal" data-focus="true" data-dismiss="modal"
+                  data-target={`#bird${props.nextImageId}`}
+                ></i>
+              </div>
+            </div>
           </div>
           {/* Image */}
           {props.image}
