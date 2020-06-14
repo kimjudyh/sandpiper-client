@@ -227,7 +227,8 @@ const PhotoList = (props) => {
 
 
   return (
-    <div className="photo-list">
+    <div className="container photo-list">
+      <h3>Photos</h3>
       <div className="form-row justify-content-center">
         <div className="col col-3 align-items-center">
             <label>Sort By: </label>
