@@ -25,7 +25,7 @@ const About = () => {
         </p>
         <h4>The birdwatching trip that inspired this app</h4>
         <p>
-          The dialog above represents what happened at Grand Isle, Louisiana, and what has continued to happen. I went birdwatching around New Orleans with my sister and my boyfriend, Jeff. Jeff was manned with the camera, my sister carried around <u>Sibley Birds</u>, and I had the Merlin Bird ID app open. Between the three of us, we should have been able to identify any bird! But our mental field notes, identification guesses, and photos stayed separate, and the lone shorebird walking along the beach remained unidentified.
+          The dialog above represents what happened at Grand Isle, Louisiana, and what has continued to happen. I went birdwatching around New Orleans with my sister and my boyfriend, Jeff. Jeff was manned with the camera, my sister carried around <u>The Sibley Guide to Birds</u>, and I had the Merlin Bird ID app open. Between the three of us, we should have been able to identify any bird! But our mental field notes, identification guesses, and photos stayed separate, and the lone shorebird walking along the beach remained unidentified.
         </p>
         <p>
           Sandpiper is where we can store that collective knowledge. I hope it can help me become a better birder, and that you enjoy using the app.

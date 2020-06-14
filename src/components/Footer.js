@@ -10,13 +10,15 @@ const Footer = (props) => {
         <div className="row">
           {/* Link to about */}
           <div className="col">
+            <div className="clickable-icon logo">
             <Link className="nav-link navbar-brand logo" to={"/about"}><img src={logo} alt="Sandpiper logo" /></Link>
+            </div>
           </div>
           {/* Link to Github repo */}
           <div className="col justify-content-center">
             <div className="clickable-icon">
               <a href="https://git.generalassemb.ly/judykim-ga/final-project-client" target="_blank">
-                <i className="fa fa-github fa-lg fa-inverse"></i>
+                <i className="fa fa-github fa-2x fa-inverse"></i>
               </a>
             </div>
           </div>
