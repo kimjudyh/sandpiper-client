@@ -90,7 +90,8 @@ const EditBirdingSessionForm = (props) => {
               type="date"
               id="date"
               name="date"
-              value={fixedDate.fixedDateString}
+              // value={fixedDate.fixedDateString}
+              value={birdingSessionData.date}
               required
             />
           </div>

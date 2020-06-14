@@ -129,7 +129,8 @@ const BirdingSessionHeader = (props) => {
         </Link>
           <div className="row">
             <div className="col">
-              {new Date(birdingSessionHeader.date).toLocaleDateString()}
+              {new Date(birdingSessionHeader.date).toDateString()}
+              {/* {birdingSessionHeader.date} */}
             </div>
           </div>
         {/* Show or hide birding session details */}

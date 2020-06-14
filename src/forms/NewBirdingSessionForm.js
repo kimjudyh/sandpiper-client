@@ -5,7 +5,7 @@ import Error from '../components/Error';
 const NewBirdingSessionForm = (props) => {
   const [birdingSessionData, setBirdingSessionData] = useState({
     location: '',
-    date: new Date().toISOString().slice(0, 10),
+    date: new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().slice(0, 10),
     notes: ''
   });
   const [error, setError] = useState('');
@@ -23,7 +23,7 @@ const NewBirdingSessionForm = (props) => {
         if (res.status === 200) {
           setBirdingSessionData({
             location: '',
-            date: fixedDate.fixedDateString,
+            date: '',
             notes: ''
           })
           props.history.push(`/birdingSession/${res.data.newBirdingSession._id}`)
@@ -49,7 +49,12 @@ const NewBirdingSessionForm = (props) => {
     // setBirdingSessionData overwrites the state, instead of merging
     // so save the current state to an object and change one field
     let newState = Object.assign({}, birdingSessionData);
+    // if (event.target.name === 'date') {
+    //   fixedDate.fixDate(new Date(event.target.value))
+    // } else {
+
     newState[event.target.name] = event.target.value;
+    // }
     setBirdingSessionData(newState);
     // setState({...data, [event.target.name]: event.target.value})
   }
@@ -84,7 +89,8 @@ const NewBirdingSessionForm = (props) => {
             type="date"
             id="date"
             name="date"
-            value={fixedDate.fixedDateString}
+            // value={fixedDate.fixedDateString}
+            value={birdingSessionData.date}
             required
           />
         </div>
