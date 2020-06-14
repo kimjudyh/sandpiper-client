@@ -5,15 +5,11 @@ import Error from '../components/Error';
 const NewBirdingSessionForm = (props) => {
   const [birdingSessionData, setBirdingSessionData] = useState({
     location: '',
+    // UTC is 7 hours ahead of PST, then format to yyyy-mm-dd string
     date: new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().slice(0, 10),
     notes: ''
   });
   const [error, setError] = useState('');
-  const fixedDate = useFixedDate();
-
-  useEffect(() => {
-    fixedDate.fixDate(new Date());
-  }, [])
 
   const makeNewBirdingSession = (data) => {
     BirdingSessionModel.create(data)
@@ -23,7 +19,7 @@ const NewBirdingSessionForm = (props) => {
         if (res.status === 200) {
           setBirdingSessionData({
             location: '',
-            date: '',
+            date: new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().slice(0, 10),
             notes: ''
           })
           props.history.push(`/birdingSession/${res.data.newBirdingSession._id}`)
@@ -49,19 +45,15 @@ const NewBirdingSessionForm = (props) => {
     // setBirdingSessionData overwrites the state, instead of merging
     // so save the current state to an object and change one field
     let newState = Object.assign({}, birdingSessionData);
-    // if (event.target.name === 'date') {
-    //   fixedDate.fixDate(new Date(event.target.value))
-    // } else {
-
     newState[event.target.name] = event.target.value;
-    // }
     setBirdingSessionData(newState);
-    // setState({...data, [event.target.name]: event.target.value})
   }
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    makeNewBirdingSession(birdingSessionData);
+    // convert date that user selected in their timezone to UTC
+    let utcDate = new Date(new Date(birdingSessionData.date).getTime() + (new Date().getTimezoneOffset() * 60000))
+    makeNewBirdingSession({...birdingSessionData, date: utcDate});
   }
 
   return (
@@ -89,7 +81,6 @@ const NewBirdingSessionForm = (props) => {
             type="date"
             id="date"
             name="date"
-            // value={fixedDate.fixedDateString}
             value={birdingSessionData.date}
             required
           />
@@ -114,26 +105,3 @@ const NewBirdingSessionForm = (props) => {
 }
 
 export default NewBirdingSessionForm;
-
-// custom hook to adjust date from UTC to Local Timezone and make it a string that the date input accepts
-const useFixedDate = () => {
-  const [fixedDateString, setFixedDateString] = useState('');
-
-  // adjust date for timezone
-  const fixDate = (utcDateObject) => {
-    // convert date string to Date object
-    let date = utcDateObject;
-    // convert date to ms
-    // get timezone offset and convert from min to ms
-    // convert ms to date
-    date = new Date(date.getTime() - (date.getTimezoneOffset() * 60000));
-    // format date to match input type="date": yyyy-mm-dd
-    const dateString = date.toISOString().slice(0, 10);
-    setFixedDateString(dateString)
-  }
-  return ({
-    fixedDateString,
-    fixDate
-  })
-
-}
