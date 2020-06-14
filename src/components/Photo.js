@@ -37,6 +37,21 @@ const Photo = (props) => {
     body.removeChild(modalDiv);
   }
 
+  // useEffect(() => {
+  //   let modalElement = document.getElementById(`bird${props.imageId}`);
+  //   const handleKeyEvent = (event) => {
+  //     if (event.key === 'ArrowRight') {
+  //       closeModal();
+  //       modalElement.setAttribute('style', 'display: none');
+  //       modalElement.classList.remove('show');
+  //     }
+  //   }
+  //   modalElement.addEventListener('keyup', handleKeyEvent); 
+  //   return (() => {
+  //     modalElement.removeEventListener('keyup', handleKeyEvent);
+  //   })
+  // })
+
   // make this a modal
   return (
     <div

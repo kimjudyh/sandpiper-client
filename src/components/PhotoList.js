@@ -229,10 +229,10 @@ const PhotoList = (props) => {
   return (
     <div className="photo-list">
       <div className="form-row justify-content-center">
-        <div className="col col-2 align-items-center">
+        <div className="col col-3 align-items-center">
             <label>Sort By: </label>
         </div>
-        <div className="col col-3">
+        <div className="col col-5">
           <div className="form-group">
             <select className="form-control" defaultValue="date created" onChange={sort.handleChange}>
               <option id="date created" name="date created" value="date created">date created</option>
@@ -242,7 +242,7 @@ const PhotoList = (props) => {
             </select>
           </div>
         </div>
-        <div className="col col-1">
+        <div className="col col-3">
           <button onClick={() => sortPhotos(sort.value)} className="btn btn-info">Sort</button>
         </div>
       </div>
