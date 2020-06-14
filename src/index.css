@@ -234,3 +234,16 @@ body:not(.modal-open){
 /* } */
 
 /* Media Queries */
+@media screen and (max-width: 475px) {
+  .login, .register {
+    width: 80%;
+  }
+
+  .share-info {
+    width: 80%;
+  }
+
+  .photo-list .form-row {
+    width: 100%;
+  }
+}
