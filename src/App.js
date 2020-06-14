@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import Routes from './config/routes';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import UserModel from './models/UserModel';
 import './App.css';
 
@@ -63,6 +64,7 @@ function App(props) {
         currentUser={currentUser}
         storeUser={storeUser}
       />
+      <Footer/>
     </div>
   );
 }
