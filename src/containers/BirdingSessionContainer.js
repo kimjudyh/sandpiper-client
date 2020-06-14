@@ -44,6 +44,7 @@ const BirdingSessionContainer = (props) => {
     />
   ))
 
+
   return (
     <div>
       {/* Icon to show or hide New Birding Session Form */}
@@ -59,11 +60,11 @@ const BirdingSessionContainer = (props) => {
         />
       </div>
       {/* Array of Birding Session Headers */}
-      {birdingSessionComponents ? birdingSessionComponents : "Loading"}
+      {birdingSessionComponents.length === birdingSessions.length ? birdingSessionComponents : "Loading"}
     </div>
   )
-
 }
+
 export default BirdingSessionContainer;
 
 export const useFormDisplay = () => {
