@@ -17,25 +17,25 @@ const Navbar = (props) => {
       <ul className="navbar-nav ml-auto">
         {props.currentUser._id === null ?
         <>
-        <li className="nav-item active">
+        <li className="nav-item active" data-toggle="collapse" data-target="#navbarsDropdown">
           <Link className="nav-link" to={'/about'}>About</Link>
         </li>
-        <li className="nav-item active">
+        <li className="nav-item active" data-toggle="collapse" data-target="#navbarsDropdown">
           <Link className="nav-link" to={'/register'}>Register</Link>
         </li>
-        <li className="nav-item active">
+        <li className="nav-item active" data-toggle="collapse" data-target="#navbarsDropdown">
           <Link className="nav-link" to={'/login'}>Login</Link>
         </li>
         </>
         :
         <>
-        <li className="nav-item active">
+        <li className="nav-item active" data-toggle="collapse" data-target="#navbarsDropdown">
           <Link className="nav-link" to={'/profile'}>Profile</Link>
         </li>
-        <li className="nav-item active">
+        <li className="nav-item active" data-toggle="collapse" data-target="#navbarsDropdown">
           <Link className="nav-link" to={'/photos'}>Photos</Link>
         </li>
-        <li className="nav-item active">
+        <li className="nav-item active" data-toggle="collapse" data-target="#navbarsDropdown">
           <Link className="nav-link" to={'/logout'} onClick={props.logout}>Logout</Link>
         </li>
         </>
