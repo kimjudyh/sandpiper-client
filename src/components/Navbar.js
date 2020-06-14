@@ -5,7 +5,7 @@ import circleLogo from '../sandpiper_circle.svg';
 
 const Navbar = (props) => {
   return (
-<nav className="navbar navbar-expand-lg navbar-dark ">
+<nav className="navbar top navbar-expand-lg navbar-dark ">
   <div className="container">
     <Link className="nav-link navbar-brand logo" to={"/"}><img src={circleLogo} alt="Sandpiper logo"/> Sandpiper</Link>
     {/* Hamburger Menu Button */}

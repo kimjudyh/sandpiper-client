@@ -47,6 +47,10 @@ hr {
   margin-right: 0;
 }
 
+.top {
+  margin-bottom: 20px;
+}
+
 .bottom {
   margin-top: 30px;
   position: absolute;
@@ -201,7 +205,7 @@ label {
   
 }
 
-.logo {
+.bottom .logo {
   width: 64px;
 }
 
@@ -325,6 +329,9 @@ body:not(.modal-open){
   .about-image-frame{
     height: 50vh;
   }
+  .bird-info {
+    width: 130%;
+  }
 }
 /* Mobile L */
 
@@ -358,6 +365,7 @@ body:not(.modal-open){
   .photo-list .form-row {
     width: 100%;
   }
+
 }
 
 /* Mobile M */
