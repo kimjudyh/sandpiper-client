@@ -17,8 +17,8 @@ const BirdingSessionHeader = (props) => {
   const [error, setError] = useState('');
 
   // API call to get one birding session
-  const fetchBirdingSession = (birdingSessionId) => {
-    BirdingSessionModel.getOne(birdingSessionId)
+  const fetchBirdingSession = async (birdingSessionId) => {
+    await BirdingSessionModel.getOne(birdingSessionId)
       .then(res => {
         console.log('birding session header', res.data);
         setBirdingSessionHeader(res.data.foundBirdingSession);

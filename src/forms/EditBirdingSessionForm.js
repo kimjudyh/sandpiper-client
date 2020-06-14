@@ -11,8 +11,8 @@ const EditBirdingSessionForm = (props) => {
   const [error, setError] = useState('');
 
   // API call to update birding session
-  const updateBirdingSession = (birdingSessionId, data) => {
-    BirdingSessionModel.update(birdingSessionId, data)
+  const updateBirdingSession = async (birdingSessionId, data) => {
+    await BirdingSessionModel.update(birdingSessionId, data)
       .then(res => {
         console.log('updated birding session', res.data);
         // if success, hide form 
