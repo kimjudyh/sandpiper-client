@@ -28,6 +28,20 @@ hr {
 }
 
 /* ====================== */
+/* NAVBAR */
+.navbar {
+  background-color: #343a40CC;
+}
+.logo img {
+  width: 48px;
+  height: 48px;
+}
+
+.navbar-brand {
+  margin-right: 0;
+}
+
+/* ====================== */
 .login-container, .register-container {
   display: flex;
   flex-direction: column;
