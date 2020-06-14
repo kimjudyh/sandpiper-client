@@ -7,7 +7,7 @@ const Home = () => {
     <div className="container home-header">
       <h2>Welcome to Sandpiper!</h2>
       <div className="home-image-frame">
-        <img className="img-fluid home-image" src={sandpiperImage} alt="sandpiper walking on beach"/>
+        <img className="home-image" src={sandpiperImage} alt="sandpiper walking on beach"/>
       </div>
       <Link to={'/register'}><h3>Sign Up</h3></Link>
       <Link to={'/about'}><h4>About</h4></Link>

@@ -75,7 +75,7 @@ hr {
 
 .about-image-frame {
   height: 70vh; 
-  width: 100%;
+  width: 60vw;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -179,19 +179,21 @@ label {
   cursor: pointer;
   margin: 8px auto;
   transition: .2s linear;
+  opacity: 0.8;
   
 }
 
 .clickable-icon:hover {
   transform: scale(1.1);
-  opacity: 0.6;
+  opacity: 1;
 }
 
 .icon-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40vw;
+  /* width: 40vw; */
+  width: 172px;
 }
 
 .bird .icon-container {
@@ -290,10 +292,33 @@ body:not(.modal-open){
   /* width: 100%; */
 /* } */
 
+/* ====================== */
 /* Media Queries */
-@media screen and (max-width: 475px) {
+/* Tablet */
+@media screen and (max-width: 768px) {
+  .about-image-frame{
+    height: 50vh;
+  }
+}
+/* Mobile L */
+
+@media screen and (max-width: 435px) {
   .login, .register {
     width: 80%;
+  }
+
+  .home-image-frame {
+    position: relative;
+  }
+
+  .home-image {
+    position: absolute;
+    right: -130%;
+  }
+
+  .about-image-frame {
+    width: 100%;
+    height: 50vh;
   }
 
   .about-info {
@@ -306,5 +331,17 @@ body:not(.modal-open){
 
   .photo-list .form-row {
     width: 100%;
+  }
+}
+
+/* Mobile M */
+/* Mobile S */
+@media screen and (max-width: 330px) {
+  .home-image-frame {
+    position: relative;
+  }
+  .home-image {
+    position: absolute;
+    right: -185%;
   }
 }
