@@ -2,7 +2,8 @@
 
 # Final Project: MERN-stack web app
 ## Sandpiper, a collaborative birdwatching journal
-https://sandpiper-react.herokuapp.com/
+https://sandpiper-react.herokuapp.com/  
+Works best in Chrome, Firefox, Edge (currently doesn't work in Safari)
 
 Multi-server architecture
 
@@ -13,6 +14,7 @@ Backend API
 screenshots
 
 ## Scope
+## Features
 ## Technologies Used
 * React 
 * Express
@@ -41,7 +43,11 @@ Wireframes were made in Figma. A mobile-first approach was taken when designing 
 <img src="./public/readme_images/wireframe_2.png">
 <img src="./public/readme_images/wireframe_3.png">
 
-
+## Known Issues
+* App can't make API requests to back-end in Safari
+* Timezone conversion issue between UTC and local timezone
+* Updating a birding session doesn't always trigger a re-render of the birding session information
+* On the photos page, if you sort the photos, then delete a photo, the Sorted By form doesn't reset to the default choice
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
