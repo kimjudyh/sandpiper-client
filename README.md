@@ -9,6 +9,16 @@ Sandpiper is an app where you can keep track of the birds you saw and the photos
 
 Sandpiper uses a multi-server architecture. The backend API is deployed to its own Heroku site and was built with Node.js, Express, and MongoDB.
 
+## Technologies Used
+* React 
+* Express
+* Node.js
+* MongoDB
+
+Front-end: React, Bootstrap, Flexbox, Font Awesome, Javascript, CSS, HTML  
+Back-end: Express, Node.js, MongoDB, Mongoose
+Dependencies: Axios, Bing Maps, Cloudinary, React Router
+
 ### Backend API
 * Github: https://git.generalassemb.ly/judykim-ga/final-project-api
 * Deployed Site: https://sandpiper-api.herokuapp.com/
@@ -16,18 +26,15 @@ Sandpiper uses a multi-server architecture. The backend API is deployed to its o
 ## Screenshots
 Sandpiper is responsive to mobile device screens. Shown below is the profile page, which lists all birding sessions, and an individual birding session page.
 
-<img src='./public/readme_images/mobile-profile.png' height='500'>
-<img src='./public/readme_images/mobile-birding-session.png' height='500'>
+<img src='./public/readme_images/mobile-profile.png' height='500'> <img src='./public/readme_images/mobile-birding-session.png' height='500'>
 
 Any session can be shared with a user that has signed up for Sandpiper. The birding session contains a map. In future work, the user will be able to drop pins and utilize photo metadata.
 
-<img src='./public/readme_images/mobile-birding-session-share.png' height='500'>
-<img src='./public/readme_images/mobile-birding-session-map.png' height='500'>
+<img src='./public/readme_images/mobile-birding-session-share.png' height='500'> <img src='./public/readme_images/mobile-birding-session-map.png' height='500'>
 
 Photos and field notes can be added to each bird in a birding session. All photos can be viewed and sorted on a separate page.
 
-<img src='./public/readme_images/mobile-bird.png' height='500'>
-<img src='./public/readme_images/mobile-photos-sorted-bird.png' height='500'>
+<img src='./public/readme_images/mobile-bird.png' height='500'> <img src='./public/readme_images/mobile-photos-sorted-bird.png' height='500'>
 
 Desktop versions of the profile and photos page.
 
@@ -42,16 +49,6 @@ Desktop versions of the profile and photos page.
 * Expand the use of maps to let users drop pins and use photo metadata to determine the birding session's location
 * Add more sorting options for photos
 * Add a birds seen checklist that show all birds recorded in birding sessions
-
-## Technologies Used
-* React 
-* Express
-* Node.js
-* MongoDB
-
-Front-end: React, Bootstrap, Flexbox, Font Awesome, Javascript, CSS, HTML  
-Back-end: Express, Node.js, MongoDB, Mongoose
-Dependencies: Axios, Bing Maps, Cloudinary, React Router
 
 ## Data Models
 The backend uses 5 models:
