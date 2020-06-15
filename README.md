@@ -15,7 +15,7 @@ Sandpiper uses a multi-server architecture. The backend API is deployed to its o
 * Node.js
 * MongoDB
 
-Front-end: React, Bootstrap, Flexbox, Font Awesome, Javascript, CSS, HTML  
+Front-end: React, React Hooks, Bootstrap, Flexbox, Font Awesome, Javascript, CSS, HTML  
 Back-end: Express, Node.js, MongoDB, Mongoose
 Dependencies: Axios, Bing Maps, Cloudinary, React Router
 
