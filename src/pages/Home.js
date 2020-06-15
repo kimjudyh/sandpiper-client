@@ -30,7 +30,7 @@ const Home = () => {
         Sandpiper is responsive to mobile device screens. Sign up to add birding sessions that contain birds you've seen and the photos you've taken of them.
         </p>
         <span>
-          <img src={process.env.PUBLIC_URL + '/readme_images/mobile-profile.png'} height='500' alt="screenshot of mobile profile" className="lazyload"/>   <img src={process.env.PUBLIC_URL + '/readme_images/mobile-birding-session.png'} height='500' alt="screenshot of mobile birding session" className="lazyload"/>
+          <img src={process.env.PUBLIC_URL + '/readme_images/mobile-profile.png'} height='500' alt="screenshot of mobile profile" />   <img src={process.env.PUBLIC_URL + '/readme_images/mobile-birding-session.png'} height='500' alt="screenshot of mobile birding session" />
         </span>
         <Link to={'/register'}><h3>Sign Up</h3></Link>
       </div>
@@ -39,7 +39,7 @@ const Home = () => {
           Any session can be shared with a user that has signed up for Sandpiper. The birding session contains a map. In future work, the user will be able to drop pins and utilize photo metadata.
         </p>
         <span>
-          <img src={process.env.PUBLIC_URL + '/readme_images/mobile-birding-session-share.png'} height='500' alt="screenshot of mobile birding session share" className="lazyload"/>   <img src={process.env.PUBLIC_URL + '/readme_images/mobile-birding-session-map.png'} height='500' alt="screenshot of mobile birding session map" className="lazyload"/>
+          <img src={process.env.PUBLIC_URL + '/readme_images/mobile-birding-session-share.png'} height='500' alt="screenshot of mobile birding session share" />   <img src={process.env.PUBLIC_URL + '/readme_images/mobile-birding-session-map.png'} height='500' alt="screenshot of mobile birding session map" />
         </span>
         <Link to={'/register'}><h3>Sign Up</h3></Link>
       </div>
@@ -48,7 +48,7 @@ const Home = () => {
           Photos and field notes can be added to each bird in a birding session. All photos can be viewed and sorted on a separate page.
         </p>
         <span>
-          <img src={process.env.PUBLIC_URL + '/readme_images/mobile-bird.png'} height='500' alt="screenshot of mobile bird page" className="lazyload"/>   <img src={process.env.PUBLIC_URL + '/readme_images/mobile-photos-sorted-bird.png'} height='500' alt="screenshot of mobile sorted bird photos" className="lazyload"></img>
+          <img src={process.env.PUBLIC_URL + '/readme_images/mobile-bird.png'} height='500' alt="screenshot of mobile bird page" />   <img src={process.env.PUBLIC_URL + '/readme_images/mobile-photos-sorted-bird.png'} height='500' alt="screenshot of mobile sorted bird photos" ></img>
         </span>
         <Link to={'/register'}><h3>Sign Up</h3></Link>
       </div>
