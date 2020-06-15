@@ -8,6 +8,7 @@ const BirdingSessionContainer = (props) => {
   const [birdingSessions, setBirdingSessions] = useState([]);
   const [didBirdingSessionsChange, setDidBirdingSessionsChange] = useState(false);
   const form = useFormDisplay();
+  const [isLoading, setIsLoading] = useState(true);
 
   // API call to get all birding sessions
   const fetchBirdingSessions = async () => {
@@ -15,6 +16,10 @@ const BirdingSessionContainer = (props) => {
       .then(res => {
         console.log('birding session container all', res.data.allBirdingSessions);
         setBirdingSessions(res.data.allBirdingSessions);
+      })
+      .then(() => {
+        setIsLoading(false);
+        console.log('setting is loading to false');
       })
       .catch((err) => {
         if (err.response) {
@@ -60,6 +65,7 @@ const BirdingSessionContainer = (props) => {
         />
       </div>
       {/* Array of Birding Session Headers */}
+      {isLoading ? <h2>Loading...</h2> : ''}
       {birdingSessionComponents.length === birdingSessions.length ? birdingSessionComponents : "Loading"}
     </div>
   )
