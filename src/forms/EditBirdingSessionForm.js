@@ -18,6 +18,7 @@ const EditBirdingSessionForm = (props) => {
         // if success, hide form 
         if (res.status === 200) {
           props.toggleFormDisplay();
+          props.setDidDataChange(!props.didDataChange);
         } else {
           // provide message that something went wrong
         }
@@ -58,7 +59,7 @@ const EditBirdingSessionForm = (props) => {
     let utcDate = new Date(new Date(birdingSessionData.date).getTime() + (new Date().getTimezoneOffset() * 60000));
     updateBirdingSession(props.birdingSessionHeader._id, 
       {...birdingSessionData, date: utcDate});
-    props.setDidDataChange(!props.didDataChange);
+    // props.setDidDataChange(!props.didDataChange);
   }
 
   // if there is birding session data, load the form, else say Loading

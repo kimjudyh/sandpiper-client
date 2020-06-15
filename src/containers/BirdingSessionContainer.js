@@ -10,8 +10,8 @@ const BirdingSessionContainer = (props) => {
   const form = useFormDisplay();
 
   // API call to get all birding sessions
-  const fetchBirdingSessions = () => {
-    BirdingSessionModel.all()
+  const fetchBirdingSessions = async () => {
+    await BirdingSessionModel.all()
       .then(res => {
         console.log('birding session container all', res.data.allBirdingSessions);
         setBirdingSessions(res.data.allBirdingSessions);
