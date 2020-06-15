@@ -6,15 +6,14 @@ import Photo from '../components/Photo';
 import Confirmation from '../components/Confirmation';
 
 const PhotoList = (props) => {
+  /** Direct child of routes
+   *  Parent of Photo, Confirmation
+   */
   const [images, setImages] = useState([]);
   const [mappedImages, setMappedImages] = useState([]);
   const [didDataChange, setDidDataChange] = useState(false);
   const sort = useFormInput('date created');
   const [isLoading, setIsLoading] = useState(true);
-  // const [birdData, setBirdData] = useState({
-  //   name: '',
-  //   birdingSession: '',
-  // });
 
   // API call to get all photos
   const getAllPhotos = () => {
@@ -61,21 +60,20 @@ const PhotoList = (props) => {
       })
   }
 
-  // something that sorts photo based on sort.value
-  // sets images state
-  // do this on button click - Sort onClick
+  // sorts photos based on sort category chosen in form
   const sortPhotos = (sortCategory) => {
+    // default ordering of photos is date created
     if (sortCategory === 'date created') {
       getAllPhotos();
+    // sort by birding session location
     } else if (sortCategory === 'birding session') {
-      // images.sort(compare(a.birdingSession, b.birdingSession))
       images.sort((a, b) => {
         if (a.birdingSession.location.toLowerCase() < b.birdingSession.location.toLowerCase()) return -1;
         if (a.birdingSession.location.toLowerCase() > b.birdingSession.location.toLowerCase()) return 1;
         return 0;
       })
       console.log('sorted by session', images);
-
+    // sort by bird name
     } else if (sortCategory === 'bird') {
       images.sort((a, b) => {
         if (a.bird.name.toLowerCase() < b.bird.name.toLowerCase()) return -1;
@@ -83,7 +81,7 @@ const PhotoList = (props) => {
         return 0;
       })
       console.log(images);
-
+    // sort by bird behavior
     } else if (sortCategory === 'behavior') {
       images.sort((a, b) => {
         if (a.bird.behavior.toLowerCase() < b.bird.behavior.toLowerCase()) return -1;
@@ -100,6 +98,7 @@ const PhotoList = (props) => {
   const [modalId, setModalId] = useState('');
   const [photoIndex, setPhotoIndex] = useState(0);
 
+  // map images to components
   const mapImages = (images) => {
     const mappedImagesArray = images.map((image, index, array) => {
       // for navigating between photos in the modal
@@ -161,7 +160,6 @@ const PhotoList = (props) => {
       )
     })
     setMappedImages(mappedImagesArray);
-    // return mappedImagesArray;
   }
 
 
@@ -174,11 +172,13 @@ const PhotoList = (props) => {
   return (
     <div className="container photo-list">
       <h3>Photos</h3>
+      {/* Sort By input form */}
       <div className="form-row justify-content-center">
         <div className="col col-3 align-items-center">
             <label>Sort By: </label>
         </div>
         <div className="col col-5">
+          {/* Dropdown menu of sort categories */}
           <div className="form-group">
             <select className="form-control" defaultValue="date created" onChange={sort.handleChange}>
               <option id="date created" name="date created" value="date created">date created</option>
@@ -188,10 +188,12 @@ const PhotoList = (props) => {
             </select>
           </div>
         </div>
+        {/* Sort button */}
         <div className="col col-3">
           <button onClick={() => sortPhotos(sort.value)} className="btn btn-info">Sort</button>
         </div>
       </div>
+      {/* Thumbnails */}
       {isLoading ? <h2>Loading...</h2> : ''}
       <CloudinaryContext cloudName={process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}>
         <div>

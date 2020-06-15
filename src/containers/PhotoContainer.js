@@ -5,6 +5,10 @@ import Photo from '../components/Photo';
 import Confirmation from '../components/Confirmation';
 
 const PhotoContainer = (props) => {
+  /** Direct child of Bird
+   *  Parent of Photo, Confirmation
+   */
+
   const [images, setImages] = useState([]);
   const [mappedImages, setMappedImages] = useState([]);
   const [didDataChange, setDidDataChange] = useState(false);
@@ -85,9 +89,6 @@ const PhotoContainer = (props) => {
               url: photos.info.secure_url,
               cloudinaryPublicId: photos.info.public_id
             })
-          // setImages([...images, photos.info.public_id])
-          // info.public_id
-          // info.secure_url
         }
       } else {
         if (err.response) {
@@ -104,6 +105,7 @@ const PhotoContainer = (props) => {
   const [modalId, setModalId] = useState('');
   const [photoIndex, setPhotoIndex] = useState(0);
 
+  // map images
   const mapImages = (images) => {
     const mappedImagesArray = images.map((image, index, array) => {
       // for navigating between photos in the modal

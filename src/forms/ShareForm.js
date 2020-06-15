@@ -1,8 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import BirdingSessionModel from '../models/BirdingSessionModel';
 import Error from '../components/Error';
 
 const ShareForm = (props) => {
+  /** Direct child of ShareContainer
+   *  Parent of Error
+   */
+
   const [userEmail, setUserEmail] = useState('');
   const [error, setError] = useState('');
 

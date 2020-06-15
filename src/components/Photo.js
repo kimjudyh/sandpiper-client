@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom';
 import BirdModel from '../models/BirdModel';
 
 const Photo = (props) => {
+  /** Direct child of PhotoContainer and PhotoList
+   *  Parent of cloudinary Image
+   */
+
   const [birdData, setBirdData] = useState(props.birdData);
 
   // API call to get one bird

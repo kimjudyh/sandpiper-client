@@ -3,14 +3,11 @@ import ShareForm from '../forms/ShareForm';
 import BirdingSessionModel from '../models/BirdingSessionModel';
 
 const ShareContainer = (props) => {
+  /** Direct child of BirdingSessionHeader
+   *  Parent of ShareForm
+   */
+
   const form = useFormDisplay();
-  // props:
-  // birdingSessionId={props.data._id}
-  // birdingSessionUsers={birdingSessionHeader.users}
-  // didDataChange={didDataChange}
-  // setDidDataChange={setDidDataChange}
-  // need users shared with
-  // updates header about changes to users
 
   // API call to unshare session
   const unshare = (birdingSessionId, data) => {
@@ -39,8 +36,11 @@ const ShareContainer = (props) => {
   useEffect(() => {
 
   })
+
+  // map users into a grid
   const users = props.birdingSessionUsers.map((user, index) => {
     if (user._id === localStorage.getItem('_id')) {
+      // if current user, only show their name
       return (
         <div className="row">
           <div className="col">
@@ -50,10 +50,12 @@ const ShareContainer = (props) => {
       )
     }
     return (
+      // for other users, show name and an unshare button
       <div className="row  align-items-center">
         <div className="col">
           {user.name}
         </div>
+        {/* Unshare button */}
         <div className="col">
           <div className="clickable-icon" onClick={() => unshare(props.birdingSessionId, {_id: user._id})}>
             <i className="fa fa-user-times fa-lg" aria-hidden="true"></i>
@@ -94,6 +96,7 @@ const ShareContainer = (props) => {
 
 export default ShareContainer;
 
+// custom hook to toggle element display between flex and none
 export const useFormDisplay = () => {
   const [formDisplay, setFormDisplay] = useState({display: 'none'})
   const toggleFormDisplay = () => {
