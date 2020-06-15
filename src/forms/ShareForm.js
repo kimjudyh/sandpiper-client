@@ -50,7 +50,7 @@ const ShareForm = (props) => {
       <Error error={error} />
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label>Email: </label>
+          <label htmlFor="email">Email: </label>
           <input 
             className="form-control"
             onChange={handleChange}

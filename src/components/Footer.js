@@ -17,8 +17,8 @@ const Footer = () => {
           {/* Link to Github repo */}
           <div className="col justify-content-center">
             <div className="clickable-icon">
-              <a href="https://git.generalassemb.ly/judykim-ga/final-project-client" target="_blank">
-                <i className="fa fa-github fa-2x fa-inverse"></i>
+              <a href="https://git.generalassemb.ly/judykim-ga/final-project-client" target="_blank" rel="noopener noreferrer">
+                <i className="fa fa-github fa-2x fa-inverse" aria-label="link to github repo"></i>
               </a>
             </div>
           </div>

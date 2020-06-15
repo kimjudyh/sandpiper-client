@@ -111,7 +111,7 @@ const NewBirdForm = (props) => {
       <Error error={error} />
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label>Name</label>
+          <label htmlFor="name">Name</label>
           <input 
             className="form-control"
             // autofocus this field
@@ -126,7 +126,7 @@ const NewBirdForm = (props) => {
           />
         </div>
         <div className="form-group">
-          <label>Number</label>
+          <label htmlFor="number">Number</label>
           <input 
             className="form-control"
             onChange={number.handleChange}
@@ -137,7 +137,7 @@ const NewBirdForm = (props) => {
           />
         </div>
         <div className="form-group">
-          <label>Behavior</label>
+          <label htmlFor="behavior">Behavior</label>
           <select  onChange={behavior.handleChange} className="form-control">
             <option disabled >Select a Behavior</option>
             {allBehaviors}
@@ -152,10 +152,10 @@ const NewBirdForm = (props) => {
             name="unconfirmed"
             checked={unconfirmed.value}
           />
-          <label className="form-check-label">Unconfirmed ID?</label>
+          <label htmlFor="unconfirmed" className="form-check-label">Unconfirmed ID?</label>
         </div>
         <div className="form-group">
-          <label>Field Notes</label>
+          <label htmlFor="fieldNotes">Field Notes</label>
           <textarea 
             className="form-control"
             onChange={fieldNotes.handleChange}
