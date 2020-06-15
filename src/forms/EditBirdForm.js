@@ -4,10 +4,13 @@ import BehaviorModel from '../models/BehaviorModel';
 import Error from '../components/Error';
 
 const EditBirdForm = (props) => {
+  /** Direct child of Bird
+   *  Parent of Error
+   */
+
   const [allBehaviors, setAllBehaviors] = useState([]);
   const name = useFormInput(props.birdData.name);
   const number = useFormInput(props.birdData.number);
-  // fix.. set to some disabled choice
   const behavior = useFormInput(props.birdData.behavior._id);
   const unconfirmed = useFormInput(props.birdData.unconfirmed);
   const fieldNotes = useFormInput(props.birdData.fieldNotes);

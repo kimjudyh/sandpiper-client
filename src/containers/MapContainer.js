@@ -3,6 +3,9 @@ import { ReactBingmaps } from 'react-bingmaps';
 import axios from 'axios';
 
 const MapContainer = (props) => {
+  /** Direct child of BirdingSession
+   *  Parent of ReactBingMaps
+   */
   const [pinsWithInfo, setPinsWithInfo] = useState([
     {
       "location": [37.4216408920133, -122.18513723405881],
