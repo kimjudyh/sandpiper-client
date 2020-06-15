@@ -65,7 +65,7 @@ const Register = (props) => {
         <Error error={error} />
         <form onSubmit={handleSubmit}>
           <div>
-            <label>Name</label>
+            <label htmlFor="name">Name</label>
             <input
               className="form-control"
               onChange={handleChange}
@@ -77,7 +77,7 @@ const Register = (props) => {
             />
           </div>
           <div>
-            <label>Email</label>
+            <label htmlFor="email">Email</label>
             <input
               className="form-control"
               onChange={handleChange}
@@ -89,7 +89,7 @@ const Register = (props) => {
             />
           </div>
           <div>
-            <label>Password</label>
+            <label htmlFor="password">Password</label>
             <input
               className="form-control"
               onChange={handleChange}
@@ -101,7 +101,7 @@ const Register = (props) => {
             />
           </div>
           <div>
-            <label>Confirm Password</label>
+            <label htmlFor="password2">Confirm Password</label>
             <input
               className="form-control"
               onChange={handleChange}
