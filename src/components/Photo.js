@@ -57,6 +57,8 @@ const Photo = (props) => {
   // })
 
   // make this a modal
+
+
   return (
     <div
       id={`bird${props.imageId}`}

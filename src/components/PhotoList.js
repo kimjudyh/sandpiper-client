@@ -131,7 +131,7 @@ const PhotoList = (props) => {
               setModalId(`bird${image._id}`)
               setPhotoIndex(index);
             }}
-            className="thumbnail"
+            className="thumbnail lazyload"
             src={image.url} alt="bird image"
             // key={image._id}
             key={index}
@@ -150,7 +150,7 @@ const PhotoList = (props) => {
             birdId={image.bird._id}
             image={
               <Image
-                className="img-fluid"
+                className="img-fluid lazyload"
                 src={image.url} alt="bird image"
                 key={image._id}
                 publicId={image.cloudinaryPublicId}
