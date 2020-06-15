@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import BirdModel from '../models/BirdModel';
+import PhotoModel from '../models/PhotoModel';
 import EditBirdForm from '../forms/EditBirdForm';
 import PhotoContainer from '../containers/PhotoContainer';
-import PhotoModel from '../models/PhotoModel';
 import Confirmation from './Confirmation';
 
 const Bird = (props) => {
+  /** Direct child of BirdContainer
+   *  Parent of Confirmation, Error, EditBirdForm, PhotoContainer
+   */
+
   const [birdData, setBirdData] = useState({...props});
   const [didBirdChange, setDidBirdChange] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -139,8 +143,6 @@ const Bird = (props) => {
           <div className="clickable-icon">
             <i className="fa fa-trash fa-lg" aria-hidden="true" 
             data-toggle="modal" data-focus="true" data-target={`#modal${props._id}`}
-            // onClick={() => deleteBird(props.birdingSessionId, props._id)}
-            
             ></i>
           </div>
           {/* Edit Icon */}
@@ -206,13 +208,13 @@ const Bird = (props) => {
     </div>
       <hr/>
       </>
-  )
-
+    )
   }
 }
 
 export default Bird;
 
+// custom hook to toggle element display between flex and none
 export const useFormDisplay = () => {
   const [formDisplay, setFormDisplay] = useState({display: 'none'})
   const toggleFormDisplay = () => {

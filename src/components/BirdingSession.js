@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import BirdingSessionModel from '../models/BirdingSessionModel';
 import BirdingSessionHeader from '../components/BirdingSessionHeader';
 import BirdingSessionBody from '../components/BirdingSessionBody';
 import MapContainer from '../containers/MapContainer';
 
 const BirdingSession = (props) => {
+  /** Direct child of routes
+   *  Parent of BirdingSessionHeader, MapContainer, BirdingSessionBody
+   */
+
   // Shows birding session header and birding session body (show page)
   const [birdingSession, setBirdingSession] = useState({});
   const [didDataChange, setDidDataChange] = useState(false);

@@ -4,6 +4,10 @@ import Bird from '../components/Bird';
 import NewBirdForm from '../forms/NewBirdForm';
 
 const BirdContainer = (props) => {
+  /** Direct child of BirdingSessionBody
+   *  Parent of Bird
+   */
+
   const [didBirdsChange, setDidBirdsChange] = useState(false);
   const [birds, setBirds] = useState([]);
   const form = useFormDisplay();
@@ -36,14 +40,13 @@ const BirdContainer = (props) => {
   // map bird data to Bird components
   const birdComponents = birds.map((element, index) => (
     <React.Fragment key={element._id}>
-    <Bird 
-      // key={element._id} 
-      {...element} 
-      birdingSessionId={props._id} 
-      didDataChange={didBirdsChange}
-      setDidDataChange={setDidBirdsChange}
-    />
-    {/* <button className="btn btn-danger" onClick={() => deleteBird(props._id, element._id)}>Delete</button> */}
+      <Bird 
+        // key={element._id} 
+        {...element} 
+        birdingSessionId={props._id} 
+        didDataChange={didBirdsChange}
+        setDidDataChange={setDidBirdsChange}
+      />
     </React.Fragment>
   ))
 
@@ -53,9 +56,9 @@ const BirdContainer = (props) => {
         {birdComponents}
       </div>
       <div>
-        {/* <button className="btn btn-info" onClick={form.toggleFormDisplay}>New Bird</button> */}
-          <div className="clickable-icon">
-            <i className="fa fa-feather fa-2x" aria-hidden="true" onClick={form.toggleFormDisplay}></i>
+        {/* Toggle new bird form display */}
+        <div className="clickable-icon">
+          <i className="fa fa-feather fa-2x" aria-hidden="true" onClick={form.toggleFormDisplay}></i>
             New
           </div>
         <div className="bird" style={form.formDisplay}>
@@ -67,13 +70,13 @@ const BirdContainer = (props) => {
           />
         </div>
       </div>
-
     </div>
   )
 }
 
 export default BirdContainer;
 
+// custom hook to toggle element display between flex and none
 export const useFormDisplay = () => {
   const [formDisplay, setFormDisplay] = useState({display: 'none'})
   const toggleFormDisplay = () => {

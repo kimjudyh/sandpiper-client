@@ -3,8 +3,12 @@ import { Link } from 'react-router-dom';
 import BirdingSessionContainer from '../containers/BirdingSessionContainer';
 
 const Profile = (props) => {
+  /** Direct child of routes
+   *  Parent of BirdingSessionContainer
+   */
 
   if (props.currentUser._id !== null) {
+    // if user is logged in
     return (
       <div className="container">
         <h3>{props.currentUser.name}'s Profile</h3>
@@ -13,10 +17,10 @@ const Profile = (props) => {
           currentUser={props.currentUser}
           storeUser={props.storeUser}
         />
-
       </div>
     )
   } else {
+    // else show links to register or login
     return (
       <div>
         <h1>Not Logged In</h1>

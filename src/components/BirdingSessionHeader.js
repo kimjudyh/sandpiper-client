@@ -8,6 +8,10 @@ import Error from '../components/Error';
 import Confirmation from './Confirmation';
 
 const BirdingSessionHeader = (props) => {
+  /** Direct child of BirdingSession and BirdingSessionContainer
+   *  Parent of Error, Confirmation, ShareContainer, EditBirdingSession
+   */
+
   const [birdingSessionHeader, setBirdingSessionHeader] = useState({...props.data});
   const [didDataChange, setDidDataChange] = useState(false);
   const form = useFormDisplay();
@@ -159,7 +163,6 @@ const BirdingSessionHeader = (props) => {
             <i className="fa fa-trash fa-lg" aria-hidden="true" 
             
             data-toggle="modal" data-focus="true" data-target={`#modal${birdingSessionHeader._id}`}
-            // onClick={() => deleteBirdingSession(props.data._id)}
             ></i>
           </div>
           {/* Share Icon */}
@@ -198,6 +201,7 @@ const BirdingSessionHeader = (props) => {
 
 export default BirdingSessionHeader;
 
+// custom hook to toggle element display between flex and none
 export const useFormDisplay = () => {
   const [formDisplay, setFormDisplay] = useState({display: 'none'})
   const toggleFormDisplay = () => {

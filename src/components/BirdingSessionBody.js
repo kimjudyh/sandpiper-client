@@ -3,8 +3,13 @@ import BirdingSessionModel from '../models/BirdingSessionModel';
 import BirdContainer from '../containers/BirdContainer';
 
 const BirdingSessionBody = (props) => {
+  /** Direct child of BirdingSession
+   *  Parent of BirdContainer
+   */
+
   const [birdingSessionBody, setBirdingSessionBody] = useState({...props});
 
+  // API call to fetch birding session
   const fetchBirdingSession = (birdingSessionId) => {
     BirdingSessionModel.getOne(birdingSessionId)
       .then(res => {

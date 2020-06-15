@@ -4,6 +4,10 @@ import BirdingSessionHeader from '../components/BirdingSessionHeader';
 import NewBirdingSessionForm from '../forms/NewBirdingSessionForm';
 
 const BirdingSessionContainer = (props) => {
+  /** Direct child of Profile
+   *  Parent of BirdingSessionHeader, NewBirdingSessionForm
+   */
+
   // Lists all birding session headers (index page)
   const [birdingSessions, setBirdingSessions] = useState([]);
   const [didBirdingSessionsChange, setDidBirdingSessionsChange] = useState(false);
@@ -73,6 +77,7 @@ const BirdingSessionContainer = (props) => {
 
 export default BirdingSessionContainer;
 
+// custom hook to toggle element display between flex and none
 export const useFormDisplay = () => {
   const [formDisplay, setFormDisplay] = useState({display: 'none'})
   const toggleFormDisplay = () => {
