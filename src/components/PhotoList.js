@@ -10,6 +10,7 @@ const PhotoList = (props) => {
   const [mappedImages, setMappedImages] = useState([]);
   const [didDataChange, setDidDataChange] = useState(false);
   const sort = useFormInput('date created');
+  const [isLoading, setIsLoading] = useState(true);
   // const [birdData, setBirdData] = useState({
   //   name: '',
   //   birdingSession: '',
@@ -24,6 +25,10 @@ const PhotoList = (props) => {
         setImages(res.data.foundPhotos);
         mapImages(res.data.foundPhotos);
         // also has foundBirdingSessions
+      })
+      .then(() => {
+        setIsLoading(false)
+        console.log('setting is loading to false')
       })
       .catch((err) => {
         console.log('axios error')
@@ -159,66 +164,6 @@ const PhotoList = (props) => {
     // return mappedImagesArray;
   }
 
-  // attach event listener, listen for keyup
-  // useEffect(() => {
-  //   let modalElement = document.getElementById(modalId);
-  //   let body = document.querySelector('body');
-  //   let div = document.createElement('div')
-  //   div.classList.add('modal-backdrop', 'show')
-  //   console.log(body)
-    // if (modalElement) {
-    //     modalElement.classList.add('show');
-    //     modalElement.setAttribute('style', 'display: block')
-    //     body.classList.add('modal-open');
-
-    //     console.log(div)
-    //     document.querySelector('body').appendChild(div)
-
-    // }
-    // window.addEventListener('click', (event) => {
-    //   console.log(event.target.classList);
-    // })
-    // console.log(modalElement)
-    
-    // const handleKeyEvent = (event) => {
-    //   console.log('key pressed', event.key)
-    //   console.log('index of photo', photoIndex)
-    //   let index = photoIndex;
-    //   if (event.key === 'ArrowRight' && photoIndex !== mappedImages.length) {
-        // go to next photo, if it exists
-        // console.log('pressed right arrow')
-        // index = photoIndex + 1;
-        // setPhotoIndex(index)
-        // setModalId(`bird${images[index]._id}`)
-        // remove show class from current modal
-        // add show class to next modal
-        // modalElement.classList.remove('show')
-        // modalElement.setAttribute('style', 'display: none')
-        // modalElement = document.getElementById(`bird${images[index]._id}`)
-        // modalElement.classList.add('show');
-        // modalElement.setAttribute('style', 'display: block')
-
-        // console.log(div)
-        // document.querySelector('body').appendChild(div)
-
-
-        
-        // modalElement = document.getElementById(modalId);
-      // } else if (event.key === 'ArrowLeft') {
-      //   console.log('pressed left arrow')
-      // }
-      // console.log('photo index', photoIndex);
-      // console.log('modal id', modalId)
-      // ArrowRight
-      // ArrowLeft
-    // }
-
-    // if modal is open, attach event listener to it
-    // if (modalElement) {
-    //   modalElement.addEventListener('keyup', handleKeyEvent)
-    //   return () => modalElement.removeEventListener('keyup', handleKeyEvent);
-    // }
-  // })
 
   useEffect(() => {
     getAllPhotos();
@@ -247,9 +192,10 @@ const PhotoList = (props) => {
           <button onClick={() => sortPhotos(sort.value)} className="btn btn-info">Sort</button>
         </div>
       </div>
+      {isLoading ? <h2>Loading...</h2> : ''}
       <CloudinaryContext cloudName={process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}>
         <div>
-          {mappedImages}
+          {mappedImages ? mappedImages : <h2>Loading...</h2>}
         </div>
       </CloudinaryContext>
     </div>
