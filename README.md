@@ -20,7 +20,7 @@ Back-end: Express, Node.js, MongoDB, Mongoose
 Dependencies: Axios, Bing Maps, Cloudinary, React Router
 
 ### Backend API
-* Github: https://git.generalassemb.ly/judykim-ga/final-project-api
+* Github: https://github.com/kimjudyh/sandpiper-api
 * Deployed Site: https://sandpiper-api.herokuapp.com/
 
 ## Screenshots
